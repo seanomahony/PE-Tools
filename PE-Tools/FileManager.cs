@@ -30,13 +30,13 @@ namespace PE_Tools
 
         public void UpdateC1File(string database)
         {
-            var databaseLineIndex = 2;
-            var line = c1Config[databaseLineIndex];
-            var head = line.Substring(0, line.IndexOf("Initial Catalog="));
-            var tail = line.Substring(line.IndexOf("Initial Catalog="));
-            var startOfEnd = tail.IndexOf(';');
-            var end = tail.Substring(startOfEnd);
-            var newLine = head + "Initial Catalog=" + database + end;
+            var searchTerm = "Initial Catalog=";
+            var line = c1Config.FirstOrDefault(l => l.Length > searchTerm.Length && l.Contains(searchTerm));
+            var databaseLineIndex = c1Config.IndexOf(line);
+            var head = line.Substring(0, line.IndexOf(searchTerm));
+            var tail = line.Substring(line.IndexOf(searchTerm));
+            var end = tail.Substring(tail.IndexOf(';'));
+            var newLine = head + searchTerm + database + end;
             c1Config[databaseLineIndex] = newLine;
         }
         public bool SaveC1File()
@@ -53,13 +53,13 @@ namespace PE_Tools
 
         public void UpdateDocFile(string database)
         {
-            var databaseLineIndex = 37;
-            var line = docConfig[databaseLineIndex];
-            var head = line.Substring(0, line.IndexOf("Initial Catalog="));
-            var tail = line.Substring(line.IndexOf("Initial Catalog="));
-            var startOfEnd = tail.IndexOf(';');
-            var end = tail.Substring(startOfEnd);
-            var newLine = head + "Initial Catalog=" + database + end;
+            var searchTerm = "Initial Catalog=";
+            var line = docConfig.FirstOrDefault(l => l.Length > searchTerm.Length && l.Contains(searchTerm));
+            var databaseLineIndex = docConfig.IndexOf(line);
+            var head = line.Substring(0, line.IndexOf(searchTerm));
+            var tail = line.Substring(line.IndexOf(searchTerm));
+            var end = tail.Substring(tail.IndexOf(';'));
+            var newLine = head + searchTerm + database + end;
             docConfig[databaseLineIndex] = newLine;
         }
 
