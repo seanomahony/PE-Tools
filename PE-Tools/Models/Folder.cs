@@ -9,14 +9,19 @@ namespace PE_Tools.Models
 {
     public class Folder
     {
+        private static int CurrentIndex = 0;
+        public int ID { get; set; }
         public string DisplayName { get; set; }
         public string FullPath { get; set; }
 
         public Folder(string fullPath)
         {
-            var pattern = @"[^\\]+\\?$";
+            //var pattern = @"[^\\]+\\?$";
             FullPath = fullPath;
-            DisplayName = Regex.Match(fullPath, pattern).Value;
+            DisplayName = fullPath;// Regex.Match(fullPath, pattern).Value;
+            ID = CurrentIndex++;
+
+
         }
     }
 }

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Security.AccessControl;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PE_Tools
 {
@@ -39,7 +35,9 @@ namespace PE_Tools
             {
                 GetDatabases();
             }
-            return Databases.Where(s => s.EndsWith(suffix)).ToList();
+            var ret = new List<string>() { "select" };
+            ret.AddRange(Databases.Where(s => s.EndsWith(suffix)).ToList());
+            return ret;
         }
     }
 }

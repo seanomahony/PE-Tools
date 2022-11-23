@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PE_Tools.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +13,7 @@ namespace PE_Tools.Views
 {
     public partial class DatabaseSettingsView : UserControl
     {
-        List<string> folders { get; set; }
+        List<string> folderNames { get; set; }
         List<string> c1Databases { get; set; }
         List<string> docDatabases { get; set; }
         FileManager fileManager { get; set; }
@@ -20,61 +21,27 @@ namespace PE_Tools.Views
         public DatabaseSettingsView()
         {
             InitializeComponent();
-            folders = new List<string>
-            {
-                @"c:\Dev\onPrem",
-                @"c:\Test\Repo\onPrem"
-            };
 
-            var database = new Database();
-            c1Databases = database.GetSelectedDatabases("_c1");
-            docDatabases = database.GetSelectedDatabases("_doc");
-
-            this.folderListBox.DataSource = folders;
-            this.c1ListBox.DataSource = c1Databases;
-            this.docListBox.DataSource = docDatabases;
-
-            this.outputListBox.Visible = true;
-        }
-
-        private void folderListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.folderTextBox.Text = this.folderListBox.Text;
-            fileManager = new FileManager(this.folderTextBox.Text);
-            activateApplyButton();
         }
 
         private void activateApplyButton()
         {
             this.saveButton.Enabled = false;
             this.outputListBox.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.applyButton.Enabled = !string.IsNullOrEmpty(this.folderTextBox.Text)
-                && !string.IsNullOrEmpty(this.c1TextBox.Text)
-                && !string.IsNullOrEmpty(this.docTextBox.Text);
-            //this.outputListBox.Visible = !this.applyButton.Enabled;
+            this.applyButton.Enabled = this.cbFolders.SelectedIndex > 0
+                && cbC1DBs.SelectedIndex > 0
+                && cbDocDBs.SelectedIndex > 0;
         }
 
         private void applyButton_Click(object sender, EventArgs e)
         {
-            fileManager.UpdateC1File(this.c1TextBox.Text);
-            fileManager.UpdateDocFile(this.docTextBox.Text);
+            fileManager.UpdateC1File((this.cbC1DBs.SelectedItem as DatabaseListItem).Name);
+            fileManager.UpdateDocFile((this.cbDocDBs.SelectedItem as DatabaseListItem).Name);
 
             this.outputListBox.DataSource = null;
             this.outputListBox.BackColor = System.Drawing.SystemColors.Info;
             this.saveButton.Enabled = true;
             this.applyButton.Enabled = false;
-        }
-
-        private void docListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.docTextBox.Text = this.docListBox.Text;
-            activateApplyButton();
-        }
-
-        private void c1ListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.c1TextBox.Text = this.c1ListBox.Text;
-            activateApplyButton();
         }
 
         private void docTextBox_Click(object sender, EventArgs e)
@@ -99,9 +66,82 @@ namespace PE_Tools.Views
             {
                 if (fileManager.SaveC1File() && fileManager.SaveDocFile())
                 {
-                    MessageBox.Show("Files Updated OK", $"Database updated for {this.folderTextBox.Text}");
+                    MessageBox.Show("Files Updated OK", $"Database updated for {(this.cbFolders.SelectedItem as Folder).FullPath}");
                 }
             }
+        }
+
+        private void DatabaseSettingsView_Load(object sender, EventArgs e)
+        {
+            folderNames = new List<string>
+            {
+                @"c:\Dev\onPrem",
+                @"c:\Test\Repo\onPrem"
+            };
+
+
+            var database = new Database();
+            c1Databases = database.GetSelectedDatabases("_c1");
+            docDatabases = database.GetSelectedDatabases("_doc");
+
+            this.outputListBox.Visible = true;
+
+            var folders = getFolders();
+            this.cbFolders.DataSource = folders;
+            this.cbFolders.ValueMember = "ID";
+            this.cbFolders.DisplayMember = "FullPath";
+            this.cbFolders.SelectedIndex = 0;
+
+            DatabaseListItem.CurrentIndex = 1;
+            this.cbC1DBs.DataSource = c1Databases.Select(d => new DatabaseListItem(d)).ToList();
+            this.cbC1DBs.ValueMember = "ID";
+            this.cbC1DBs.DisplayMember = "Name";
+            this.cbC1DBs.SelectedIndex = 0;
+
+            DatabaseListItem.CurrentIndex = 1;
+            this.cbDocDBs.DataSource = docDatabases.Select(d => new DatabaseListItem(d)).ToList();
+            this.cbDocDBs.ValueMember = "ID";
+            this.cbDocDBs.DisplayMember = "Name";
+            this.cbDocDBs.SelectedIndex = 0;
+
+            this.btnViewC1config.Enabled = this.btnViewDocConfig.Enabled = false;
+        }
+
+        private List<Folder> getFolders()
+        {//TODO: get list of folders form config file
+            return new List<Folder>() { new Folder(@"select"), new Folder(@"c:\Dev\onPrem"), new Folder(@"c:\Test\Repo\onPrem") };
+        }
+
+        private void cbFolders_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cbFolders.SelectedIndex < 1)
+            {
+                this.btnViewC1config.Enabled = this.btnViewDocConfig.Enabled = false;
+                return;
+            }
+            fileManager = new FileManager((this.cbFolders.SelectedItem as Folder).FullPath);
+            this.btnViewC1config.Enabled = this.btnViewDocConfig.Enabled = true;
+            activateApplyButton();
+        }
+
+        private void cbC1DBs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            activateApplyButton();
+        }
+
+        private void cbDocDBs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            activateApplyButton();
+        }
+
+        private void btnViewC1config_Click(object sender, EventArgs e)
+        {
+            this.outputListBox.DataSource = fileManager.c1Config;
+        }
+
+        private void btnViewDocConfig_Click(object sender, EventArgs e)
+        {
+            this.outputListBox.DataSource = fileManager.docConfig;
         }
     }
 }
