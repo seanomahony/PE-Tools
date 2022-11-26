@@ -93,12 +93,26 @@ namespace PE_Tools.Views
         private void btnRunCommand_Click(object sender, EventArgs e)
         {
             tbResults.Clear();
-            tbResults.Text = RunScript("./RunPE.ps1", true);
+            //tbResults.Text = RunScript("./RunPE.ps1", true);
+            if(userControlProjectSelector1.SelectedFolder is null)
+            {
+                ShowMessage("echo \'Please select a target projectfolder\'");
+                return;
+            }
+            var project = userControlProjectSelector1.SelectedFolder.Target;
+            tbResults.Text = RunScript($"./RunPE_in.ps1 {project}", true);
         }
         private void btnBuild_Click(object sender, EventArgs e)
         {
             tbResults.Clear();
-            tbResults.Text = RunScript("./start.ps1 -build", true,@"c:\dev\onprem\");
+            if (userControlProjectSelector1.SelectedFolder is null)
+            {
+                ShowMessage("echo \'Please select a target projectfolder\'");
+                return;
+            }
+            var path = userControlProjectSelector1.SelectedFolder.FullPath + @"\";
+            //tbResults.Text = RunScript("./start.ps1 -build", true,@"c:\dev\onprem\");
+            tbResults.Text = RunScript("./start.ps1 -build", true, path);
         }
 
         private void btnStop_Click(object sender, EventArgs e)
