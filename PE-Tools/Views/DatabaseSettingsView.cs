@@ -13,7 +13,6 @@ namespace PE_Tools.Views
 {
     public partial class DatabaseSettingsView : UserControl
     {
-        List<string> folderNames { get; set; }
         List<string> c1Databases { get; set; }
         List<string> docDatabases { get; set; }
         FileManager fileManager { get; set; }
@@ -73,13 +72,6 @@ namespace PE_Tools.Views
 
         private void DatabaseSettingsView_Load(object sender, EventArgs e)
         {
-            folderNames = new List<string>
-            {
-                @"c:\Dev\onPrem",
-                @"c:\Test\Repo\onPrem"
-            };
-
-
             var database = new Database();
             c1Databases = database.GetSelectedDatabases("_c1");
             docDatabases = database.GetSelectedDatabases("_doc");

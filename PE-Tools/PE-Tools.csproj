@@ -80,6 +80,12 @@
     <Compile Include="Views\PowershellCommandsView.Designer.cs">
       <DependentUpon>PowershellCommandsView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControlProjectSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserControlProjectSelector.Designer.cs">
+      <DependentUpon>UserControlProjectSelector.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -99,6 +105,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\PowershellCommandsView.resx">
       <DependentUpon>PowershellCommandsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserControlProjectSelector.resx">
+      <DependentUpon>UserControlProjectSelector.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="app.manifest" />
