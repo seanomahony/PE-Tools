@@ -2,9 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Management.Automation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -46,6 +48,20 @@ namespace PE_Tools
             {
                 this.powershellCommandsView1.Visible = false;
                 this.databaseSettingsView1.Visible = true;
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            var folderSettings = ConfigurationSettings.AppSettings["folders"];
+            if (!string.IsNullOrEmpty(folderSettings))
+            {
+                var folders = folderSettings.Split(',').ToList();
+                if (folders.Count > 0)
+                {
+                    this.powershellCommandsView1.FolderNames = folders;
+                    this.databaseSettingsView1.FolderNames = folders;
+                }
             }
         }
     }

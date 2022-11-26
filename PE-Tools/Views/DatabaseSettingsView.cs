@@ -13,6 +13,8 @@ namespace PE_Tools.Views
 {
     public partial class DatabaseSettingsView : UserControl
     {
+        public List<string> FolderNames { get; set; }
+
         List<string> c1Databases { get; set; }
         List<string> docDatabases { get; set; }
         FileManager fileManager { get; set; }

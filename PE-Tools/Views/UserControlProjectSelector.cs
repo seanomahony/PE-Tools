@@ -13,6 +13,7 @@ namespace PE_Tools.Views
 {
     public partial class UserControlProjectSelector : UserControl
     {
+        public List<string> FolderNames { get; set; }
         public Folder SelectedFolder { get; set; }
         public UserControlProjectSelector()
         {
@@ -40,7 +41,16 @@ namespace PE_Tools.Views
         }
 
         private List<Folder> getFolders()
-        {//TODO: get list of folders form config file
+        {
+            if (FolderNames != null && FolderNames.Any())
+            {
+                var folders = new List<Folder>()
+                {
+                    new Folder(@"select")
+                };
+                FolderNames.ForEach(f => folders.Add(new Folder(f)));
+                return folders;
+            }
             return new List<Folder>() {
                 new Folder(@"select"), 
                 new Folder(@"c:\Dev\onPrem"), 
