@@ -29,7 +29,7 @@ namespace PE_Tools.Views
         {
             this.saveButton.Enabled = false;
             this.outputListBox.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.applyButton.Enabled = this.cbFolders.SelectedIndex > 0
+            this.applyButton.Enabled = this.userControlProjectSelector1.SelectedFolder != null
                 && cbC1DBs.SelectedIndex > 0
                 && cbDocDBs.SelectedIndex > 0;
         }
@@ -67,24 +67,20 @@ namespace PE_Tools.Views
             {
                 if (fileManager.SaveC1File() && fileManager.SaveDocFile())
                 {
-                    MessageBox.Show("Files Updated OK", $"Database updated for {(this.cbFolders.SelectedItem as Folder).FullPath}");
+                    MessageBox.Show("Files Updated OK", $"Database updated for {this.userControlProjectSelector1.SelectedFolder.FullPath}");
                 }
             }
         }
 
         private void DatabaseSettingsView_Load(object sender, EventArgs e)
         {
+            this.userControlProjectSelector1.FolderNames = FolderNames;
+            this.userControlProjectSelector1.Callback = FolderSelectedIndexChanged;
             var database = new Database();
             c1Databases = database.GetSelectedDatabases("_c1");
             docDatabases = database.GetSelectedDatabases("_doc");
 
             this.outputListBox.Visible = true;
-
-            var folders = getFolders();
-            this.cbFolders.DataSource = folders;
-            this.cbFolders.ValueMember = "ID";
-            this.cbFolders.DisplayMember = "FullPath";
-            this.cbFolders.SelectedIndex = 0;
 
             DatabaseListItem.CurrentIndex = 1;
             this.cbC1DBs.DataSource = c1Databases.Select(d => new DatabaseListItem(d)).ToList();
@@ -106,14 +102,14 @@ namespace PE_Tools.Views
             return new List<Folder>() { new Folder(@"select"), new Folder(@"c:\Dev\onPrem"), new Folder(@"c:\Test\Repo\onPrem") };
         }
 
-        private void cbFolders_SelectedIndexChanged(object sender, EventArgs e)
+        private void FolderSelectedIndexChanged()
         {
-            if(cbFolders.SelectedIndex < 1)
+            if(this.userControlProjectSelector1.SelectedFolder == null)
             {
                 this.btnViewC1config.Enabled = this.btnViewDocConfig.Enabled = false;
                 return;
             }
-            fileManager = new FileManager((this.cbFolders.SelectedItem as Folder).FullPath);
+            fileManager = new FileManager(this.userControlProjectSelector1.SelectedFolder.FullPath);
             this.btnViewC1config.Enabled = this.btnViewDocConfig.Enabled = true;
             activateApplyButton();
         }

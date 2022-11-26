@@ -32,14 +32,13 @@
             this.saveButton = new DevExpress.XtraEditors.SimpleButton();
             this.outputListBox = new System.Windows.Forms.ListBox();
             this.applyButton = new DevExpress.XtraEditors.SimpleButton();
-            this.SourceFolderLabelControl = new DevExpress.XtraEditors.LabelControl();
             this.C1LabelControl = new DevExpress.XtraEditors.LabelControl();
             this.DocLabelControl = new DevExpress.XtraEditors.LabelControl();
-            this.cbFolders = new System.Windows.Forms.ComboBox();
             this.cbC1DBs = new System.Windows.Forms.ComboBox();
             this.cbDocDBs = new System.Windows.Forms.ComboBox();
             this.btnViewC1config = new System.Windows.Forms.Button();
             this.btnViewDocConfig = new System.Windows.Forms.Button();
+            this.userControlProjectSelector1 = new PE_Tools.Views.UserControlProjectSelector();
             this.SuspendLayout();
             // 
             // titleLabelControl
@@ -57,7 +56,7 @@
             this.saveButton.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saveButton.Appearance.Options.UseFont = true;
             this.saveButton.Enabled = false;
-            this.saveButton.Location = new System.Drawing.Point(127, 84);
+            this.saveButton.Location = new System.Drawing.Point(127, 105);
             this.saveButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(75, 23);
@@ -82,7 +81,7 @@
             this.applyButton.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.applyButton.Appearance.Options.UseFont = true;
             this.applyButton.Enabled = false;
-            this.applyButton.Location = new System.Drawing.Point(18, 84);
+            this.applyButton.Location = new System.Drawing.Point(18, 105);
             this.applyButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.applyButton.Name = "applyButton";
             this.applyButton.Size = new System.Drawing.Size(75, 23);
@@ -90,22 +89,11 @@
             this.applyButton.Text = "Apply";
             this.applyButton.Click += new System.EventHandler(this.applyButton_Click);
             // 
-            // SourceFolderLabelControl
-            // 
-            this.SourceFolderLabelControl.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SourceFolderLabelControl.Appearance.Options.UseFont = true;
-            this.SourceFolderLabelControl.Location = new System.Drawing.Point(18, 33);
-            this.SourceFolderLabelControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.SourceFolderLabelControl.Name = "SourceFolderLabelControl";
-            this.SourceFolderLabelControl.Size = new System.Drawing.Size(123, 16);
-            this.SourceFolderLabelControl.TabIndex = 26;
-            this.SourceFolderLabelControl.Text = "Select Source Folder";
-            // 
             // C1LabelControl
             // 
             this.C1LabelControl.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.C1LabelControl.Appearance.Options.UseFont = true;
-            this.C1LabelControl.Location = new System.Drawing.Point(388, 33);
+            this.C1LabelControl.Location = new System.Drawing.Point(417, 42);
             this.C1LabelControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.C1LabelControl.Name = "C1LabelControl";
             this.C1LabelControl.Size = new System.Drawing.Size(79, 16);
@@ -116,35 +104,26 @@
             // 
             this.DocLabelControl.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DocLabelControl.Appearance.Options.UseFont = true;
-            this.DocLabelControl.Location = new System.Drawing.Point(758, 33);
+            this.DocLabelControl.Location = new System.Drawing.Point(756, 42);
             this.DocLabelControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DocLabelControl.Name = "DocLabelControl";
             this.DocLabelControl.Size = new System.Drawing.Size(86, 16);
             this.DocLabelControl.TabIndex = 25;
             this.DocLabelControl.Text = "Select Doc DB";
             // 
-            // cbFolders
-            // 
-            this.cbFolders.FormattingEnabled = true;
-            this.cbFolders.Location = new System.Drawing.Point(18, 56);
-            this.cbFolders.Name = "cbFolders";
-            this.cbFolders.Size = new System.Drawing.Size(364, 21);
-            this.cbFolders.TabIndex = 37;
-            this.cbFolders.SelectedIndexChanged += new System.EventHandler(this.cbFolders_SelectedIndexChanged);
-            // 
             // cbC1DBs
             // 
             this.cbC1DBs.FormattingEnabled = true;
-            this.cbC1DBs.Location = new System.Drawing.Point(388, 56);
+            this.cbC1DBs.Location = new System.Drawing.Point(417, 65);
             this.cbC1DBs.Name = "cbC1DBs";
-            this.cbC1DBs.Size = new System.Drawing.Size(364, 21);
+            this.cbC1DBs.Size = new System.Drawing.Size(333, 21);
             this.cbC1DBs.TabIndex = 38;
             this.cbC1DBs.SelectedIndexChanged += new System.EventHandler(this.cbC1DBs_SelectedIndexChanged);
             // 
             // cbDocDBs
             // 
             this.cbDocDBs.FormattingEnabled = true;
-            this.cbDocDBs.Location = new System.Drawing.Point(758, 56);
+            this.cbDocDBs.Location = new System.Drawing.Point(756, 65);
             this.cbDocDBs.Name = "cbDocDBs";
             this.cbDocDBs.Size = new System.Drawing.Size(373, 21);
             this.cbDocDBs.TabIndex = 39;
@@ -152,7 +131,7 @@
             // 
             // btnViewC1config
             // 
-            this.btnViewC1config.Location = new System.Drawing.Point(388, 85);
+            this.btnViewC1config.Location = new System.Drawing.Point(417, 106);
             this.btnViewC1config.Name = "btnViewC1config";
             this.btnViewC1config.Size = new System.Drawing.Size(75, 23);
             this.btnViewC1config.TabIndex = 40;
@@ -162,7 +141,7 @@
             // 
             // btnViewDocConfig
             // 
-            this.btnViewDocConfig.Location = new System.Drawing.Point(758, 85);
+            this.btnViewDocConfig.Location = new System.Drawing.Point(756, 106);
             this.btnViewDocConfig.Name = "btnViewDocConfig";
             this.btnViewDocConfig.Size = new System.Drawing.Size(75, 23);
             this.btnViewDocConfig.TabIndex = 41;
@@ -170,20 +149,28 @@
             this.btnViewDocConfig.UseVisualStyleBackColor = true;
             this.btnViewDocConfig.Click += new System.EventHandler(this.btnViewDocConfig_Click);
             // 
+            // userControlProjectSelector1
+            // 
+            this.userControlProjectSelector1.FolderNames = null;
+            this.userControlProjectSelector1.Location = new System.Drawing.Point(18, 29);
+            this.userControlProjectSelector1.Name = "userControlProjectSelector1";
+            this.userControlProjectSelector1.SelectedFolder = null;
+            this.userControlProjectSelector1.Size = new System.Drawing.Size(395, 71);
+            this.userControlProjectSelector1.TabIndex = 42;
+            // 
             // DatabaseSettingsView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.userControlProjectSelector1);
             this.Controls.Add(this.btnViewDocConfig);
             this.Controls.Add(this.btnViewC1config);
             this.Controls.Add(this.cbDocDBs);
             this.Controls.Add(this.cbC1DBs);
-            this.Controls.Add(this.cbFolders);
             this.Controls.Add(this.titleLabelControl);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.outputListBox);
             this.Controls.Add(this.applyButton);
-            this.Controls.Add(this.SourceFolderLabelControl);
             this.Controls.Add(this.C1LabelControl);
             this.Controls.Add(this.DocLabelControl);
             this.Name = "DatabaseSettingsView";
@@ -200,13 +187,12 @@
         private DevExpress.XtraEditors.SimpleButton saveButton;
         private System.Windows.Forms.ListBox outputListBox;
         private DevExpress.XtraEditors.SimpleButton applyButton;
-        private DevExpress.XtraEditors.LabelControl SourceFolderLabelControl;
         private DevExpress.XtraEditors.LabelControl C1LabelControl;
         private DevExpress.XtraEditors.LabelControl DocLabelControl;
-        private System.Windows.Forms.ComboBox cbFolders;
         private System.Windows.Forms.ComboBox cbC1DBs;
         private System.Windows.Forms.ComboBox cbDocDBs;
         private System.Windows.Forms.Button btnViewC1config;
         private System.Windows.Forms.Button btnViewDocConfig;
+        private UserControlProjectSelector userControlProjectSelector1;
     }
 }

@@ -13,6 +13,9 @@ namespace PE_Tools.Views
 {
     public partial class UserControlProjectSelector : UserControl
     {
+        public delegate void FolderSelectedNotification();
+
+        public FolderSelectedNotification Callback { get; set; }
         public List<string> FolderNames { get; set; }
         public Folder SelectedFolder { get; set; }
         public UserControlProjectSelector()
@@ -29,6 +32,11 @@ namespace PE_Tools.Views
                 return;
             }
             this.SelectedFolder = this.cbFolders.SelectedItem as Folder;
+
+            if(this.Callback != null)
+            {
+                Callback();
+            }
         }
 
         private void userControlProjectSelector_Load(object sender, EventArgs e)
