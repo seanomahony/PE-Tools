@@ -122,5 +122,31 @@ namespace PE_Tools.Views
             tbResults.Clear();
             tbResults.Text = RunScript("./StopPE.ps1", true);
         }
+
+        private void btnBuildOECore_Click(object sender, EventArgs e)
+        {
+            tbResults.Clear();
+            if (userControlProjectSelector1.SelectedFolder is null)
+            {
+                ShowMessage("echo \'Please select a target projectfolder\'");
+                return;
+            }
+            var path = userControlProjectSelector1.SelectedFolder.FullPath + @"\officeevolve\OECore.sln";
+            var command = $"./builder.bat {path}";
+            tbResults.Text = RunScript(command, true);
+        }
+
+        private void btnBuildClickOne_Click(object sender, EventArgs e)
+        {
+            tbResults.Clear();
+            if (userControlProjectSelector1.SelectedFolder is null)
+            {
+                ShowMessage("echo \'Please select a target projectfolder\'");
+                return;
+            }
+            var path = userControlProjectSelector1.SelectedFolder.FullPath + @"\clickonelegal\ClickOneLegal.sln";
+            var command = $"./builder.bat {path}";
+            tbResults.Text = RunScript(command, true);
+        }
     }
 }
