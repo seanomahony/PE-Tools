@@ -13,8 +13,6 @@ namespace PE_Tools.Views
 {
     public partial class DatabaseSettingsView : UserControl
     {
-        public List<string> FolderNames { get; set; }
-
         List<string> c1Databases { get; set; }
         List<string> docDatabases { get; set; }
         FileManager fileManager { get; set; }
@@ -74,7 +72,6 @@ namespace PE_Tools.Views
 
         private void DatabaseSettingsView_Load(object sender, EventArgs e)
         {
-            this.userControlProjectSelector1.FolderNames = FolderNames;
             this.userControlProjectSelector1.Callback = FolderSelectedIndexChanged;
             var database = new Database();
             c1Databases = database.GetSelectedDatabases("_c1");

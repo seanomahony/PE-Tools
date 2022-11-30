@@ -23,7 +23,6 @@ namespace PE_Tools.Views
 {
     public partial class PowershellCommandsView : UserControl
     {
-        public List<string> FolderNames { get; set; }
         public PowershellCommandsView()
         {
             InitializeComponent();
@@ -32,7 +31,6 @@ namespace PE_Tools.Views
         private void PowershellCommandsView_Load(object sender, EventArgs e)
         {
             checkElevatedMode();
-            this.userControlProjectSelector1.FolderNames = FolderNames;
         }
 
         private string RunScript(string script, bool requiresAuth = false, string changeDir = null)

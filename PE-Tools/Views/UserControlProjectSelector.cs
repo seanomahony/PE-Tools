@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -50,15 +51,21 @@ namespace PE_Tools.Views
 
         private List<Folder> getFolders()
         {
-            if (FolderNames != null && FolderNames.Any())
+            var folderSettings = ConfigurationSettings.AppSettings["folders"];
+            if (!string.IsNullOrEmpty(folderSettings))
             {
-                var folders = new List<Folder>()
+                FolderNames = folderSettings.Split(',').ToList();
+
+                if (FolderNames != null && FolderNames.Any())
                 {
-                    new Folder(@"select")
-                };
-                FolderNames.ForEach(f => folders.Add(new Folder(f)));
-                return folders;
-            }
+                    var folders = new List<Folder>()
+                    {
+                        new Folder(@"select")
+                    };
+                    FolderNames.ForEach(f => folders.Add(new Folder(f)));
+                    return folders;
+                }
+             }          
             return new List<Folder>() {
                 new Folder(@"select"), 
                 new Folder(@"c:\Dev\onPrem"), 

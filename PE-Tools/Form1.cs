@@ -53,16 +53,7 @@ namespace PE_Tools
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            var folderSettings = ConfigurationSettings.AppSettings["folders"];
-            if (!string.IsNullOrEmpty(folderSettings))
-            {
-                var folders = folderSettings.Split(',').ToList();
-                if (folders.Count > 0)
-                {
-                    this.powershellCommandsView1.FolderNames = folders;
-                    this.databaseSettingsView1.FolderNames = folders;
-                }
-            }
+
         }
     }
 }
