@@ -146,5 +146,43 @@ namespace PE_Tools.Views
             var command = $"./builder.bat {path}";
             tbResults.Text = RunScript(command, true);
         }
-    }
+
+
+
+        private void btnBuildIntegration_Click(object sender, EventArgs e)
+        {
+            tbResults.Clear();
+            if (userControlProjectSelector1.SelectedFolder is null)
+            {
+                ShowMessage("echo \'Please select a target projectfolder\'");
+                return;
+            }
+            var path = userControlProjectSelector1.SelectedFolder.FullPath + @"\integration\Integration.sln";
+            var command = $"./builder.bat {path}";
+            tbResults.Text = RunScript(command, true);
+        }
+
+        private void btnBuildWebPortal_Click(object sender, EventArgs e)
+        {
+            tbResults.Clear();
+            if (userControlProjectSelector1.SelectedFolder is null)
+            {
+                ShowMessage("echo \'Please select a target projectfolder\'");
+                return;
+            }
+            var path = userControlProjectSelector1.SelectedFolder.FullPath + @"\";
+            //tbResults.Text = RunScript("./start.ps1 -build", true,@"c:\dev\onprem\");
+            tbResults.Text = RunScript("./start.ps1 -build -build_type WebPortal", true, path);
+        }
+        private void btnRunTestServices_Click(object sender, EventArgs e)
+        {
+            tbResults.Clear();
+            if (userControlProjectSelector1.SelectedFolder is null)
+            {
+                ShowMessage("echo \'Please select a target projectfolder\'");
+                return;
+            }
+            var project = userControlProjectSelector1.SelectedFolder.Target;
+            tbResults.Text = RunScript($"./RunPE_ServicesOnly_in.ps1 {project}", true);
+        }    }
 }
