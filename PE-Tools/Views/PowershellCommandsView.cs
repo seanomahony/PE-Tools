@@ -100,7 +100,10 @@ namespace PE_Tools.Views
                 return;
             }
             var project = userControlProjectSelector1.SelectedFolder.Target;
-            tbResults.Text = RunScript($"./RunPE_in.ps1 {project}", true);
+
+            // Unblock the script file
+            RunScript($"Unblock-File -Path \"./RunPE_in.ps1\"");
+            tbResults.Text = RunScript($"./RunPE_in.ps1 '{project}'", true);
         }
         private void btnBuild_Click(object sender, EventArgs e)
         {
@@ -110,7 +113,7 @@ namespace PE_Tools.Views
                 ShowMessage("echo \'Please select a target projectfolder\'");
                 return;
             }
-            var path = userControlProjectSelector1.SelectedFolder.FullPath + @"\";
+            var path = $@"'{userControlProjectSelector1.SelectedFolder.FullPath}\'";
             //tbResults.Text = RunScript("./start.ps1 -build", true,@"c:\dev\onprem\");
             tbResults.Text = RunScript("./start.ps1 -build", true, path);
         }
@@ -118,6 +121,8 @@ namespace PE_Tools.Views
         private void btnStop_Click(object sender, EventArgs e)
         {
             tbResults.Clear();
+
+            RunScript($"Unblock-File -Path \"./StopPE.ps1\"");
             tbResults.Text = RunScript("./StopPE.ps1", true);
         }
 
@@ -130,7 +135,7 @@ namespace PE_Tools.Views
                 return;
             }
             var path = userControlProjectSelector1.SelectedFolder.FullPath + @"\officeevolve\OECore.sln";
-            var command = $"./builder.bat {path}";
+            var command = $"./builder.bat '{path}'";
             tbResults.Text = RunScript(command, true);
         }
 
@@ -143,7 +148,7 @@ namespace PE_Tools.Views
                 return;
             }
             var path = userControlProjectSelector1.SelectedFolder.FullPath + @"\clickonelegal\ClickOneLegal.sln";
-            var command = $"./builder.bat {path}";
+            var command = $"./builder.bat '{path}'";
             tbResults.Text = RunScript(command, true);
         }
 
@@ -158,7 +163,7 @@ namespace PE_Tools.Views
                 return;
             }
             var path = userControlProjectSelector1.SelectedFolder.FullPath + @"\integration\Integration.sln";
-            var command = $"./builder.bat {path}";
+            var command = $"./builder.bat '{path}'";
             tbResults.Text = RunScript(command, true);
         }
 
@@ -183,6 +188,6 @@ namespace PE_Tools.Views
                 return;
             }
             var project = userControlProjectSelector1.SelectedFolder.Target;
-            tbResults.Text = RunScript($"./RunPE_ServicesOnly_in.ps1 {project}", true);
+            tbResults.Text = RunScript($"./RunPE_ServicesOnly_in.ps1 '{project}'", true);
         }    }
 }

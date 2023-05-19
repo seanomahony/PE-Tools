@@ -36,7 +36,7 @@ namespace PE_Tools
                 GetDatabases();
             }
             var ret = new List<string>() { "select" };
-            ret.AddRange(Databases.Where(s => s.EndsWith(suffix)).ToList());
+            ret.AddRange(Databases.Where(s => s.Contains(suffix)).ToList());
             return ret;
         }
     }
