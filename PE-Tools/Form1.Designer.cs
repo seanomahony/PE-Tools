@@ -63,8 +63,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::PE_Tools.Properties.Resources.blur;
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1582, 649);
             this.Controls.Add(this.cbViews);
             this.Controls.Add(this.databaseSettingsView1);
