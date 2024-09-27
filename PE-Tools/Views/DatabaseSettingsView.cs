@@ -34,8 +34,10 @@ namespace PE_Tools.Views
 
         private void applyButton_Click(object sender, EventArgs e)
         {
-            fileManager.UpdateC1File((this.cbC1DBs.SelectedItem as DatabaseListItem).Name);
-            fileManager.UpdateDocFile((this.cbDocDBs.SelectedItem as DatabaseListItem).Name);
+            var c1DbName = (this.cbC1DBs.SelectedItem as DatabaseListItem).Name;
+            var docsDbName = (this.cbDocDBs.SelectedItem as DatabaseListItem).Name;
+            fileManager.UpdateC1File(c1DbName);
+            fileManager.UpdateDocFile(docsDbName, c1DbName);
 
             this.outputListBox.DataSource = null;
             this.outputListBox.BackColor = System.Drawing.SystemColors.Info;

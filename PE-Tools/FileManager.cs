@@ -51,19 +51,34 @@ namespace PE_Tools
             return true;
         }
 
-        public void UpdateDocFile(string database)
+        public void UpdateDocFile(string docsDb, string c1Db)
         {
+            var c1ConfigKey = "cms.c1.database.connection";
             var searchTerm = "Initial Catalog=";
-            var line = docConfig.FirstOrDefault(l => l.Length > searchTerm.Length && l.Contains(searchTerm));
+
+            // Update cms.database.connection config setting
+            var line = docConfig.FirstOrDefault(l => l.Length > searchTerm.Length && l.Contains(searchTerm) && !l.Contains(c1ConfigKey));
             var databaseLineIndex = docConfig.IndexOf(line);
             var head = line.Substring(0, line.IndexOf(searchTerm));
             var tail = line.Substring(line.IndexOf(searchTerm));
             var end = tail.Substring(tail.IndexOf(';'));
-            var newLine = head + searchTerm + database + end;
+            var newLine = head + searchTerm + docsDb + end;
             docConfig[databaseLineIndex] = newLine;
+
+            // Update cms.database.connection config setting if present
+            line = docConfig.FirstOrDefault(l => l.Length > searchTerm.Length && l.Contains(searchTerm) && l.Contains(c1ConfigKey));
+            if (line != null)
+            {
+                databaseLineIndex = docConfig.IndexOf(line);
+                head = line.Substring(0, line.IndexOf(searchTerm));
+                tail = line.Substring(line.IndexOf(searchTerm));
+                end = tail.Substring(tail.IndexOf(';'));
+                newLine = head + searchTerm + c1Db + end;
+                docConfig[databaseLineIndex] = newLine;
+            }
         }
 
-        public bool SaveDocFile()
+        public bool SaveDocFile() 
         {
             try 
             { 
