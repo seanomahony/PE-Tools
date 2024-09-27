@@ -51,7 +51,7 @@ namespace PE_Tools.Views
 
         private List<Folder> getFolders()
         {
-            var folderSettings = ConfigurationSettings.AppSettings["folders"];
+            var folderSettings = ConfigurationManager.AppSettings["folders"];
             if (!string.IsNullOrEmpty(folderSettings))
             {
                 FolderNames = folderSettings.Split(',').ToList();
@@ -65,7 +65,8 @@ namespace PE_Tools.Views
                     FolderNames.ForEach(f => folders.Add(new Folder(f)));
                     return folders;
                 }
-             }          
+             }
+            
             return new List<Folder>() {
                 new Folder(@"select"), 
                 new Folder(@"c:\Dev\onPrem"), 
