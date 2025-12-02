@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace PE_Tools.Views
 {
@@ -16,6 +18,7 @@ namespace PE_Tools.Views
         List<string> c1Databases { get; set; }
         List<string> docDatabases { get; set; }
         FileManager fileManager { get; set; }
+        string currentView = null;
 
         public DatabaseSettingsView()
         {
@@ -26,7 +29,7 @@ namespace PE_Tools.Views
         private void activateApplyButton()
         {
             this.saveButton.Enabled = false;
-            this.outputListBox.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.outputRichTextBox.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.applyButton.Enabled = this.userControlProjectSelector1.SelectedFolder != null
                 && cbC1DBs.SelectedIndex > 0
                 && cbDocDBs.SelectedIndex > 0;
@@ -34,22 +37,43 @@ namespace PE_Tools.Views
 
         private void applyButton_Click(object sender, EventArgs e)
         {
-            var c1DbName = (this.cbC1DBs.SelectedItem as DatabaseListItem).Name;
-            var docsDbName = (this.cbDocDBs.SelectedItem as DatabaseListItem).Name;
+            var c1Item = this.cbC1DBs.SelectedItem as DatabaseListItem;
+            var docItem = this.cbDocDBs.SelectedItem as DatabaseListItem;
+            
+            if (c1Item == null || docItem == null)
+            {
+                MessageBox.Show("Please select valid databases for both C1 and Doc.", "Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            
+            var c1DbName = c1Item.Name;
+            var docsDbName = docItem.Name;
             fileManager.UpdateC1File(c1DbName);
             fileManager.UpdateDocFile(docsDbName, c1DbName);
 
-            this.outputListBox.DataSource = null;
-            this.outputListBox.BackColor = System.Drawing.SystemColors.Info;
+            this.outputRichTextBox.BackColor = System.Drawing.SystemColors.Info;
             this.saveButton.Enabled = true;
             this.applyButton.Enabled = false;
+
+            // Reload the current view if one is active
+            if (currentView == "c1")
+            {
+                btnViewC1config_Click(null, null);
+            }
+            else if (currentView == "doc")
+            {
+                btnViewDocConfig_Click(null, null);
+            }
         }
 
         private void docTextBox_Click(object sender, EventArgs e)
         {
             if (fileManager != null)
             {
-                this.outputListBox.DataSource = fileManager.docConfig;
+                currentView = "doc";
+                string formattedXml = GetFormattedXml(fileManager.docConfig);
+                this.outputRichTextBox.Text = formattedXml;
+                HighlightUpdatedSection(formattedXml, "cms.database.connection");
             }
         }
 
@@ -57,7 +81,10 @@ namespace PE_Tools.Views
         {
             if (fileManager != null)
             {
-                this.outputListBox.DataSource = fileManager.c1Config;
+                currentView = "c1";
+                string formattedXml = GetFormattedXml(fileManager.c1Config);
+                this.outputRichTextBox.Text = formattedXml;
+                HighlightUpdatedSection(formattedXml, "connectionString");
             }
         }
 
@@ -72,14 +99,14 @@ namespace PE_Tools.Views
             }
         }
 
-        private void DatabaseSettingsView_Load(object sender, EventArgs e)
+        private async void DatabaseSettingsView_Load(object sender, EventArgs e)
         {
             this.userControlProjectSelector1.Callback = FolderSelectedIndexChanged;
             var database = new Database();
-            c1Databases = database.GetSelectedDatabases("_c1");
-            docDatabases = database.GetSelectedDatabases("_doc");
+            c1Databases = await database.GetSelectedDatabasesAsync("_c1");
+            docDatabases = await database.GetSelectedDatabasesAsync("_doc");
 
-            this.outputListBox.Visible = true;
+            this.outputRichTextBox.Visible = true;
 
             DatabaseListItem.CurrentIndex = 1;
             this.cbC1DBs.DataSource = c1Databases.Select(d => new DatabaseListItem(d)).ToList();
@@ -108,9 +135,56 @@ namespace PE_Tools.Views
                 this.btnViewC1config.Enabled = this.btnViewDocConfig.Enabled = false;
                 return;
             }
-            fileManager = new FileManager(this.userControlProjectSelector1.SelectedFolder.FullPath);
-            this.btnViewC1config.Enabled = this.btnViewDocConfig.Enabled = true;
-            activateApplyButton();
+            
+            try
+            {
+                fileManager = new FileManager(this.userControlProjectSelector1.SelectedFolder.FullPath);
+                this.btnViewC1config.Enabled = this.btnViewDocConfig.Enabled = true;
+                activateApplyButton();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading configuration files: {ex.Message}", "File Load Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.btnViewC1config.Enabled = this.btnViewDocConfig.Enabled = false;
+            }
+        }
+
+        private string GetFormattedXml(XmlDocument doc)
+        {
+            using (var stringWriter = new StringWriter())
+            {
+                using (var xmlWriter = XmlWriter.Create(stringWriter, new XmlWriterSettings { Indent = true }))
+                {
+                    doc.WriteTo(xmlWriter);
+                }
+                return stringWriter.ToString();
+            }
+        }
+
+        private void HighlightUpdatedSection(string formattedXml, string key)
+        {
+            string[] lines = formattedXml.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+            int lineIndex = Array.FindIndex(lines, l => l.Contains(key));
+            if (lineIndex >= 0)
+            {
+                string line = lines[lineIndex];
+                int start = line.IndexOf("Database=");
+                if (start >= 0)
+                {
+                    int end = line.IndexOf(';', start);
+                    if (end < 0) end = line.Length;
+                    // position in whole text
+                    int globalStart = 0;
+                    for (int i = 0; i < lineIndex; i++)
+                    {
+                        globalStart += lines[i].Length + Environment.NewLine.Length;
+                    }
+                    globalStart += start;
+                    int length = end - start;
+                    this.outputRichTextBox.Select(globalStart, length);
+                    this.outputRichTextBox.ScrollToCaret();
+                }
+            }
         }
 
         private void cbC1DBs_SelectedIndexChanged(object sender, EventArgs e)
@@ -125,12 +199,18 @@ namespace PE_Tools.Views
 
         private void btnViewC1config_Click(object sender, EventArgs e)
         {
-            this.outputListBox.DataSource = fileManager.c1Config;
+            currentView = "c1";
+            string formattedXml = GetFormattedXml(fileManager.c1Config);
+            this.outputRichTextBox.Text = formattedXml;
+            HighlightUpdatedSection(formattedXml, "connectionString");
         }
 
         private void btnViewDocConfig_Click(object sender, EventArgs e)
         {
-            this.outputListBox.DataSource = fileManager.docConfig;
+            currentView = "doc";
+            string formattedXml = GetFormattedXml(fileManager.docConfig);
+            this.outputRichTextBox.Text = formattedXml;
+            HighlightUpdatedSection(formattedXml, "cms.database.connection");
         }
     }
 }
