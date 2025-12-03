@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.Design.Serialization;
 using System.Configuration;
 using System.Data;
 using System.Drawing;
@@ -9,15 +10,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Collections.Specialized;
 
 namespace PE_Tools.Views
 {
+    [DesignerSerializer("System.Windows.Forms.Design.UserControlCodeDomSerializer, System.Design", typeof(CodeDomSerializer))]
     public partial class UserControlProjectSelector : UserControl
     {
         public delegate void FolderSelectedNotification();
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public FolderSelectedNotification Callback { get; set; }
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public List<string> FolderNames { get; set; }
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Folder SelectedFolder { get; set; }
         public UserControlProjectSelector()
         {

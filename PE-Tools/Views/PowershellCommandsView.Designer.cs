@@ -30,7 +30,6 @@
         {
             this.tbCommand = new System.Windows.Forms.TextBox();
             this.btnRunCommand = new System.Windows.Forms.Button();
-            this.lblCommand = new DevExpress.XtraEditors.LabelControl();
             this.tbResults = new System.Windows.Forms.TextBox();
             this.btnBuild = new System.Windows.Forms.Button();
             this.btnStop = new System.Windows.Forms.Button();
@@ -62,11 +61,6 @@
             // 
             // lblCommand
             // 
-            this.lblCommand.Location = new System.Drawing.Point(21, 27);
-            this.lblCommand.Name = "lblCommand";
-            this.lblCommand.Size = new System.Drawing.Size(47, 13);
-            this.lblCommand.TabIndex = 2;
-            this.lblCommand.Text = "Command";
             // 
             // tbResults
             // 
@@ -172,7 +166,6 @@
             this.Controls.Add(this.btnStop);
             this.Controls.Add(this.btnBuild);
             this.Controls.Add(this.tbResults);
-            this.Controls.Add(this.lblCommand);
             this.Controls.Add(this.btnRunCommand);
             this.Controls.Add(this.tbCommand);
             this.Name = "PowershellCommandsView";
@@ -187,7 +180,6 @@
 
         private System.Windows.Forms.TextBox tbCommand;
         private System.Windows.Forms.Button btnRunCommand;
-        private DevExpress.XtraEditors.LabelControl lblCommand;
         private System.Windows.Forms.TextBox tbResults;
         private System.Windows.Forms.Button btnBuild;
         private System.Windows.Forms.Button btnStop;
