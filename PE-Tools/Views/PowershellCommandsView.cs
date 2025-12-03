@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -39,27 +39,27 @@ namespace PE_Tools.Views
             var sb = new StringBuilder();
             try
             {
-                Logger.Debug("Running script: {0} changeDir={1} requiresAuth={2}", script, changeDir, requiresAuth);
-                var runspace = RunspaceFactory.CreateRunspace();
-                runspace.Open();
-                var pipeline = runspace.CreatePipeline();
-                if (requiresAuth)
-                {
-                    pipeline.Commands.AddScript("Set-ExecutionPolicy Unrestricted");
-                }
-                if(!string.IsNullOrEmpty(changeDir))
-                {
-                    pipeline.Commands.AddScript($"cd {changeDir}");
-                }
-                pipeline.Commands.AddScript(script);
-                pipeline.Commands.Add("Out-String");
-                var results = pipeline.Invoke();
-                runspace.Close();
+                //Logger.Debug("Running script: {0} changeDir={1} requiresAuth={2}", script, changeDir, requiresAuth);
+                //var runspace = RunspaceFactory.CreateRunspace();
+                //runspace.Open();
+                //var pipeline = runspace.CreatePipeline();
+                //if (requiresAuth)
+                //{
+                //    pipeline.Commands.AddScript("Set-ExecutionPolicy Unrestricted");
+                //}
+                //if(!string.IsNullOrEmpty(changeDir))
+                //{
+                //    pipeline.Commands.AddScript($"cd {changeDir}");
+                //}
+                //pipeline.Commands.AddScript(script);
+                //pipeline.Commands.Add("Out-String");
+                //var results = pipeline.Invoke();
+                //runspace.Close();
 
-                foreach (var obj in results)
-                {
-                    sb.AppendLine(obj.ToString());
-                }
+                //foreach (var obj in results)
+                //{
+                //    sb.AppendLine(obj.ToString());
+                //}
             }
             catch(Exception e)
             {

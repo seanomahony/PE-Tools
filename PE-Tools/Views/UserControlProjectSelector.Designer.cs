@@ -1,4 +1,4 @@
-﻿namespace PE_Tools.Views
+namespace PE_Tools.Views
 {
     partial class UserControlProjectSelector
     {
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.cbFolders = new System.Windows.Forms.ComboBox();
-            this.SourceFolderLabelControl = new DevExpress.XtraEditors.LabelControl();
+            this.SourceFolderLabelControl = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cbFolders
@@ -43,8 +43,8 @@
             // 
             // SourceFolderLabelControl
             // 
-            this.SourceFolderLabelControl.Appearance.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SourceFolderLabelControl.Appearance.Options.UseFont = true;
+            this.SourceFolderLabelControl.AutoSize = true;
+            this.SourceFolderLabelControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SourceFolderLabelControl.Location = new System.Drawing.Point(15, 14);
             this.SourceFolderLabelControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.SourceFolderLabelControl.Name = "SourceFolderLabelControl";
@@ -69,6 +69,6 @@
         #endregion
 
         private System.Windows.Forms.ComboBox cbFolders;
-        private DevExpress.XtraEditors.LabelControl SourceFolderLabelControl;
+        private System.Windows.Forms.Label SourceFolderLabelControl;
     }
 }
