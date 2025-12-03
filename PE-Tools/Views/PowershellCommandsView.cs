@@ -9,7 +9,7 @@ using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using NLog;
 
 //In Package Manager Console change dir to get to project folder then add the following package for WinForms
 //cd  PE-Tools
@@ -23,6 +23,8 @@ namespace PE_Tools.Views
 {
     public partial class PowershellCommandsView : UserControl
     {
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
         public PowershellCommandsView()
         {
             InitializeComponent();
@@ -38,6 +40,7 @@ namespace PE_Tools.Views
             var sb = new StringBuilder();
             try
             {
+                Logger.Debug("Running script: {0} changeDir={1} requiresAuth={2}", script, changeDir, requiresAuth);
                 var runspace = RunspaceFactory.CreateRunspace();
                 runspace.Open();
                 var pipeline = runspace.CreatePipeline();
@@ -61,6 +64,7 @@ namespace PE_Tools.Views
             }
             catch(Exception e)
             {
+                Logger.Error(e, "Error running script: {0}", script);
                 sb.AppendLine(e.Message);
                 return sb.ToString();
             }

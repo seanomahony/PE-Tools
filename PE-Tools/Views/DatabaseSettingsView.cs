@@ -10,11 +10,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
+using NLog;
 
 namespace PE_Tools.Views
 {
     public partial class DatabaseSettingsView : UserControl
     {
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
         List<string> c1Databases { get; set; }
         List<string> docDatabases { get; set; }
         FileManager fileManager { get; set; }
@@ -48,8 +51,18 @@ namespace PE_Tools.Views
             
             var c1DbName = c1Item.Name;
             var docsDbName = docItem.Name;
-            fileManager.UpdateC1File(c1DbName);
-            fileManager.UpdateDocFile(docsDbName, c1DbName);
+            try
+            {
+                fileManager.UpdateC1File(c1DbName);
+                fileManager.UpdateDocFile(docsDbName, c1DbName);
+                Logger.Info("Applied database selection: c1={0}, doc={1} for folder={2}", c1DbName, docsDbName, this.userControlProjectSelector1.SelectedFolder.FullPath);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Error applying database changes");
+                MessageBox.Show($"Error applying changes: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             this.outputRichTextBox.BackColor = System.Drawing.SystemColors.Info;
             this.saveButton.Enabled = true;
@@ -94,6 +107,7 @@ namespace PE_Tools.Views
             {
                 if (fileManager.SaveC1File() && fileManager.SaveDocFile())
                 {
+                    Logger.Info("Saved config files for folder {0}", this.userControlProjectSelector1.SelectedFolder.FullPath);
                     MessageBox.Show("Files Updated OK", $"Database updated for {this.userControlProjectSelector1.SelectedFolder.FullPath}");
                 }
             }
@@ -144,6 +158,7 @@ namespace PE_Tools.Views
             }
             catch (Exception ex)
             {
+                Logger.Error(ex, "Error loading configuration files for folder {0}", this.userControlProjectSelector1.SelectedFolder?.FullPath);
                 MessageBox.Show($"Error loading configuration files: {ex.Message}", "File Load Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.btnViewC1config.Enabled = this.btnViewDocConfig.Enabled = false;
             }

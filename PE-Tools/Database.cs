@@ -4,11 +4,13 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using NLog;
 
 namespace PE_Tools
 {
     public class Database
     {
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         public List<string> Databases { get; set; }
         private async Task<List<string>> GetDatabasesAsync()
         {
@@ -16,6 +18,7 @@ namespace PE_Tools
             string ConnectionString = ConfigurationManager.AppSettings["databaseConnectionString"];
             if (string.IsNullOrEmpty(ConnectionString))
             {
+                Logger.Error("Database connection string not found in app settings.");
                 throw new ConfigurationErrorsException("Database connection string not found in app settings.");
             }
             
