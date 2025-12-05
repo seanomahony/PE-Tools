@@ -11,8 +11,8 @@ namespace PE_Tools.Tests.Models
         {
             ListItem.CurrentIndex = 0;
             var item = new ListItem("TestName");
-            Assert.AreEqual("TestName", item.Name);
-            Assert.AreEqual(0, item.ID);
+            Assert.That(item.Name, Is.EqualTo("TestName"));
+            Assert.That(item.ID, Is.EqualTo(0));
         }
     }
 }

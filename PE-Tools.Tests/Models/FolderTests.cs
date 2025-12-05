@@ -10,9 +10,9 @@ namespace PE_Tools.Tests.Models
         public void Constructor_SetsProperties()
         {
             var folder = new Folder(@"C:\Test\Repo\onPrem");
-            Assert.AreEqual(folder.FullPath, @"C:\Test\Repo\onPrem");
-            Assert.AreEqual(folder.Target, @"Test\Repo");
-            Assert.AreEqual(folder.DisplayName, @"C:\Test\Repo\onPrem");
+            Assert.That(folder.FullPath, Is.EqualTo(@"C:\Test\Repo\onPrem"));
+            Assert.That(folder.Target, Is.EqualTo(@"Test\Repo"));
+            Assert.That(folder.DisplayName, Is.EqualTo(@"C:\Test\Repo\onPrem"));
         }
     }
 }

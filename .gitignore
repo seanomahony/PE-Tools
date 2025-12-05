@@ -5,9 +5,7 @@
 /PE-Tools/bin/Debug
 /.vs/PE-Tools
 /PE-Tools/obj
-/.vs/CopilotSnapshots/B9B661AF7420C34881A09ADC8907421E
-/.vs/CopilotSnapshots/6FF3C3058495744083494B4F4D1908BE
+/.vs/CopilotSnapshots/
 /PE-Tools/.vs
-/.vs/CopilotSnapshots/CF66B6E55832144783B4B5C819721407
 /PE-Tools.Tests/obj
-/PE-Tools.Tests/bin/Debug/net10.0-windows
+/PE-Tools.Tests/bin
