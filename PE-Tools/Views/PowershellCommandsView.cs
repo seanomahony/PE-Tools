@@ -1,16 +1,24 @@
 using System;
+using System.ComponentModel;
 using System.IO;
 using System.Reflection;
 using System.Security.Principal;
 using System.Text;
 using System.Windows.Forms;
 using NLog;
+using PE_Tools.Models;
 
 namespace PE_Tools.Views
 {
     public partial class PowershellCommandsView : UserControl
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+        /// <summary>
+        /// The selected folder, set externally from Form1
+        /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public Folder SelectedFolder { get; set; }
 
         public PowershellCommandsView()
         {
@@ -78,6 +86,11 @@ namespace PE_Tools.Views
                 sb.AppendLine(e.Message);
                 return sb.ToString();
             }
+            if (string.IsNullOrWhiteSpace(sb.ToString()))
+            {
+                string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                return $"[{timestamp}] Script executed successfully (no output).";
+            }
             return sb.ToString();
         }
 
@@ -96,14 +109,6 @@ namespace PE_Tools.Views
             }
         }
 
-        private void tbCommand_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Return)
-            {
-                tbResults.Clear();
-                tbResults.Text = RunScript(tbCommand.Text);
-            }
-        }
         private void btnRunCommand_Click(object sender, EventArgs e)
         {
             tbResults.Clear();
@@ -115,7 +120,6 @@ namespace PE_Tools.Views
             {
                 stream.CopyTo(fileStream);
             }
-            var project = userControlProjectSelector1.SelectedFolder.Target;
 
             // Unblock the script file
             RunScript($"Unblock-File -Path \"{tempScriptPath}\"");
@@ -138,12 +142,12 @@ namespace PE_Tools.Views
         private void btnBuild_Click(object sender, EventArgs e)
         {
             tbResults.Clear();
-            if (userControlProjectSelector1.SelectedFolder is null)
+            if (SelectedFolder is null)
             {
                 ShowMessage("echo \'Please select a target projectfolder\'");
                 return;
             }
-            var path = $@"'{userControlProjectSelector1.SelectedFolder.FullPath}\'";
+            var path = $@"'{SelectedFolder.FullPath}\'";
             //tbResults.Text = RunScript("./start.ps1 -build", true,@"c:\dev\onprem\");
             tbResults.Text = RunScript("./start.ps1 -build", true, path);
         }
@@ -171,12 +175,12 @@ namespace PE_Tools.Views
         private void btnBuildOECore_Click(object sender, EventArgs e)
         {
             tbResults.Clear();
-            if (userControlProjectSelector1.SelectedFolder is null)
+            if (SelectedFolder is null)
             {
                 ShowMessage("echo \'Please select a target projectfolder\'");
                 return;
             }
-            var path = userControlProjectSelector1.SelectedFolder.FullPath + @"\officeevolve\OECore.sln";
+            var path = SelectedFolder.FullPath + @"\officeevolve\OECore.sln";
             var command = $"./builder.bat '{path}'";
             tbResults.Text = RunScript(command, true);
         }
@@ -184,27 +188,25 @@ namespace PE_Tools.Views
         private void btnBuildClickOne_Click(object sender, EventArgs e)
         {
             tbResults.Clear();
-            if (userControlProjectSelector1.SelectedFolder is null)
+            if (SelectedFolder is null)
             {
                 ShowMessage("echo \'Please select a target projectfolder\'");
                 return;
             }
-            var path = userControlProjectSelector1.SelectedFolder.FullPath + @"\clickonelegal\ClickOneLegal.sln";
+            var path = SelectedFolder.FullPath + @"\clickonelegal\ClickOneLegal.sln";
             var command = $"./builder.bat '{path}'";
             tbResults.Text = RunScript(command, true);
         }
 
-
-
         private void btnBuildIntegration_Click(object sender, EventArgs e)
         {
             tbResults.Clear();
-            if (userControlProjectSelector1.SelectedFolder is null)
+            if (SelectedFolder is null)
             {
                 ShowMessage("echo \'Please select a target projectfolder\'");
                 return;
             }
-            var path = userControlProjectSelector1.SelectedFolder.FullPath + @"\integration\Integration.sln";
+            var path = SelectedFolder.FullPath + @"\integration\Integration.sln";
             var command = $"./builder.bat '{path}'";
             tbResults.Text = RunScript(command, true);
         }
@@ -212,24 +214,26 @@ namespace PE_Tools.Views
         private void btnBuildWebPortal_Click(object sender, EventArgs e)
         {
             tbResults.Clear();
-            if (userControlProjectSelector1.SelectedFolder is null)
+            if (SelectedFolder is null)
             {
                 ShowMessage("echo \'Please select a target projectfolder\'");
                 return;
             }
-            var path = userControlProjectSelector1.SelectedFolder.FullPath + @"\";
+            var path = SelectedFolder.FullPath + @"\";
             //tbResults.Text = RunScript("./start.ps1 -build", true,@"c:\dev\onprem\");
             tbResults.Text = RunScript("./start.ps1 -build -build_type WebPortal", true, path);
         }
+
         private void btnRunTestServices_Click(object sender, EventArgs e)
         {
             tbResults.Clear();
-            if (userControlProjectSelector1.SelectedFolder is null)
+            if (SelectedFolder is null)
             {
                 ShowMessage("echo \'Please select a target projectfolder\'");
                 return;
             }
-            var project = userControlProjectSelector1.SelectedFolder.Target;
+            var project = SelectedFolder.Target;
             tbResults.Text = RunScript($"./RunPE_ServicesOnly_in.ps1 '{project}'", true);
-        }    }
+        }
+    }
 }

@@ -28,41 +28,43 @@ namespace PE_Tools.Views
         /// </summary>
         private void InitializeComponent()
         {
-            this.cbFolders = new System.Windows.Forms.ComboBox();
-            this.SourceFolderLabelControl = new System.Windows.Forms.Label();
-            this.SuspendLayout();
+            cbFolders = new System.Windows.Forms.ComboBox();
+            SourceFolderLabelControl = new System.Windows.Forms.Label();
+            SuspendLayout();
             // 
             // cbFolders
             // 
-            this.cbFolders.FormattingEnabled = true;
-            this.cbFolders.Location = new System.Drawing.Point(15, 37);
-            this.cbFolders.Name = "cbFolders";
-            this.cbFolders.Size = new System.Drawing.Size(364, 21);
-            this.cbFolders.TabIndex = 39;
-            this.cbFolders.SelectedIndexChanged += new System.EventHandler(this.cbFolders_SelectedIndexChanged);
+            cbFolders.FormattingEnabled = true;
+            cbFolders.Location = new System.Drawing.Point(4, 29);
+            cbFolders.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            cbFolders.Name = "cbFolders";
+            cbFolders.Size = new System.Drawing.Size(424, 23);
+            cbFolders.TabIndex = 39;
+            cbFolders.SelectedIndexChanged += cbFolders_SelectedIndexChanged;
             // 
             // SourceFolderLabelControl
             // 
-            this.SourceFolderLabelControl.AutoSize = true;
-            this.SourceFolderLabelControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SourceFolderLabelControl.Location = new System.Drawing.Point(15, 14);
-            this.SourceFolderLabelControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.SourceFolderLabelControl.Name = "SourceFolderLabelControl";
-            this.SourceFolderLabelControl.Size = new System.Drawing.Size(123, 16);
-            this.SourceFolderLabelControl.TabIndex = 38;
-            this.SourceFolderLabelControl.Text = "Select Source Folder";
+            SourceFolderLabelControl.AutoSize = true;
+            SourceFolderLabelControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            SourceFolderLabelControl.Location = new System.Drawing.Point(4, 5);
+            SourceFolderLabelControl.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            SourceFolderLabelControl.Name = "SourceFolderLabelControl";
+            SourceFolderLabelControl.Size = new System.Drawing.Size(129, 16);
+            SourceFolderLabelControl.TabIndex = 38;
+            SourceFolderLabelControl.Text = "Select Source Folder";
             // 
-            // userControlProjectSelector
+            // UserControlProjectSelector
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.cbFolders);
-            this.Controls.Add(this.SourceFolderLabelControl);
-            this.Name = "userControlProjectSelector";
-            this.Size = new System.Drawing.Size(395, 71);
-            this.Load += new System.EventHandler(this.userControlProjectSelector_Load);
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            Controls.Add(cbFolders);
+            Controls.Add(SourceFolderLabelControl);
+            Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            Name = "UserControlProjectSelector";
+            Size = new System.Drawing.Size(437, 61);
+            Load += userControlProjectSelector_Load;
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 

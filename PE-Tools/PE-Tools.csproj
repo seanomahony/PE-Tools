@@ -31,4 +31,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\StopServices.ps1" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\StartServices.ps1" />
+  </ItemGroup>
 </Project>

@@ -28,162 +28,144 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tbCommand = new System.Windows.Forms.TextBox();
-            this.btnRunCommand = new System.Windows.Forms.Button();
-            this.tbResults = new System.Windows.Forms.TextBox();
-            this.btnBuild = new System.Windows.Forms.Button();
-            this.btnStop = new System.Windows.Forms.Button();
-            this.userControlProjectSelector1 = new PE_Tools.Views.UserControlProjectSelector();
-            this.btnBuildOECore = new System.Windows.Forms.Button();
-            this.btnBuildClickOne = new System.Windows.Forms.Button();
-            this.btnRunTestServices = new System.Windows.Forms.Button();
-            this.btnBuildWebPortal = new System.Windows.Forms.Button();
-            this.btnBuildIntegration = new System.Windows.Forms.Button();
-            this.SuspendLayout();
-            // 
-            // tbCommand
-            // 
-            this.tbCommand.Location = new System.Drawing.Point(19, 49);
-            this.tbCommand.Name = "tbCommand";
-            this.tbCommand.Size = new System.Drawing.Size(94, 20);
-            this.tbCommand.TabIndex = 0;
-            this.tbCommand.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbCommand_KeyDown);
+            btnRunCommand = new System.Windows.Forms.Button();
+            tbResults = new System.Windows.Forms.TextBox();
+            btnBuild = new System.Windows.Forms.Button();
+            btnStop = new System.Windows.Forms.Button();
+            btnBuildOECore = new System.Windows.Forms.Button();
+            btnBuildClickOne = new System.Windows.Forms.Button();
+            btnRunTestServices = new System.Windows.Forms.Button();
+            btnBuildWebPortal = new System.Windows.Forms.Button();
+            btnBuildIntegration = new System.Windows.Forms.Button();
+            SuspendLayout();
             // 
             // btnRunCommand
             // 
-            this.btnRunCommand.Location = new System.Drawing.Point(725, 73);
-            this.btnRunCommand.Name = "btnRunCommand";
-            this.btnRunCommand.Size = new System.Drawing.Size(64, 23);
-            this.btnRunCommand.TabIndex = 1;
-            this.btnRunCommand.Text = "Run";
-            this.btnRunCommand.UseVisualStyleBackColor = true;
-            this.btnRunCommand.Click += new System.EventHandler(this.btnRunCommand_Click);
-            // 
-            // lblCommand
-            // 
+            btnRunCommand.Location = new System.Drawing.Point(835, 13);
+            btnRunCommand.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnRunCommand.Name = "btnRunCommand";
+            btnRunCommand.Size = new System.Drawing.Size(175, 27);
+            btnRunCommand.TabIndex = 1;
+            btnRunCommand.Text = "Run Services and Client";
+            btnRunCommand.UseVisualStyleBackColor = true;
+            btnRunCommand.Click += btnRunCommand_Click;
             // 
             // tbResults
             // 
-            this.tbResults.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.tbResults.ForeColor = System.Drawing.Color.White;
-            this.tbResults.Location = new System.Drawing.Point(19, 127);
-            this.tbResults.Multiline = true;
-            this.tbResults.Name = "tbResults";
-            this.tbResults.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbResults.Size = new System.Drawing.Size(860, 264);
-            this.tbResults.TabIndex = 3;
+            tbResults.BackColor = System.Drawing.SystemColors.HotTrack;
+            tbResults.ForeColor = System.Drawing.Color.White;
+            tbResults.Location = new System.Drawing.Point(22, 115);
+            tbResults.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            tbResults.Multiline = true;
+            tbResults.Name = "tbResults";
+            tbResults.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            tbResults.Size = new System.Drawing.Size(1003, 335);
+            tbResults.TabIndex = 3;
             // 
             // btnBuild
             // 
-            this.btnBuild.Location = new System.Drawing.Point(541, 72);
-            this.btnBuild.Name = "btnBuild";
-            this.btnBuild.Size = new System.Drawing.Size(150, 23);
-            this.btnBuild.TabIndex = 4;
-            this.btnBuild.Text = "Build Solution";
-            this.btnBuild.UseVisualStyleBackColor = true;
-            this.btnBuild.Click += new System.EventHandler(this.btnBuild_Click);
+            btnBuild.Location = new System.Drawing.Point(22, 80);
+            btnBuild.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnBuild.Name = "btnBuild";
+            btnBuild.Size = new System.Drawing.Size(175, 27);
+            btnBuild.TabIndex = 4;
+            btnBuild.Text = "Build Solution";
+            btnBuild.UseVisualStyleBackColor = true;
+            btnBuild.Click += btnBuild_Click;
             // 
             // btnStop
             // 
-            this.btnStop.Location = new System.Drawing.Point(814, 73);
-            this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(64, 23);
-            this.btnStop.TabIndex = 5;
-            this.btnStop.Text = "Stop";
-            this.btnStop.UseVisualStyleBackColor = true;
-            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
-            // 
-            // userControlProjectSelector1
-            // 
-            this.userControlProjectSelector1.Callback = null;
-            this.userControlProjectSelector1.FolderNames = null;
-            this.userControlProjectSelector1.Location = new System.Drawing.Point(119, 12);
-            this.userControlProjectSelector1.Name = "userControlProjectSelector1";
-            this.userControlProjectSelector1.SelectedFolder = null;
-            this.userControlProjectSelector1.Size = new System.Drawing.Size(384, 71);
-            this.userControlProjectSelector1.TabIndex = 6;
+            btnStop.Location = new System.Drawing.Point(835, 46);
+            btnStop.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnStop.Name = "btnStop";
+            btnStop.Size = new System.Drawing.Size(175, 27);
+            btnStop.TabIndex = 5;
+            btnStop.Text = "Stop Services/Client";
+            btnStop.UseVisualStyleBackColor = true;
+            btnStop.Click += btnStop_Click;
             // 
             // btnBuildOECore
             // 
-            this.btnBuildOECore.Location = new System.Drawing.Point(541, 12);
-            this.btnBuildOECore.Name = "btnBuildOECore";
-            this.btnBuildOECore.Size = new System.Drawing.Size(150, 23);
-            this.btnBuildOECore.TabIndex = 7;
-            this.btnBuildOECore.Text = "Build OECore";
-            this.btnBuildOECore.UseVisualStyleBackColor = true;
-            this.btnBuildOECore.Click += new System.EventHandler(this.btnBuildOECore_Click);
+            btnBuildOECore.Location = new System.Drawing.Point(22, 14);
+            btnBuildOECore.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnBuildOECore.Name = "btnBuildOECore";
+            btnBuildOECore.Size = new System.Drawing.Size(175, 27);
+            btnBuildOECore.TabIndex = 7;
+            btnBuildOECore.Text = "Build OECore";
+            btnBuildOECore.UseVisualStyleBackColor = true;
+            btnBuildOECore.Click += btnBuildOECore_Click;
             // 
             // btnBuildClickOne
             // 
-            this.btnBuildClickOne.Location = new System.Drawing.Point(725, 12);
-            this.btnBuildClickOne.Name = "btnBuildClickOne";
-            this.btnBuildClickOne.Size = new System.Drawing.Size(150, 23);
-            this.btnBuildClickOne.TabIndex = 8;
-            this.btnBuildClickOne.Text = "Build Click One Legal";
-            this.btnBuildClickOne.UseVisualStyleBackColor = true;
-            this.btnBuildClickOne.Click += new System.EventHandler(this.btnBuildClickOne_Click);
+            btnBuildClickOne.Location = new System.Drawing.Point(22, 47);
+            btnBuildClickOne.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnBuildClickOne.Name = "btnBuildClickOne";
+            btnBuildClickOne.Size = new System.Drawing.Size(175, 27);
+            btnBuildClickOne.TabIndex = 8;
+            btnBuildClickOne.Text = "Build Click One Legal";
+            btnBuildClickOne.UseVisualStyleBackColor = true;
+            btnBuildClickOne.Click += btnBuildClickOne_Click;
             // 
             // btnRunTestServices
             // 
-            this.btnRunTestServices.Location = new System.Drawing.Point(541, 100);
-            this.btnRunTestServices.Name = "btnRunTestServices";
-            this.btnRunTestServices.Size = new System.Drawing.Size(337, 23);
-            this.btnRunTestServices.TabIndex = 9;
-            this.btnRunTestServices.Text = "Run Services for Unit Tests";
-            this.btnRunTestServices.UseVisualStyleBackColor = true;
-            this.btnRunTestServices.Click += new System.EventHandler(this.btnRunTestServices_Click);
+            btnRunTestServices.Location = new System.Drawing.Point(652, 14);
+            btnRunTestServices.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnRunTestServices.Name = "btnRunTestServices";
+            btnRunTestServices.Size = new System.Drawing.Size(175, 27);
+            btnRunTestServices.TabIndex = 9;
+            btnRunTestServices.Text = "Run Services";
+            btnRunTestServices.UseVisualStyleBackColor = true;
+            btnRunTestServices.Click += btnRunTestServices_Click;
             // 
             // btnBuildWebPortal
             // 
-            this.btnBuildWebPortal.Location = new System.Drawing.Point(725, 44);
-            this.btnBuildWebPortal.Name = "btnBuildWebPortal";
-            this.btnBuildWebPortal.Size = new System.Drawing.Size(150, 23);
-            this.btnBuildWebPortal.TabIndex = 10;
-            this.btnBuildWebPortal.Text = "Build Web Portal";
-            this.btnBuildWebPortal.UseVisualStyleBackColor = true;
-            this.btnBuildWebPortal.Click += new System.EventHandler(this.btnBuildWebPortal_Click);
+            btnBuildWebPortal.Location = new System.Drawing.Point(205, 46);
+            btnBuildWebPortal.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnBuildWebPortal.Name = "btnBuildWebPortal";
+            btnBuildWebPortal.Size = new System.Drawing.Size(175, 27);
+            btnBuildWebPortal.TabIndex = 10;
+            btnBuildWebPortal.Text = "Build Web Portal";
+            btnBuildWebPortal.UseVisualStyleBackColor = true;
+            btnBuildWebPortal.Click += btnBuildWebPortal_Click;
             // 
             // btnBuildIntegration
             // 
-            this.btnBuildIntegration.Location = new System.Drawing.Point(541, 43);
-            this.btnBuildIntegration.Name = "btnBuildIntegration";
-            this.btnBuildIntegration.Size = new System.Drawing.Size(150, 23);
-            this.btnBuildIntegration.TabIndex = 11;
-            this.btnBuildIntegration.Text = "Build Integration";
-            this.btnBuildIntegration.UseVisualStyleBackColor = true;
-            this.btnBuildIntegration.Click += new System.EventHandler(this.btnBuildIntegration_Click);
+            btnBuildIntegration.Location = new System.Drawing.Point(205, 13);
+            btnBuildIntegration.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnBuildIntegration.Name = "btnBuildIntegration";
+            btnBuildIntegration.Size = new System.Drawing.Size(175, 27);
+            btnBuildIntegration.TabIndex = 11;
+            btnBuildIntegration.Text = "Build Integration";
+            btnBuildIntegration.UseVisualStyleBackColor = true;
+            btnBuildIntegration.Click += btnBuildIntegration_Click;
             // 
             // PowershellCommandsView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.btnBuildIntegration);
-            this.Controls.Add(this.btnBuildWebPortal);
-            this.Controls.Add(this.btnRunTestServices);
-            this.Controls.Add(this.btnBuildClickOne);
-            this.Controls.Add(this.btnBuildOECore);
-            this.Controls.Add(this.userControlProjectSelector1);
-            this.Controls.Add(this.btnStop);
-            this.Controls.Add(this.btnBuild);
-            this.Controls.Add(this.tbResults);
-            this.Controls.Add(this.btnRunCommand);
-            this.Controls.Add(this.tbCommand);
-            this.Name = "PowershellCommandsView";
-            this.Size = new System.Drawing.Size(890, 394);
-            this.Load += new System.EventHandler(this.PowershellCommandsView_Load);
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            Controls.Add(btnBuildIntegration);
+            Controls.Add(btnBuildWebPortal);
+            Controls.Add(btnRunTestServices);
+            Controls.Add(btnBuildClickOne);
+            Controls.Add(btnBuildOECore);
+            Controls.Add(btnStop);
+            Controls.Add(btnBuild);
+            Controls.Add(tbResults);
+            Controls.Add(btnRunCommand);
+            Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            Name = "PowershellCommandsView";
+            Size = new System.Drawing.Size(1038, 455);
+            Load += PowershellCommandsView_Load;
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox tbCommand;
         private System.Windows.Forms.Button btnRunCommand;
         private System.Windows.Forms.TextBox tbResults;
         private System.Windows.Forms.Button btnBuild;
         private System.Windows.Forms.Button btnStop;
-        private UserControlProjectSelector userControlProjectSelector1;
         private System.Windows.Forms.Button btnBuildOECore;
         private System.Windows.Forms.Button btnBuildClickOne;
         private System.Windows.Forms.Button btnRunTestServices;

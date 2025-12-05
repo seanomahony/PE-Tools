@@ -38,7 +38,6 @@ namespace PE_Tools.Views
             this.cbDocDBs = new System.Windows.Forms.ComboBox();
             this.btnViewC1config = new System.Windows.Forms.Button();
             this.btnViewDocConfig = new System.Windows.Forms.Button();
-            this.userControlProjectSelector1 = new PE_Tools.Views.UserControlProjectSelector();
             this.SuspendLayout();
             // 
             // titleLabelControl
@@ -148,21 +147,10 @@ namespace PE_Tools.Views
             this.btnViewDocConfig.UseVisualStyleBackColor = true;
             this.btnViewDocConfig.Click += new System.EventHandler(this.btnViewDocConfig_Click);
             // 
-            // userControlProjectSelector1
-            // 
-            this.userControlProjectSelector1.Callback = null;
-            this.userControlProjectSelector1.FolderNames = null;
-            this.userControlProjectSelector1.Location = new System.Drawing.Point(18, 29);
-            this.userControlProjectSelector1.Name = "userControlProjectSelector1";
-            this.userControlProjectSelector1.SelectedFolder = null;
-            this.userControlProjectSelector1.Size = new System.Drawing.Size(395, 71);
-            this.userControlProjectSelector1.TabIndex = 42;
-            // 
             // DatabaseSettingsView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.userControlProjectSelector1);
             this.Controls.Add(this.btnViewDocConfig);
             this.Controls.Add(this.btnViewC1config);
             this.Controls.Add(this.cbDocDBs);
@@ -193,6 +181,5 @@ namespace PE_Tools.Views
         private System.Windows.Forms.ComboBox cbDocDBs;
         private System.Windows.Forms.Button btnViewC1config;
         private System.Windows.Forms.Button btnViewDocConfig;
-        private UserControlProjectSelector userControlProjectSelector1;
     }
 }

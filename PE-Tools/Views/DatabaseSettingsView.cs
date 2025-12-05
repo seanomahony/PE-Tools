@@ -23,17 +23,31 @@ namespace PE_Tools.Views
         FileManager fileManager { get; set; }
         string currentView = null;
 
+        /// <summary>
+        /// The selected folder, set externally from Form1
+        /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public Folder SelectedFolder { get; set; }
+
         public DatabaseSettingsView()
         {
             InitializeComponent();
 
         }
 
+        /// <summary>
+        /// Called when the folder selection changes from Form1
+        /// </summary>
+        public void OnFolderChanged()
+        {
+            FolderSelectedIndexChanged();
+        }
+
         private void activateApplyButton()
         {
             this.saveButton.Enabled = false;
             this.outputRichTextBox.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.applyButton.Enabled = this.userControlProjectSelector1.SelectedFolder != null
+            this.applyButton.Enabled = this.SelectedFolder != null
                 && cbC1DBs.SelectedIndex > 0
                 && cbDocDBs.SelectedIndex > 0;
         }
@@ -55,7 +69,7 @@ namespace PE_Tools.Views
             {
                 fileManager.UpdateC1File(c1DbName);
                 fileManager.UpdateDocFile(docsDbName, c1DbName);
-                Logger.Info("Applied database selection: c1={0}, doc={1} for folder={2}", c1DbName, docsDbName, this.userControlProjectSelector1.SelectedFolder.FullPath);
+                Logger.Info("Applied database selection: c1={0}, doc={1} for folder={2}", c1DbName, docsDbName, this.SelectedFolder.FullPath);
             }
             catch (Exception ex)
             {
@@ -109,7 +123,7 @@ namespace PE_Tools.Views
                 {
                     fileManager.SaveC1File();
                     fileManager.SaveDocFile();
-                    MessageBox.Show("Files Updated OK", $"Database updated for {this.userControlProjectSelector1.SelectedFolder.FullPath}");
+                    MessageBox.Show("Files Updated OK", $"Database updated for {this.SelectedFolder.FullPath}");
                     // After save, reflect the saved state
                     this.saveButton.Enabled = false;
                     this.outputRichTextBox.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
@@ -123,7 +137,6 @@ namespace PE_Tools.Views
 
         private async void DatabaseSettingsView_Load(object sender, EventArgs e)
         {
-            this.userControlProjectSelector1.Callback = FolderSelectedIndexChanged;
             var database = new Database();
             c1Databases = await database.GetSelectedDatabasesAsync("_c1");
             docDatabases = await database.GetSelectedDatabasesAsync("_doc");
@@ -145,14 +158,9 @@ namespace PE_Tools.Views
             this.btnViewC1config.Enabled = this.btnViewDocConfig.Enabled = false;
         }
 
-        private List<Folder> getFolders()
-        {//TODO: get list of folders form config file
-            return new List<Folder>() { new Folder(@"select"), new Folder(@"c:\Dev\onPrem"), new Folder(@"c:\Test\Repo\onPrem") };
-        }
-
         private void FolderSelectedIndexChanged()
         {
-            if (this.userControlProjectSelector1.SelectedFolder == null)
+            if (this.SelectedFolder == null)
             {
                 this.btnViewC1config.Enabled = this.btnViewDocConfig.Enabled = false;
                 return;
@@ -160,13 +168,13 @@ namespace PE_Tools.Views
 
             try
             {
-                fileManager = new FileManager(this.userControlProjectSelector1.SelectedFolder.FullPath);
+                fileManager = new FileManager(this.SelectedFolder.FullPath);
                 this.btnViewC1config.Enabled = this.btnViewDocConfig.Enabled = true;
                 activateApplyButton();
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error loading configuration files for folder {0}", this.userControlProjectSelector1.SelectedFolder?.FullPath);
+                Logger.Error(ex, "Error loading configuration files for folder {0}", this.SelectedFolder?.FullPath);
                 MessageBox.Show($"Error loading configuration files: {ex.Message}", "File Load Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.btnViewC1config.Enabled = this.btnViewDocConfig.Enabled = false;
             }

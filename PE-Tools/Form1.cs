@@ -17,36 +17,40 @@ namespace PE_Tools
         public Form1()
         {
             InitializeComponent();
-            this.powershellCommandsView1.Visible = false; ;
-            this.databaseSettingsView1.Visible = false;
-            ListItem.CurrentIndex = 1;
-            this.cbViews.DataSource = getViewItems();
-            this.cbViews.ValueMember = "ID";
-            this.cbViews.DisplayMember = "Name";
-            this.cbViews.SelectedIndex = 0;
+            
+            // Disable tabs that require folder selection initially
+            tabPageDatabases.Enabled = false;
+            tabPagePowershell.Enabled = false;
+            
+            // Set up the callback for when a folder is selected
+            projectSelector.Callback = OnFolderSelected;
         }
 
-        private List<ListItem> getViewItems()
-        {//TODO: get list of folders form config file
-            return new List<ListItem>() { new ListItem(@"select"), new ListItem(@"Databases"), new ListItem(@"Powershell") };
-        }
-        private void cbViews_SelectedIndexChanged(object sender, EventArgs e)
+        private void OnFolderSelected()
         {
-            if (cbViews.SelectedIndex < 1)
+            var selectedFolder = projectSelector.SelectedFolder;
+            
+            if (selectedFolder != null)
             {
-                return;
+                // Enable the tabs that depend on folder selection
+                tabPageDatabases.Enabled = true;
+                tabPagePowershell.Enabled = true;
+                
+                // Pass the selected folder to the views
+                databaseSettingsView1.SelectedFolder = selectedFolder;
+                powershellCommandsView1.SelectedFolder = selectedFolder;
+                
+                // Notify DatabaseSettingsView that the folder changed
+                databaseSettingsView1.OnFolderChanged();
             }
-            var viewName = (this.cbViews.SelectedItem as ListItem).Name;
-
-            if (viewName == "Powershell")
+            else
             {
-                this.powershellCommandsView1.Visible = true;
-                this.databaseSettingsView1.Visible = false;
-            }
-            else if (viewName == "Databases")
-            {
-                this.powershellCommandsView1.Visible = false;
-                this.databaseSettingsView1.Visible = true;
+                // Disable the tabs if no folder is selected
+                tabPageDatabases.Enabled = false;
+                tabPagePowershell.Enabled = false;
+                
+                databaseSettingsView1.SelectedFolder = null;
+                powershellCommandsView1.SelectedFolder = null;
             }
         }
 
