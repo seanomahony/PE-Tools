@@ -18,8 +18,8 @@ namespace PE_Tools
             string ConnectionString = ConfigurationManager.AppSettings["databaseConnectionString"];
             if (string.IsNullOrEmpty(ConnectionString))
             {
-                Logger.Error("Database connection string not found in app settings.");
-                throw new ConfigurationErrorsException("Database connection string not found in app settings.");
+                Logger.Warn("Database connection string not found in app settings. Returning empty database list.");
+                return Databases; // Return empty list instead of throwing to avoid designer crashes
             }
             
             using (SqlConnection con = new SqlConnection(ConnectionString))

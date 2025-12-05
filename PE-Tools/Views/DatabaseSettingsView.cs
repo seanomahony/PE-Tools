@@ -42,13 +42,13 @@ namespace PE_Tools.Views
         {
             var c1Item = this.cbC1DBs.SelectedItem as DatabaseListItem;
             var docItem = this.cbDocDBs.SelectedItem as DatabaseListItem;
-            
+
             if (c1Item == null || docItem == null)
             {
                 MessageBox.Show("Please select valid databases for both C1 and Doc.", "Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            
+
             var c1DbName = c1Item.Name;
             var docsDbName = docItem.Name;
             try
@@ -105,10 +105,18 @@ namespace PE_Tools.Views
         {
             if (fileManager != null)
             {
-                if (fileManager.SaveC1File() && fileManager.SaveDocFile())
+                try
                 {
-                    Logger.Info("Saved config files for folder {0}", this.userControlProjectSelector1.SelectedFolder.FullPath);
+                    fileManager.SaveC1File();
+                    fileManager.SaveDocFile();
                     MessageBox.Show("Files Updated OK", $"Database updated for {this.userControlProjectSelector1.SelectedFolder.FullPath}");
+                    // After save, reflect the saved state
+                    this.saveButton.Enabled = false;
+                    this.outputRichTextBox.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Failed to save configuration files: {ex.Message}", "Save Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -144,12 +152,12 @@ namespace PE_Tools.Views
 
         private void FolderSelectedIndexChanged()
         {
-            if(this.userControlProjectSelector1.SelectedFolder == null)
+            if (this.userControlProjectSelector1.SelectedFolder == null)
             {
                 this.btnViewC1config.Enabled = this.btnViewDocConfig.Enabled = false;
                 return;
             }
-            
+
             try
             {
                 fileManager = new FileManager(this.userControlProjectSelector1.SelectedFolder.FullPath);

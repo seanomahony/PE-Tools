@@ -23,6 +23,7 @@ namespace PE_Tools
             {
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
+                SetExceptionHandlers();
                 Application.Run(new Form1());
             }
             catch (Exception ex)
@@ -35,6 +36,54 @@ namespace PE_Tools
                 logger.Info("Application shutdown");
                 LogManager.Shutdown();
             }
+        }
+
+        private static void SetExceptionHandlers()
+        {
+            var logger = LogManager.GetCurrentClassLogger();
+
+            Application.ThreadException += (sender, args) =>
+            {
+                try
+                {
+                    // Log full exception details for diagnostics
+                    logger.Error(args.Exception, "Unhandled UI thread exception");
+
+                    MessageBox.Show($"An unexpected error occurred: {args.Exception.Message}", "Application Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception handlerEx)
+                {
+                    // Attempt to log handler failure, but swallow to avoid recursion
+                    try
+                    {
+                        logger.Error(handlerEx, "Exception while handling UI thread exception");
+                    }
+                    catch { }
+                }
+            };
+
+            // Global non-UI thread exception handler
+            AppDomain.CurrentDomain.UnhandledException += (sender, args) =>
+            {
+                try
+                {
+                    var ex = args.ExceptionObject as Exception;
+
+                    // Log as fatal since this is an unhandled, potentially terminating exception
+                    logger.Fatal(ex, "Unhandled non-UI thread exception. IsTerminating={0}", args.IsTerminating);
+
+                    MessageBox.Show($"A fatal error occurred: {ex?.Message}", "Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception handlerEx)
+                {
+                    // Attempt to log handler failure, but swallow to avoid recursion
+                    try
+                    {
+                        logger.Error(handlerEx, "Exception while handling non-UI thread exception");
+                    }
+                    catch { }
+                }
+            };
         }
     }
 }

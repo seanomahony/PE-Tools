@@ -50,6 +50,12 @@ namespace PE_Tools.Views
 
         private void userControlProjectSelector_Load(object sender, EventArgs e)
         {
+            // Skip runtime folder loading at design-time
+            if (this.DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime)
+            {
+                return;
+            }
+
             var folders = getFolders();
             this.cbFolders.DataSource = folders;
             this.cbFolders.ValueMember = "ID";
