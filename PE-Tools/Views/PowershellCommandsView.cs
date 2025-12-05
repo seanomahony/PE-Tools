@@ -107,18 +107,34 @@ namespace PE_Tools.Views
         private void btnRunCommand_Click(object sender, EventArgs e)
         {
             tbResults.Clear();
-            //tbResults.Text = RunScript("./RunPE.ps1", true);
-            if(userControlProjectSelector1.SelectedFolder is null)
+
+            // Extract embedded PowerShell script to temp file
+            string tempScriptPath = Path.Combine(Path.GetTempPath(), "StartServices.ps1");
+            using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("PE_Tools.Resources.StartServices.ps1"))
+            using (var fileStream = new FileStream(tempScriptPath, FileMode.Create, FileAccess.Write))
             {
-                ShowMessage("echo \'Please select a target projectfolder\'");
-                return;
+                stream.CopyTo(fileStream);
             }
             var project = userControlProjectSelector1.SelectedFolder.Target;
 
             // Unblock the script file
-            RunScript($"Unblock-File -Path \"./RunPE_in.ps1\"");
-            tbResults.Text = RunScript($"./RunPE_in.ps1 '{project}'", true);
+            RunScript($"Unblock-File -Path \"{tempScriptPath}\"");
+
+            // Optionally get folder parameter from UI, fallback to default
+            string folderParam = @"Development\onprem";
+            if (SelectedFolder != null)
+            {
+                folderParam = SelectedFolder.FullPath ?? folderParam;
+            }
+
+            // Run the script with folder parameter
+            string command = $"{tempScriptPath} -folder '{folderParam}'";
+            tbResults.Text = RunScript(command, true);
+
+            // Optionally delete the temp file after execution
+            try { File.Delete(tempScriptPath); } catch { /* ignore */ }
         }
+
         private void btnBuild_Click(object sender, EventArgs e)
         {
             tbResults.Clear();
