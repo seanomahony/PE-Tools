@@ -1,22 +1,10 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
+using System.IO;
+using System.Reflection;
 using System.Security.Principal;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using NLog;
-
-//In Package Manager Console change dir to get to project folder then add the following package for WinForms
-//cd  PE-Tools
-//dotnet add package Microsoft.PowerShell.5.ReferenceAssemblies --version 1.1.0
-
-//For non-historic apps just install System.Management.Automation using Nuget
-
-//these both give you System.Management.Automation.Runspaces
 
 namespace PE_Tools.Views
 {
@@ -39,29 +27,52 @@ namespace PE_Tools.Views
             var sb = new StringBuilder();
             try
             {
-                //Logger.Debug("Running script: {0} changeDir={1} requiresAuth={2}", script, changeDir, requiresAuth);
-                //var runspace = RunspaceFactory.CreateRunspace();
-                //runspace.Open();
-                //var pipeline = runspace.CreatePipeline();
-                //if (requiresAuth)
-                //{
-                //    pipeline.Commands.AddScript("Set-ExecutionPolicy Unrestricted");
-                //}
-                //if(!string.IsNullOrEmpty(changeDir))
-                //{
-                //    pipeline.Commands.AddScript($"cd {changeDir}");
-                //}
-                //pipeline.Commands.AddScript(script);
-                //pipeline.Commands.Add("Out-String");
-                //var results = pipeline.Invoke();
-                //runspace.Close();
+                Logger.Debug("Running script: {0} changeDir={1} requiresAuth={2}", script, changeDir, requiresAuth);
 
-                //foreach (var obj in results)
-                //{
-                //    sb.AppendLine(obj.ToString());
-                //}
+                // Use pwsh (PowerShell 7+) if available, fallback to powershell.exe
+                string pwshPath = "pwsh";
+                string arguments = "-NoProfile -NonInteractive -Command ";
+
+                // Build the command string
+                var commandBuilder = new StringBuilder();
+                if (requiresAuth)
+                {
+                    commandBuilder.Append("Set-ExecutionPolicy Unrestricted -Scope Process; ");
+                }
+                if (!string.IsNullOrEmpty(changeDir))
+                {
+                    commandBuilder.Append($"cd '{changeDir}'; ");
+                }
+                commandBuilder.Append(script);
+
+                // Wrap the command in quotes for the process
+                arguments += $"\"{commandBuilder}\"";
+
+                var psi = new System.Diagnostics.ProcessStartInfo
+                {
+                    FileName = pwshPath,
+                    Arguments = arguments,
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                    UseShellExecute = false,
+                    CreateNoWindow = true,
+                    StandardOutputEncoding = Encoding.UTF8,
+                    StandardErrorEncoding = Encoding.UTF8
+                };
+
+                using (var process = System.Diagnostics.Process.Start(psi))
+                {
+                    string output = process.StandardOutput.ReadToEnd();
+                    string error = process.StandardError.ReadToEnd();
+                    process.WaitForExit();
+
+                    if (!string.IsNullOrWhiteSpace(output))
+                        sb.AppendLine(output);
+                    if (!string.IsNullOrWhiteSpace(error))
+                        sb.AppendLine(error);
+                }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Logger.Error(e, "Error running script: {0}", script);
                 sb.AppendLine(e.Message);
@@ -125,8 +136,20 @@ namespace PE_Tools.Views
         {
             tbResults.Clear();
 
-            RunScript($"Unblock-File -Path \"./StopPE.ps1\"");
-            tbResults.Text = RunScript("./StopPE.ps1", true);
+            // Extract embedded PowerShell script to temp file
+            string tempScriptPath = Path.Combine(Path.GetTempPath(), "StopServices.ps1");
+            using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("PE_Tools.Resources.StopServices.ps1"))
+            using (var fileStream = new FileStream(tempScriptPath, FileMode.Create, FileAccess.Write))
+            {
+                stream.CopyTo(fileStream);
+            }
+
+            // Unblock and run the script
+            RunScript($"Unblock-File -Path \"{tempScriptPath}\"");
+            tbResults.Text = RunScript(tempScriptPath, true);
+
+            // Optionally delete the temp file after execution
+            try { File.Delete(tempScriptPath); } catch { /* ignore */ }
         }
 
         private void btnBuildOECore_Click(object sender, EventArgs e)
