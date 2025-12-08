@@ -52,7 +52,7 @@
             tabControl1.Name = "tabControl1";
             tabControl1.Padding = new System.Drawing.Point(12, 6);
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new System.Drawing.Size(1558, 547);
+            tabControl1.Size = new System.Drawing.Size(1558, 648);
             tabControl1.TabIndex = 1;
             // 
             // tabPageDatabases
@@ -61,7 +61,7 @@
             tabPageDatabases.Location = new System.Drawing.Point(4, 35);
             tabPageDatabases.Name = "tabPageDatabases";
             tabPageDatabases.Padding = new System.Windows.Forms.Padding(8);
-            tabPageDatabases.Size = new System.Drawing.Size(1550, 508);
+            tabPageDatabases.Size = new System.Drawing.Size(1550, 609);
             tabPageDatabases.TabIndex = 0;
             tabPageDatabases.Text = "Databases";
             // 
@@ -75,16 +75,16 @@
             databaseSettingsView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             databaseSettingsView1.Name = "databaseSettingsView1";
             databaseSettingsView1.Padding = new System.Windows.Forms.Padding(8);
-            databaseSettingsView1.Size = new System.Drawing.Size(1534, 492);
+            databaseSettingsView1.Size = new System.Drawing.Size(1534, 593);
             databaseSettingsView1.TabIndex = 0;
             // 
             // tabPagePowershell
             // 
             tabPagePowershell.Controls.Add(powershellCommandsView1);
-            tabPagePowershell.Location = new System.Drawing.Point(4, 35);
+            tabPagePowershell.Location = new System.Drawing.Point(4, 30);
             tabPagePowershell.Name = "tabPagePowershell";
             tabPagePowershell.Padding = new System.Windows.Forms.Padding(8);
-            tabPagePowershell.Size = new System.Drawing.Size(1550, 508);
+            tabPagePowershell.Size = new System.Drawing.Size(192, 66);
             tabPagePowershell.TabIndex = 1;
             tabPagePowershell.Text = "PowerShell";
             // 
@@ -96,18 +96,19 @@
             powershellCommandsView1.ForeColor = System.Drawing.Color.FromArgb(241, 241, 241);
             powershellCommandsView1.Location = new System.Drawing.Point(8, 8);
             powershellCommandsView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            powershellCommandsView1.MinimumSize = new System.Drawing.Size(986, 397);
             powershellCommandsView1.Name = "powershellCommandsView1";
             powershellCommandsView1.Padding = new System.Windows.Forms.Padding(8);
-            powershellCommandsView1.Size = new System.Drawing.Size(1534, 492);
+            powershellCommandsView1.Size = new System.Drawing.Size(986, 397);
             powershellCommandsView1.TabIndex = 0;
             // 
             // tabPageSettings
             // 
             tabPageSettings.Controls.Add(appSettingsView1);
-            tabPageSettings.Location = new System.Drawing.Point(4, 35);
+            tabPageSettings.Location = new System.Drawing.Point(4, 30);
             tabPageSettings.Name = "tabPageSettings";
             tabPageSettings.Padding = new System.Windows.Forms.Padding(8);
-            tabPageSettings.Size = new System.Drawing.Size(1550, 508);
+            tabPageSettings.Size = new System.Drawing.Size(192, 66);
             tabPageSettings.TabIndex = 2;
             tabPageSettings.Text = "Settings";
             // 
@@ -121,7 +122,7 @@
             appSettingsView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             appSettingsView1.Name = "appSettingsView1";
             appSettingsView1.Padding = new System.Windows.Forms.Padding(8);
-            appSettingsView1.Size = new System.Drawing.Size(1534, 492);
+            appSettingsView1.Size = new System.Drawing.Size(176, 50);
             appSettingsView1.TabIndex = 0;
             // 
             // projectSelector
@@ -132,6 +133,7 @@
             projectSelector.ForeColor = System.Drawing.Color.FromArgb(241, 241, 241);
             projectSelector.Location = new System.Drawing.Point(12, 12);
             projectSelector.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            projectSelector.MinimumSize = new System.Drawing.Size(300, 57);
             projectSelector.Name = "projectSelector";
             projectSelector.Padding = new System.Windows.Forms.Padding(4);
             projectSelector.Size = new System.Drawing.Size(1558, 70);
@@ -141,7 +143,7 @@
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(1582, 649);
+            ClientSize = new System.Drawing.Size(1582, 750);
             Controls.Add(projectSelector);
             Controls.Add(tabControl1);
             Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);

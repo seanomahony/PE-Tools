@@ -100,7 +100,7 @@ namespace PE_Tools.Views
             btnBrowseFolder.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             btnBrowseFolder.Location = new System.Drawing.Point(390, 143);
             btnBrowseFolder.Name = "btnBrowseFolder";
-            btnBrowseFolder.Size = new System.Drawing.Size(100, 30);
+            btnBrowseFolder.Size = new System.Drawing.Size(100, 32);
             btnBrowseFolder.TabIndex = 3;
             btnBrowseFolder.Text = "Browse...";
             btnBrowseFolder.Click += btnBrowseFolder_Click;
@@ -110,7 +110,7 @@ namespace PE_Tools.Views
             btnAddFolder.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             btnAddFolder.Location = new System.Drawing.Point(500, 25);
             btnAddFolder.Name = "btnAddFolder";
-            btnAddFolder.Size = new System.Drawing.Size(100, 30);
+            btnAddFolder.Size = new System.Drawing.Size(100, 32);
             btnAddFolder.TabIndex = 4;
             btnAddFolder.Text = "Add";
             btnAddFolder.Click += btnAddFolder_Click;
@@ -120,7 +120,7 @@ namespace PE_Tools.Views
             btnRemoveFolder.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             btnRemoveFolder.Location = new System.Drawing.Point(500, 65);
             btnRemoveFolder.Name = "btnRemoveFolder";
-            btnRemoveFolder.Size = new System.Drawing.Size(100, 30);
+            btnRemoveFolder.Size = new System.Drawing.Size(100, 32);
             btnRemoveFolder.TabIndex = 5;
             btnRemoveFolder.Text = "Remove";
             btnRemoveFolder.Click += btnRemoveFolder_Click;
@@ -159,7 +159,7 @@ namespace PE_Tools.Views
             btnTestConnection.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             btnTestConnection.Location = new System.Drawing.Point(490, 23);
             btnTestConnection.Name = "btnTestConnection";
-            btnTestConnection.Size = new System.Drawing.Size(110, 30);
+            btnTestConnection.Size = new System.Drawing.Size(110, 32);
             btnTestConnection.TabIndex = 2;
             btnTestConnection.Text = "Test Connection";
             btnTestConnection.Click += btnTestConnection_Click;
@@ -225,7 +225,7 @@ namespace PE_Tools.Views
             btnSaveAll.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             btnSaveAll.Location = new System.Drawing.Point(496, 490);
             btnSaveAll.Name = "btnSaveAll";
-            btnSaveAll.Size = new System.Drawing.Size(120, 35);
+            btnSaveAll.Size = new System.Drawing.Size(120, 36);
             btnSaveAll.TabIndex = 4;
             btnSaveAll.Text = "Save All Settings";
             btnSaveAll.Click += btnSaveAll_Click;

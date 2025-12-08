@@ -127,7 +127,12 @@ namespace PE_Tools.Theme
             button.FlatAppearance.BorderSize = 1;
             button.Cursor = Cursors.Hand;
             button.Font = BodyFont;
-            button.Padding = new Padding(8, 4, 8, 4);
+            
+            // Ensure minimum height for readable text
+            if (button.Height < 32)
+            {
+                button.Height = 32;
+            }
 
             switch (style)
             {

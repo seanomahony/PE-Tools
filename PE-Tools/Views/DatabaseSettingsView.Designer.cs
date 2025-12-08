@@ -91,9 +91,9 @@ namespace PE_Tools.Views
             // 
             // btnViewC1config
             // 
-            btnViewC1config.Location = new System.Drawing.Point(305, 49);
+            btnViewC1config.Location = new System.Drawing.Point(305, 47);
             btnViewC1config.Name = "btnViewC1config";
-            btnViewC1config.Size = new System.Drawing.Size(75, 26);
+            btnViewC1config.Size = new System.Drawing.Size(75, 32);
             btnViewC1config.TabIndex = 2;
             btnViewC1config.Text = "View";
             btnViewC1config.UseVisualStyleBackColor = false;
@@ -119,9 +119,9 @@ namespace PE_Tools.Views
             // 
             // btnViewDocConfig
             // 
-            btnViewDocConfig.Location = new System.Drawing.Point(680, 49);
+            btnViewDocConfig.Location = new System.Drawing.Point(680, 47);
             btnViewDocConfig.Name = "btnViewDocConfig";
-            btnViewDocConfig.Size = new System.Drawing.Size(75, 26);
+            btnViewDocConfig.Size = new System.Drawing.Size(75, 32);
             btnViewDocConfig.TabIndex = 5;
             btnViewDocConfig.Text = "View";
             btnViewDocConfig.UseVisualStyleBackColor = false;

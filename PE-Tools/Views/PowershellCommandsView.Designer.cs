@@ -66,7 +66,7 @@
             btnBuildOECore.Location = new System.Drawing.Point(15, 26);
             btnBuildOECore.Margin = new System.Windows.Forms.Padding(6);
             btnBuildOECore.Name = "btnBuildOECore";
-            btnBuildOECore.Size = new System.Drawing.Size(125, 28);
+            btnBuildOECore.Size = new System.Drawing.Size(125, 32);
             btnBuildOECore.TabIndex = 0;
             btnBuildOECore.Text = "OE Core";
             btnBuildOECore.UseVisualStyleBackColor = false;
@@ -77,7 +77,7 @@
             btnBuildClickOne.Location = new System.Drawing.Point(146, 26);
             btnBuildClickOne.Margin = new System.Windows.Forms.Padding(6);
             btnBuildClickOne.Name = "btnBuildClickOne";
-            btnBuildClickOne.Size = new System.Drawing.Size(125, 28);
+            btnBuildClickOne.Size = new System.Drawing.Size(125, 32);
             btnBuildClickOne.TabIndex = 1;
             btnBuildClickOne.Text = "Click One Legal";
             btnBuildClickOne.UseVisualStyleBackColor = false;
@@ -88,7 +88,7 @@
             btnBuildIntegration.Location = new System.Drawing.Point(277, 26);
             btnBuildIntegration.Margin = new System.Windows.Forms.Padding(6);
             btnBuildIntegration.Name = "btnBuildIntegration";
-            btnBuildIntegration.Size = new System.Drawing.Size(125, 28);
+            btnBuildIntegration.Size = new System.Drawing.Size(125, 32);
             btnBuildIntegration.TabIndex = 2;
             btnBuildIntegration.Text = "Integration";
             btnBuildIntegration.UseVisualStyleBackColor = false;
@@ -99,7 +99,7 @@
             btnBuildWebPortal.Location = new System.Drawing.Point(408, 26);
             btnBuildWebPortal.Margin = new System.Windows.Forms.Padding(6);
             btnBuildWebPortal.Name = "btnBuildWebPortal";
-            btnBuildWebPortal.Size = new System.Drawing.Size(125, 28);
+            btnBuildWebPortal.Size = new System.Drawing.Size(125, 32);
             btnBuildWebPortal.TabIndex = 3;
             btnBuildWebPortal.Text = "Web Portal";
             btnBuildWebPortal.UseVisualStyleBackColor = false;
@@ -107,10 +107,10 @@
             // 
             // btnBuild
             // 
-            btnBuild.Location = new System.Drawing.Point(15, 60);
+            btnBuild.Location = new System.Drawing.Point(15, 64);
             btnBuild.Margin = new System.Windows.Forms.Padding(6);
             btnBuild.Name = "btnBuild";
-            btnBuild.Size = new System.Drawing.Size(256, 28);
+            btnBuild.Size = new System.Drawing.Size(256, 32);
             btnBuild.TabIndex = 4;
             btnBuild.Text = "Build All Solutions";
             btnBuild.UseVisualStyleBackColor = false;
@@ -135,7 +135,7 @@
             btnRunTestServices.Location = new System.Drawing.Point(15, 26);
             btnRunTestServices.Margin = new System.Windows.Forms.Padding(6);
             btnRunTestServices.Name = "btnRunTestServices";
-            btnRunTestServices.Size = new System.Drawing.Size(170, 28);
+            btnRunTestServices.Size = new System.Drawing.Size(170, 32);
             btnRunTestServices.TabIndex = 0;
             btnRunTestServices.Text = "Run Services";
             btnRunTestServices.UseVisualStyleBackColor = false;
@@ -146,7 +146,7 @@
             btnRunCommand.Location = new System.Drawing.Point(191, 26);
             btnRunCommand.Margin = new System.Windows.Forms.Padding(6);
             btnRunCommand.Name = "btnRunCommand";
-            btnRunCommand.Size = new System.Drawing.Size(170, 28);
+            btnRunCommand.Size = new System.Drawing.Size(170, 32);
             btnRunCommand.TabIndex = 1;
             btnRunCommand.Text = "Services && Client";
             btnRunCommand.UseVisualStyleBackColor = false;
@@ -154,10 +154,10 @@
             // 
             // btnStop
             // 
-            btnStop.Location = new System.Drawing.Point(15, 60);
+            btnStop.Location = new System.Drawing.Point(15, 64);
             btnStop.Margin = new System.Windows.Forms.Padding(6);
             btnStop.Name = "btnStop";
-            btnStop.Size = new System.Drawing.Size(170, 28);
+            btnStop.Size = new System.Drawing.Size(170, 32);
             btnStop.TabIndex = 2;
             btnStop.Text = "Stop All";
             btnStop.UseVisualStyleBackColor = false;
