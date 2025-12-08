@@ -28,158 +28,201 @@ namespace PE_Tools.Views
         /// </summary>
         private void InitializeComponent()
         {
-            this.titleLabelControl = new System.Windows.Forms.Label();
-            this.saveButton = new System.Windows.Forms.Button();
-            this.outputRichTextBox = new System.Windows.Forms.RichTextBox();
-            this.applyButton = new System.Windows.Forms.Button();
-            this.C1LabelControl = new System.Windows.Forms.Label();
-            this.DocLabelControl = new System.Windows.Forms.Label();
-            this.cbC1DBs = new System.Windows.Forms.ComboBox();
-            this.cbDocDBs = new System.Windows.Forms.ComboBox();
-            this.btnViewC1config = new System.Windows.Forms.Button();
-            this.btnViewDocConfig = new System.Windows.Forms.Button();
-            this.SuspendLayout();
+            grpDatabaseSelection = new System.Windows.Forms.GroupBox();
+            C1LabelControl = new System.Windows.Forms.Label();
+            cbC1DBs = new System.Windows.Forms.ComboBox();
+            btnViewC1config = new System.Windows.Forms.Button();
+            DocLabelControl = new System.Windows.Forms.Label();
+            cbDocDBs = new System.Windows.Forms.ComboBox();
+            btnViewDocConfig = new System.Windows.Forms.Button();
+            grpActions = new System.Windows.Forms.GroupBox();
+            applyButton = new System.Windows.Forms.Button();
+            saveButton = new System.Windows.Forms.Button();
+            grpOutput = new System.Windows.Forms.GroupBox();
+            outputRichTextBox = new System.Windows.Forms.RichTextBox();
+            titleLabelControl = new System.Windows.Forms.Label();
+            grpDatabaseSelection.SuspendLayout();
+            grpActions.SuspendLayout();
+            grpOutput.SuspendLayout();
+            SuspendLayout();
             // 
             // titleLabelControl
             // 
-            this.titleLabelControl.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleLabelControl.Location = new System.Drawing.Point(18, 4);
-            this.titleLabelControl.Name = "titleLabelControl";
-            this.titleLabelControl.Size = new System.Drawing.Size(280, 22);
-            this.titleLabelControl.TabIndex = 36;
-            this.titleLabelControl.Text = "Set Practice Evolve Databases";
+            titleLabelControl.AutoSize = true;
+            titleLabelControl.Location = new System.Drawing.Point(16, 12);
+            titleLabelControl.Name = "titleLabelControl";
+            titleLabelControl.Size = new System.Drawing.Size(220, 22);
+            titleLabelControl.TabIndex = 0;
+            titleLabelControl.Text = "Set Practice Evolve Databases";
             // 
-            // saveButton
+            // grpDatabaseSelection
             // 
-            this.saveButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveButton.Enabled = false;
-            this.saveButton.Location = new System.Drawing.Point(127, 105);
-            this.saveButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(75, 23);
-            this.saveButton.TabIndex = 35;
-            this.saveButton.Text = "Save";
-            this.saveButton.UseVisualStyleBackColor = true;
-            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
-            // 
-            // outputRichTextBox
-            // 
-            this.outputRichTextBox.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.outputRichTextBox.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.outputRichTextBox.Location = new System.Drawing.Point(18, 136);
-            this.outputRichTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.outputRichTextBox.Name = "outputRichTextBox";
-            this.outputRichTextBox.ReadOnly = true;
-            this.outputRichTextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.outputRichTextBox.Size = new System.Drawing.Size(1113, 244);
-            this.outputRichTextBox.TabIndex = 34;
-            this.outputRichTextBox.Text = "";
-            this.outputRichTextBox.WordWrap = false;
-            // 
-            // applyButton
-            // 
-            this.applyButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.applyButton.Enabled = false;
-            this.applyButton.Location = new System.Drawing.Point(18, 105);
-            this.applyButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.applyButton.Name = "applyButton";
-            this.applyButton.Size = new System.Drawing.Size(75, 23);
-            this.applyButton.TabIndex = 30;
-            this.applyButton.Text = "Apply";
-            this.applyButton.UseVisualStyleBackColor = true;
-            this.applyButton.Click += new System.EventHandler(this.applyButton_Click);
+            grpDatabaseSelection.Controls.Add(C1LabelControl);
+            grpDatabaseSelection.Controls.Add(cbC1DBs);
+            grpDatabaseSelection.Controls.Add(btnViewC1config);
+            grpDatabaseSelection.Controls.Add(DocLabelControl);
+            grpDatabaseSelection.Controls.Add(cbDocDBs);
+            grpDatabaseSelection.Controls.Add(btnViewDocConfig);
+            grpDatabaseSelection.Location = new System.Drawing.Point(16, 44);
+            grpDatabaseSelection.Name = "grpDatabaseSelection";
+            grpDatabaseSelection.Padding = new System.Windows.Forms.Padding(12);
+            grpDatabaseSelection.Size = new System.Drawing.Size(760, 95);
+            grpDatabaseSelection.TabIndex = 1;
+            grpDatabaseSelection.TabStop = false;
+            grpDatabaseSelection.Text = "Database Selection";
             // 
             // C1LabelControl
             // 
-            this.C1LabelControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.C1LabelControl.Location = new System.Drawing.Point(417, 42);
-            this.C1LabelControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.C1LabelControl.Name = "C1LabelControl";
-            this.C1LabelControl.Size = new System.Drawing.Size(79, 16);
-            this.C1LabelControl.TabIndex = 24;
-            this.C1LabelControl.Text = "Select C1 DB";
-            // 
-            // DocLabelControl
-            // 
-            this.DocLabelControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DocLabelControl.Location = new System.Drawing.Point(756, 42);
-            this.DocLabelControl.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.DocLabelControl.Name = "DocLabelControl";
-            this.DocLabelControl.Size = new System.Drawing.Size(86, 16);
-            this.DocLabelControl.TabIndex = 25;
-            this.DocLabelControl.Text = "Select Doc DB";
+            C1LabelControl.AutoSize = true;
+            C1LabelControl.Location = new System.Drawing.Point(15, 28);
+            C1LabelControl.Name = "C1LabelControl";
+            C1LabelControl.Size = new System.Drawing.Size(79, 16);
+            C1LabelControl.TabIndex = 0;
+            C1LabelControl.Text = "Select C1 DB";
             // 
             // cbC1DBs
             // 
-            this.cbC1DBs.FormattingEnabled = true;
-            this.cbC1DBs.Location = new System.Drawing.Point(417, 65);
-            this.cbC1DBs.Name = "cbC1DBs";
-            this.cbC1DBs.Size = new System.Drawing.Size(333, 21);
-            this.cbC1DBs.TabIndex = 38;
-            this.cbC1DBs.SelectedIndexChanged += new System.EventHandler(this.cbC1DBs_SelectedIndexChanged);
-            // 
-            // cbDocDBs
-            // 
-            this.cbDocDBs.FormattingEnabled = true;
-            this.cbDocDBs.Location = new System.Drawing.Point(756, 65);
-            this.cbDocDBs.Name = "cbDocDBs";
-            this.cbDocDBs.Size = new System.Drawing.Size(373, 21);
-            this.cbDocDBs.TabIndex = 39;
-            this.cbDocDBs.SelectedIndexChanged += new System.EventHandler(this.cbDocDBs_SelectedIndexChanged);
+            cbC1DBs.FormattingEnabled = true;
+            cbC1DBs.Location = new System.Drawing.Point(15, 50);
+            cbC1DBs.Name = "cbC1DBs";
+            cbC1DBs.Size = new System.Drawing.Size(280, 23);
+            cbC1DBs.TabIndex = 1;
+            cbC1DBs.SelectedIndexChanged += cbC1DBs_SelectedIndexChanged;
             // 
             // btnViewC1config
             // 
-            this.btnViewC1config.Location = new System.Drawing.Point(417, 106);
-            this.btnViewC1config.Name = "btnViewC1config";
-            this.btnViewC1config.Size = new System.Drawing.Size(75, 23);
-            this.btnViewC1config.TabIndex = 40;
-            this.btnViewC1config.Text = "View C1 config";
-            this.btnViewC1config.UseVisualStyleBackColor = true;
-            this.btnViewC1config.Click += new System.EventHandler(this.btnViewC1config_Click);
+            btnViewC1config.Location = new System.Drawing.Point(305, 49);
+            btnViewC1config.Name = "btnViewC1config";
+            btnViewC1config.Size = new System.Drawing.Size(75, 26);
+            btnViewC1config.TabIndex = 2;
+            btnViewC1config.Text = "View";
+            btnViewC1config.UseVisualStyleBackColor = false;
+            btnViewC1config.Click += btnViewC1config_Click;
+            // 
+            // DocLabelControl
+            // 
+            DocLabelControl.AutoSize = true;
+            DocLabelControl.Location = new System.Drawing.Point(390, 28);
+            DocLabelControl.Name = "DocLabelControl";
+            DocLabelControl.Size = new System.Drawing.Size(86, 16);
+            DocLabelControl.TabIndex = 3;
+            DocLabelControl.Text = "Select Doc DB";
+            // 
+            // cbDocDBs
+            // 
+            cbDocDBs.FormattingEnabled = true;
+            cbDocDBs.Location = new System.Drawing.Point(390, 50);
+            cbDocDBs.Name = "cbDocDBs";
+            cbDocDBs.Size = new System.Drawing.Size(280, 23);
+            cbDocDBs.TabIndex = 4;
+            cbDocDBs.SelectedIndexChanged += cbDocDBs_SelectedIndexChanged;
             // 
             // btnViewDocConfig
             // 
-            this.btnViewDocConfig.Location = new System.Drawing.Point(756, 106);
-            this.btnViewDocConfig.Name = "btnViewDocConfig";
-            this.btnViewDocConfig.Size = new System.Drawing.Size(75, 23);
-            this.btnViewDocConfig.TabIndex = 41;
-            this.btnViewDocConfig.Text = "View Doc";
-            this.btnViewDocConfig.UseVisualStyleBackColor = true;
-            this.btnViewDocConfig.Click += new System.EventHandler(this.btnViewDocConfig_Click);
+            btnViewDocConfig.Location = new System.Drawing.Point(680, 49);
+            btnViewDocConfig.Name = "btnViewDocConfig";
+            btnViewDocConfig.Size = new System.Drawing.Size(75, 26);
+            btnViewDocConfig.TabIndex = 5;
+            btnViewDocConfig.Text = "View";
+            btnViewDocConfig.UseVisualStyleBackColor = false;
+            btnViewDocConfig.Click += btnViewDocConfig_Click;
+            // 
+            // grpActions
+            // 
+            grpActions.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            grpActions.Controls.Add(applyButton);
+            grpActions.Controls.Add(saveButton);
+            grpActions.Location = new System.Drawing.Point(790, 44);
+            grpActions.Name = "grpActions";
+            grpActions.Padding = new System.Windows.Forms.Padding(12);
+            grpActions.Size = new System.Drawing.Size(340, 95);
+            grpActions.TabIndex = 2;
+            grpActions.TabStop = false;
+            grpActions.Text = "Actions";
+            // 
+            // applyButton
+            // 
+            applyButton.Enabled = false;
+            applyButton.Location = new System.Drawing.Point(15, 40);
+            applyButton.Margin = new System.Windows.Forms.Padding(6);
+            applyButton.Name = "applyButton";
+            applyButton.Size = new System.Drawing.Size(150, 36);
+            applyButton.TabIndex = 0;
+            applyButton.Text = "Apply Changes";
+            applyButton.UseVisualStyleBackColor = false;
+            applyButton.Click += applyButton_Click;
+            // 
+            // saveButton
+            // 
+            saveButton.Enabled = false;
+            saveButton.Location = new System.Drawing.Point(177, 40);
+            saveButton.Margin = new System.Windows.Forms.Padding(6);
+            saveButton.Name = "saveButton";
+            saveButton.Size = new System.Drawing.Size(150, 36);
+            saveButton.TabIndex = 1;
+            saveButton.Text = "Save to Files";
+            saveButton.UseVisualStyleBackColor = false;
+            saveButton.Click += saveButton_Click;
+            // 
+            // grpOutput
+            // 
+            grpOutput.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            grpOutput.Controls.Add(outputRichTextBox);
+            grpOutput.Location = new System.Drawing.Point(16, 148);
+            grpOutput.Name = "grpOutput";
+            grpOutput.Padding = new System.Windows.Forms.Padding(12);
+            grpOutput.Size = new System.Drawing.Size(1114, 232);
+            grpOutput.TabIndex = 3;
+            grpOutput.TabStop = false;
+            grpOutput.Text = "Configuration Output";
+            // 
+            // outputRichTextBox
+            // 
+            outputRichTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            outputRichTextBox.Location = new System.Drawing.Point(12, 28);
+            outputRichTextBox.Margin = new System.Windows.Forms.Padding(0);
+            outputRichTextBox.Name = "outputRichTextBox";
+            outputRichTextBox.ReadOnly = true;
+            outputRichTextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Both;
+            outputRichTextBox.Size = new System.Drawing.Size(1090, 192);
+            outputRichTextBox.TabIndex = 0;
+            outputRichTextBox.Text = "";
+            outputRichTextBox.WordWrap = false;
             // 
             // DatabaseSettingsView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.btnViewDocConfig);
-            this.Controls.Add(this.btnViewC1config);
-            this.Controls.Add(this.cbDocDBs);
-            this.Controls.Add(this.cbC1DBs);
-            this.Controls.Add(this.titleLabelControl);
-            this.Controls.Add(this.saveButton);
-            this.Controls.Add(this.outputRichTextBox);
-            this.Controls.Add(this.applyButton);
-            this.Controls.Add(this.C1LabelControl);
-            this.Controls.Add(this.DocLabelControl);
-            this.Name = "DatabaseSettingsView";
-            this.Size = new System.Drawing.Size(1152, 393);
-            this.Load += new System.EventHandler(this.DatabaseSettingsView_Load);
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            Controls.Add(grpOutput);
+            Controls.Add(grpActions);
+            Controls.Add(grpDatabaseSelection);
+            Controls.Add(titleLabelControl);
+            Name = "DatabaseSettingsView";
+            Padding = new System.Windows.Forms.Padding(8);
+            Size = new System.Drawing.Size(1152, 393);
+            Load += DatabaseSettingsView_Load;
+            grpDatabaseSelection.ResumeLayout(false);
+            grpDatabaseSelection.PerformLayout();
+            grpActions.ResumeLayout(false);
+            grpOutput.ResumeLayout(false);
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private System.Windows.Forms.Label titleLabelControl;
-        private System.Windows.Forms.Button saveButton;
-        private System.Windows.Forms.RichTextBox outputRichTextBox;
-        private System.Windows.Forms.Button applyButton;
+        private System.Windows.Forms.GroupBox grpDatabaseSelection;
         private System.Windows.Forms.Label C1LabelControl;
-        private System.Windows.Forms.Label DocLabelControl;
         private System.Windows.Forms.ComboBox cbC1DBs;
-        private System.Windows.Forms.ComboBox cbDocDBs;
         private System.Windows.Forms.Button btnViewC1config;
+        private System.Windows.Forms.Label DocLabelControl;
+        private System.Windows.Forms.ComboBox cbDocDBs;
         private System.Windows.Forms.Button btnViewDocConfig;
+        private System.Windows.Forms.GroupBox grpActions;
+        private System.Windows.Forms.Button applyButton;
+        private System.Windows.Forms.Button saveButton;
+        private System.Windows.Forms.GroupBox grpOutput;
+        private System.Windows.Forms.RichTextBox outputRichTextBox;
     }
 }

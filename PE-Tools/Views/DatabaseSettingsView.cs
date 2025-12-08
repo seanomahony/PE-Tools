@@ -1,4 +1,5 @@
 ﻿using PE_Tools.Models;
+using PE_Tools.Theme;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,7 +33,6 @@ namespace PE_Tools.Views
         public DatabaseSettingsView()
         {
             InitializeComponent();
-
         }
 
         /// <summary>
@@ -137,6 +137,8 @@ namespace PE_Tools.Views
 
         private async void DatabaseSettingsView_Load(object sender, EventArgs e)
         {
+            ApplyTheme();
+            
             var database = new Database();
             c1Databases = await database.GetSelectedDatabasesAsync("_c1");
             docDatabases = await database.GetSelectedDatabasesAsync("_doc");
@@ -156,6 +158,24 @@ namespace PE_Tools.Views
             this.cbDocDBs.SelectedIndex = 0;
 
             this.btnViewC1config.Enabled = this.btnViewDocConfig.Enabled = false;
+        }
+
+        private void ApplyTheme()
+        {
+            ThemeHelper.ApplyTheme(this);
+            
+            // Style action buttons
+            ThemeHelper.StyleButton(applyButton, ButtonStyle.Primary);
+            ThemeHelper.StyleButton(saveButton, ButtonStyle.Success);
+            ThemeHelper.StyleButton(btnViewC1config, ButtonStyle.Default);
+            ThemeHelper.StyleButton(btnViewDocConfig, ButtonStyle.Default);
+            
+            // Style output as console
+            ThemeHelper.StyleRichTextBox(outputRichTextBox, isConsole: true);
+            
+            // Style title
+            titleLabelControl.Font = ThemeHelper.TitleFont;
+            titleLabelControl.ForeColor = ThemeHelper.PrimaryText;
         }
 
         private void FolderSelectedIndexChanged()

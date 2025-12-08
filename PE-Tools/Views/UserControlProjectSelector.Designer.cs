@@ -34,23 +34,23 @@ namespace PE_Tools.Views
             // 
             // cbFolders
             // 
+            cbFolders.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             cbFolders.FormattingEnabled = true;
-            cbFolders.Location = new System.Drawing.Point(4, 29);
+            cbFolders.Location = new System.Drawing.Point(8, 28);
             cbFolders.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             cbFolders.Name = "cbFolders";
             cbFolders.Size = new System.Drawing.Size(424, 23);
-            cbFolders.TabIndex = 39;
+            cbFolders.TabIndex = 1;
             cbFolders.SelectedIndexChanged += cbFolders_SelectedIndexChanged;
             // 
             // SourceFolderLabelControl
             // 
             SourceFolderLabelControl.AutoSize = true;
-            SourceFolderLabelControl.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            SourceFolderLabelControl.Location = new System.Drawing.Point(4, 5);
-            SourceFolderLabelControl.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            SourceFolderLabelControl.Location = new System.Drawing.Point(8, 7);
+            SourceFolderLabelControl.Margin = new System.Windows.Forms.Padding(4);
             SourceFolderLabelControl.Name = "SourceFolderLabelControl";
-            SourceFolderLabelControl.Size = new System.Drawing.Size(129, 16);
-            SourceFolderLabelControl.TabIndex = 38;
+            SourceFolderLabelControl.Size = new System.Drawing.Size(113, 15);
+            SourceFolderLabelControl.TabIndex = 0;
             SourceFolderLabelControl.Text = "Select Source Folder";
             // 
             // UserControlProjectSelector
@@ -60,17 +60,18 @@ namespace PE_Tools.Views
             Controls.Add(cbFolders);
             Controls.Add(SourceFolderLabelControl);
             Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            MinimumSize = new System.Drawing.Size(300, 57);
             Name = "UserControlProjectSelector";
-            Size = new System.Drawing.Size(437, 61);
+            Padding = new System.Windows.Forms.Padding(4);
+            Size = new System.Drawing.Size(440, 57);
             Load += userControlProjectSelector_Load;
             ResumeLayout(false);
             PerformLayout();
-
         }
 
         #endregion
 
-        private System.Windows.Forms.ComboBox cbFolders;
         private System.Windows.Forms.Label SourceFolderLabelControl;
+        private System.Windows.Forms.ComboBox cbFolders;
     }
 }

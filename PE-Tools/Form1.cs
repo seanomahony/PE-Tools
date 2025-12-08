@@ -1,4 +1,5 @@
 ﻿using PE_Tools.Models;
+using PE_Tools.Theme;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -56,7 +57,13 @@ namespace PE_Tools
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            ApplyTheme();
+        }
 
+        private void ApplyTheme()
+        {
+            ThemeHelper.ApplyTheme(this);
+            ThemeHelper.StyleTabControl(tabControl1);
         }
     }
 }
