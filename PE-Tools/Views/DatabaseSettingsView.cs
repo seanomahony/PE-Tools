@@ -46,7 +46,11 @@ namespace PE_Tools.Views
         private void activateApplyButton()
         {
             this.saveButton.Enabled = false;
-            this.outputRichTextBox.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+
+            // Use themed console background and text for consistent contrast/visibility
+            this.outputRichTextBox.BackColor = ThemeHelper.ConsoleBackground;
+            this.outputRichTextBox.ForeColor = ThemeHelper.ConsoleText;
+
             this.applyButton.Enabled = this.SelectedFolder != null
                 && cbC1DBs.SelectedIndex > 0
                 && cbDocDBs.SelectedIndex > 0;
@@ -78,7 +82,9 @@ namespace PE_Tools.Views
                 return;
             }
 
-            this.outputRichTextBox.BackColor = System.Drawing.SystemColors.Info;
+            // Use a high-contrast success background so updated output remains readable.
+            this.outputRichTextBox.BackColor = ThemeHelper.AccentGreen;
+            this.outputRichTextBox.ForeColor = Color.White;
             this.saveButton.Enabled = true;
             this.applyButton.Enabled = false;
 
@@ -124,9 +130,10 @@ namespace PE_Tools.Views
                     fileManager.SaveC1File();
                     fileManager.SaveDocFile();
                     MessageBox.Show("Files Updated OK", $"Database updated for {this.SelectedFolder.FullPath}");
-                    // After save, reflect the saved state
+                    // After save, reflect the saved state: return to themed console background for readability
                     this.saveButton.Enabled = false;
-                    this.outputRichTextBox.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+                    this.outputRichTextBox.BackColor = ThemeHelper.ConsoleBackground;
+                    this.outputRichTextBox.ForeColor = ThemeHelper.ConsoleText;
                 }
                 catch (Exception ex)
                 {
@@ -163,16 +170,28 @@ namespace PE_Tools.Views
         private void ApplyTheme()
         {
             ThemeHelper.ApplyTheme(this);
-            
+
+            // Increase contrast for group titles and labels in this view to prioritise visibility
+            grpDatabaseSelection.ForeColor = ThemeHelper.PrimaryText;
+            grpActions.ForeColor = ThemeHelper.PrimaryText;
+            grpOutput.ForeColor = ThemeHelper.PrimaryText;
+
+            C1LabelControl.ForeColor = ThemeHelper.PrimaryText;
+            DocLabelControl.ForeColor = ThemeHelper.PrimaryText;
+
             // Style action buttons
             ThemeHelper.StyleButton(applyButton, ButtonStyle.Primary);
             ThemeHelper.StyleButton(saveButton, ButtonStyle.Success);
             ThemeHelper.StyleButton(btnViewC1config, ButtonStyle.Default);
             ThemeHelper.StyleButton(btnViewDocConfig, ButtonStyle.Default);
-            
-            // Style output as console
+
+            // Style output as console (dark background, high-contrast text)
             ThemeHelper.StyleRichTextBox(outputRichTextBox, isConsole: true);
-            
+
+            // Ensure the output box uses the console colours immediately
+            outputRichTextBox.BackColor = ThemeHelper.ConsoleBackground;
+            outputRichTextBox.ForeColor = ThemeHelper.ConsoleText;
+
             // Style title
             titleLabelControl.Font = ThemeHelper.TitleFont;
             titleLabelControl.ForeColor = ThemeHelper.PrimaryText;
