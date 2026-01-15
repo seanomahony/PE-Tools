@@ -35,11 +35,14 @@
             powershellCommandsView1 = new PE_Tools.Views.PowershellCommandsView();
             tabPageSettings = new System.Windows.Forms.TabPage();
             appSettingsView1 = new PE_Tools.Views.AppSettingsView();
+            tabPageKubectl = new System.Windows.Forms.TabPage();
+            kubectlCommandsView1 = new PE_Tools.Views.KubectlCommandsView();
             projectSelector = new PE_Tools.Views.UserControlProjectSelector();
             tabControl1.SuspendLayout();
             tabPageDatabases.SuspendLayout();
             tabPagePowershell.SuspendLayout();
             tabPageSettings.SuspendLayout();
+            tabPageKubectl.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl1
@@ -47,6 +50,7 @@
             tabControl1.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             tabControl1.Controls.Add(tabPageDatabases);
             tabControl1.Controls.Add(tabPagePowershell);
+            tabControl1.Controls.Add(tabPageKubectl);
             tabControl1.Controls.Add(tabPageSettings);
             tabControl1.Location = new System.Drawing.Point(12, 90);
             tabControl1.Name = "tabControl1";
@@ -125,6 +129,29 @@
             appSettingsView1.Size = new System.Drawing.Size(176, 50);
             appSettingsView1.TabIndex = 0;
             // 
+            // tabPageKubectl
+            // 
+            tabPageKubectl.Controls.Add(kubectlCommandsView1);
+            tabPageKubectl.Location = new System.Drawing.Point(4, 30);
+            tabPageKubectl.Name = "tabPageKubectl";
+            tabPageKubectl.Padding = new System.Windows.Forms.Padding(8);
+            tabPageKubectl.Size = new System.Drawing.Size(192, 66);
+            tabPageKubectl.TabIndex = 3;
+            tabPageKubectl.Text = "Kubectl";
+            // 
+            // kubectlCommandsView1
+            // 
+            kubectlCommandsView1.BackColor = System.Drawing.Color.FromArgb(30, 30, 30);
+            kubectlCommandsView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            kubectlCommandsView1.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            kubectlCommandsView1.ForeColor = System.Drawing.Color.FromArgb(241, 241, 241);
+            kubectlCommandsView1.Location = new System.Drawing.Point(8, 8);
+            kubectlCommandsView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            kubectlCommandsView1.Name = "kubectlCommandsView1";
+            kubectlCommandsView1.Padding = new System.Windows.Forms.Padding(8);
+            kubectlCommandsView1.Size = new System.Drawing.Size(176, 50);
+            kubectlCommandsView1.TabIndex = 0;
+            // 
             // projectSelector
             // 
             projectSelector.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
@@ -157,6 +184,7 @@
             tabPageDatabases.ResumeLayout(false);
             tabPagePowershell.ResumeLayout(false);
             tabPageSettings.ResumeLayout(false);
+            tabPageKubectl.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -166,8 +194,10 @@
         private System.Windows.Forms.TabPage tabPageDatabases;
         private System.Windows.Forms.TabPage tabPagePowershell;
         private System.Windows.Forms.TabPage tabPageSettings;
+        private System.Windows.Forms.TabPage tabPageKubectl;
         private Views.DatabaseSettingsView databaseSettingsView1;
         private Views.PowershellCommandsView powershellCommandsView1;
         private Views.AppSettingsView appSettingsView1;
+        private Views.KubectlCommandsView kubectlCommandsView1;
     }
 }

@@ -91,6 +91,25 @@ namespace PE_Tools
         }
 
         /// <summary>
+        /// Gets a list of strings from App.config using pipe separator.
+        /// </summary>
+        public static List<string> GetList(string key)
+        {
+            var value = ConfigurationManager.AppSettings[key];
+            if (string.IsNullOrEmpty(value)) return new List<string>();
+            return value.Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+        }
+
+        /// <summary>
+        /// Saves a list of strings to App.config using pipe separator.
+        /// </summary>
+        public static void SaveList(string key, List<string> list)
+        {
+            var value = string.Join("|", list.Where(s => !string.IsNullOrWhiteSpace(s)));
+            UpdateAppSetting(key, value);
+        }
+
+        /// <summary>
         /// Updates an app setting in App.config and refreshes the configuration.
         /// </summary>
         private static void UpdateAppSetting(string key, string value)
