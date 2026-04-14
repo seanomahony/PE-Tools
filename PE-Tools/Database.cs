@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Data.SqlClient;
 using NLog;
 
 namespace PE_Tools
@@ -11,42 +13,105 @@ namespace PE_Tools
     public class Database
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-        public List<string> Databases { get; set; }
-        private async Task<List<string>> GetDatabasesAsync()
+        private readonly SemaphoreSlim _databasesLock = new SemaphoreSlim(1, 1);
+        private IReadOnlyList<string>? _databases;
+
+        private async Task<IReadOnlyList<string>> LoadDatabasesAsync()
         {
-            Databases = new List<string>();
-            string ConnectionString = ConfigurationManager.AppSettings["databaseConnectionString"];
-            if (string.IsNullOrEmpty(ConnectionString))
+            var databases = new List<string>();
+
+            string? connectionString = ConfigurationManager.AppSettings["databaseConnectionString"];
+            if (string.IsNullOrWhiteSpace(connectionString))
             {
-                Logger.Warn("Database connection string not found in app settings. Returning empty database list.");
-                return Databases; // Return empty list instead of throwing to avoid designer crashes
+                Logger.Warn("Database connection string not found. Returning empty database list.");
+                return databases;
             }
-            
-            using (SqlConnection con = new SqlConnection(ConnectionString))
+
+            try
             {
-                await con.OpenAsync();
-                using(SqlCommand command = new SqlCommand("select name from sys.databases", con))
+                var builder = new SqlConnectionStringBuilder(connectionString);
+                if (string.IsNullOrWhiteSpace(builder.DataSource))
                 {
-                    using (IDataReader dr = await command.ExecuteReaderAsync())
-                    { 
-                        while(dr.Read())
+                    Logger.Warn("Database connection string does not contain a server name. Returning empty database list.");
+                    return databases;
+                }
+
+                int connectTimeoutSeconds = 5;
+                string? timeoutSetting = ConfigurationManager.AppSettings["databaseConnectTimeoutSeconds"];
+                if (int.TryParse(timeoutSetting, out int parsed) && parsed > 0)
+                {
+                    connectTimeoutSeconds = parsed;
+                }
+                builder.ConnectTimeout = connectTimeoutSeconds;
+
+                using (SqlConnection con = new SqlConnection(builder.ConnectionString))
+                {
+                    using (var cts = new CancellationTokenSource(TimeSpan.FromSeconds(connectTimeoutSeconds)))
+                    {
+                        try
                         {
-                            Databases.Add(dr[0].ToString());
+                            await con.OpenAsync(cts.Token);
                         }
-                    }                 
+                        catch (OperationCanceledException ex)
+                        {
+                            Logger.Warn(ex, "Opening database connection timed out. Returning empty database list.");
+                            return databases.ToArray();
+                        }
+                    }
+
+                    using (SqlCommand command = new SqlCommand("select name from sys.databases", con))
+                    {
+                        using (IDataReader dr = await command.ExecuteReaderAsync())
+                        {
+                            while (dr.Read())
+                            {
+                                databases.Add(dr[0].ToString());
+                            }
+                        }
+                    }
                 }
             }
-            return Databases;
+            catch (SqlException ex)
+            {
+                Logger.Warn(ex, "Database connection is not available yet. Returning empty database list.");
+            }
+            catch (ArgumentException ex)
+            {
+                Logger.Warn(ex, "Database connection string is invalid. Returning empty database list.");
+            }
+
+            return databases.ToArray();
+        }
+
+        private async Task<IReadOnlyList<string>> GetDatabasesAsync()
+        {
+            if (_databases != null)
+            {
+                return _databases;
+            }
+
+            await _databasesLock.WaitAsync();
+            try
+            {
+                if (_databases == null)
+                {
+                    _databases = await LoadDatabasesAsync();
+                }
+
+                return _databases;
+            }
+            finally
+            {
+                _databasesLock.Release();
+            }
         }
 
         public async Task<List<string>> GetSelectedDatabasesAsync(string suffix)
         {
-            if(Databases == null)
-            {
-                Databases = await GetDatabasesAsync();
-            }
+            IReadOnlyList<string> databases = await GetDatabasesAsync();
+
             var ret = new List<string>() { "select" };
-            ret.AddRange(Databases.Where(s => s.Contains(suffix)).ToList());
+            ret.AddRange(databases.Where(s => s.Contains(suffix)).ToList());
             return ret;
         }
     }

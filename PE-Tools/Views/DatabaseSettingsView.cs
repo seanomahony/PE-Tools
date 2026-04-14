@@ -23,6 +23,7 @@ namespace PE_Tools.Views
         List<string> docDatabases { get; set; }
         FileManager fileManager { get; set; }
         string currentView = null;
+        private bool databaseSettingsLoaded;
 
         /// <summary>
         /// The selected folder, set externally from Form1
@@ -144,6 +145,12 @@ namespace PE_Tools.Views
 
         private async void DatabaseSettingsView_Load(object sender, EventArgs e)
         {
+            if(databaseSettingsLoaded)
+            {
+                return;
+            }
+
+            databaseSettingsLoaded = true;
             ApplyTheme();
             
             var database = new Database();

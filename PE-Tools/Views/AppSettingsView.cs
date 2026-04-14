@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using NLog;
+using Microsoft.Data.SqlClient;
 
 namespace PE_Tools.Views
 {
@@ -168,7 +169,7 @@ namespace PE_Tools.Views
 
             try
             {
-                using var connection = new System.Data.SqlClient.SqlConnection(connectionString);
+                using var connection = new SqlConnection(connectionString);
                 connection.Open();
                 MessageBox.Show("Connection successful!", "Test Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Logger.Info("Connection test successful.");

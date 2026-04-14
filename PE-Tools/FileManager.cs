@@ -149,21 +149,28 @@ namespace PE_Tools
 
         public void UpdateDocFile(string docsDb, string c1Db)
         {
-            var searchTerm = "Database=";
+            // Helper to replace either "Database=" or "Initial Catalog=" in a connection string's parts
+            void ReplaceDatabaseToken(List<string> parts, string newDb)
+            {
+                for (int i = 0; i < parts.Count; i++)
+                {
+                    var partTrim = parts[i].Trim();
+                    if (partTrim.StartsWith("Database=", StringComparison.OrdinalIgnoreCase) || partTrim.StartsWith("Initial Catalog=", StringComparison.OrdinalIgnoreCase))
+                    {
+                        // Preserve the form used in the original part (use the same key casing as the existing part)
+                        var key = parts[i].Substring(0, parts[i].IndexOf('=') + 1);
+                        parts[i] = key + newDb;
+                        break;
+                    }
+                }
+            }
 
             var node = docConfig.SelectSingleNode("//appSettings/add[@key='cms.database.connection']/@value");
             if (node != null)
             {
                 var connStr = node.Value;
                 var parts = connStr.Split(new[] { ';' }, StringSplitOptions.None).ToList();
-                for (int i = 0; i < parts.Count; i++)
-                {
-                    if (parts[i].Trim().StartsWith(searchTerm, StringComparison.OrdinalIgnoreCase))
-                    {
-                        parts[i] = searchTerm + docsDb;
-                        break;
-                    }
-                }
+                ReplaceDatabaseToken(parts, docsDb);
                 node.Value = string.Join(";", parts);
             }
 
@@ -172,14 +179,7 @@ namespace PE_Tools
             {
                 var connStr = node.Value;
                 var parts = connStr.Split(new[] { ';' }, StringSplitOptions.None).ToList();
-                for (int i = 0; i < parts.Count; i++)
-                {
-                    if (parts[i].Trim().StartsWith(searchTerm, StringComparison.OrdinalIgnoreCase))
-                    {
-                        parts[i] = searchTerm + c1Db;
-                        break;
-                    }
-                }
+                ReplaceDatabaseToken(parts, c1Db);
                 node.Value = string.Join(";", parts);
             }
 

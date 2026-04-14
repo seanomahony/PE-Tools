@@ -9,9 +9,12 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>tool-box_2276313.ico</ApplicationIcon>
   </PropertyGroup>
+	<PropertyGroup>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="7.0.0" />
     <PackageReference Include="NLog" Version="6.0.6" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Views\DatabaseSettingsView.cs">
