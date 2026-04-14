@@ -18,13 +18,6 @@ namespace PE_Tools.Views
         private void InitializeComponent()
         {
             lblTitle = new System.Windows.Forms.Label();
-            panelFolders = new System.Windows.Forms.Panel();
-            btnRemoveFolder = new System.Windows.Forms.Button();
-            btnAddFolder = new System.Windows.Forms.Button();
-            btnBrowseFolder = new System.Windows.Forms.Button();
-            txtNewFolder = new System.Windows.Forms.TextBox();
-            lstFolders = new System.Windows.Forms.ListBox();
-            lblFoldersSection = new System.Windows.Forms.Label();
             panelConnection = new System.Windows.Forms.Panel();
             btnTestConnection = new System.Windows.Forms.Button();
             txtConnectionString = new System.Windows.Forms.TextBox();
@@ -35,6 +28,11 @@ namespace PE_Tools.Views
             txtC1ConfigPath = new System.Windows.Forms.TextBox();
             lblC1ConfigPath = new System.Windows.Forms.Label();
             lblConfigPathsSection = new System.Windows.Forms.Label();
+            lblDevelopmentFolder = new System.Windows.Forms.Label();
+            txtDevelopmentFolder = new System.Windows.Forms.TextBox();
+            btnBrowseDevFolder = new System.Windows.Forms.Button();
+            btnBrowseC1 = new System.Windows.Forms.Button();
+            btnBrowseDoc = new System.Windows.Forms.Button();
             panelNotifications = new System.Windows.Forms.Panel();
             btnTestNotification = new System.Windows.Forms.Button();
             lblNotificationSeconds = new System.Windows.Forms.Label();
@@ -42,7 +40,6 @@ namespace PE_Tools.Views
             lblNotificationDuration = new System.Windows.Forms.Label();
             lblNotificationsSection = new System.Windows.Forms.Label();
             btnSaveAll = new System.Windows.Forms.Button();
-            panelFolders.SuspendLayout();
             panelConnection.SuspendLayout();
             panelConfigPaths.SuspendLayout();
             panelNotifications.SuspendLayout();
@@ -59,87 +56,13 @@ namespace PE_Tools.Views
             lblTitle.TabIndex = 0;
             lblTitle.Text = "Application Settings";
             // 
-            // panelFolders
-            // 
-            panelFolders.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            panelFolders.Controls.Add(btnRemoveFolder);
-            panelFolders.Controls.Add(btnAddFolder);
-            panelFolders.Controls.Add(btnBrowseFolder);
-            panelFolders.Controls.Add(txtNewFolder);
-            panelFolders.Controls.Add(lstFolders);
-            panelFolders.Controls.Add(lblFoldersSection);
-            panelFolders.Location = new System.Drawing.Point(16, 40);
-            panelFolders.Name = "panelFolders";
-            panelFolders.Size = new System.Drawing.Size(768, 137);
-            panelFolders.TabIndex = 1;
-            // 
-            // btnRemoveFolder
-            // 
-            btnRemoveFolder.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            btnRemoveFolder.Location = new System.Drawing.Point(678, 53);
-            btnRemoveFolder.Name = "btnRemoveFolder";
-            btnRemoveFolder.Size = new System.Drawing.Size(85, 26);
-            btnRemoveFolder.TabIndex = 5;
-            btnRemoveFolder.Text = "Remove";
-            btnRemoveFolder.Click += btnRemoveFolder_Click;
-            // 
-            // btnAddFolder
-            // 
-            btnAddFolder.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            btnAddFolder.Location = new System.Drawing.Point(678, 21);
-            btnAddFolder.Name = "btnAddFolder";
-            btnAddFolder.Size = new System.Drawing.Size(85, 26);
-            btnAddFolder.TabIndex = 4;
-            btnAddFolder.Text = "Add";
-            btnAddFolder.Click += btnAddFolder_Click;
-            // 
-            // btnBrowseFolder
-            // 
-            btnBrowseFolder.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            btnBrowseFolder.Location = new System.Drawing.Point(678, 105);
-            btnBrowseFolder.Name = "btnBrowseFolder";
-            btnBrowseFolder.Size = new System.Drawing.Size(85, 25);
-            btnBrowseFolder.TabIndex = 3;
-            btnBrowseFolder.Text = "Browse...";
-            btnBrowseFolder.Click += btnBrowseFolder_Click;
-            // 
-            // txtNewFolder
-            // 
-            txtNewFolder.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            txtNewFolder.Location = new System.Drawing.Point(3, 107);
-            txtNewFolder.Name = "txtNewFolder";
-            txtNewFolder.PlaceholderText = "Enter folder path or browse...";
-            txtNewFolder.Size = new System.Drawing.Size(579, 23);
-            txtNewFolder.TabIndex = 2;
-            txtNewFolder.TextChanged += txtNewFolder_TextChanged;
-            txtNewFolder.KeyPress += txtNewFolder_KeyPress;
-            // 
-            // lstFolders
-            // 
-            lstFolders.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            lstFolders.FormattingEnabled = true;
-            lstFolders.Location = new System.Drawing.Point(3, 21);
-            lstFolders.Name = "lstFolders";
-            lstFolders.Size = new System.Drawing.Size(669, 79);
-            lstFolders.TabIndex = 1;
-            lstFolders.SelectedIndexChanged += lstFolders_SelectedIndexChanged;
-            // 
-            // lblFoldersSection
-            // 
-            lblFoldersSection.AutoSize = true;
-            lblFoldersSection.Location = new System.Drawing.Point(3, 4);
-            lblFoldersSection.Name = "lblFoldersSection";
-            lblFoldersSection.Size = new System.Drawing.Size(85, 15);
-            lblFoldersSection.TabIndex = 0;
-            lblFoldersSection.Text = "Project Folders";
-            // 
             // panelConnection
             // 
             panelConnection.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             panelConnection.Controls.Add(btnTestConnection);
             panelConnection.Controls.Add(txtConnectionString);
             panelConnection.Controls.Add(lblConnectionSection);
-            panelConnection.Location = new System.Drawing.Point(16, 185);
+            panelConnection.Location = new System.Drawing.Point(16, 39);
             panelConnection.Name = "panelConnection";
             panelConnection.Size = new System.Drawing.Size(768, 62);
             panelConnection.TabIndex = 2;
@@ -175,14 +98,19 @@ namespace PE_Tools.Views
             // panelConfigPaths
             // 
             panelConfigPaths.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            panelConfigPaths.Controls.Add(txtDocConfigPath);
-            panelConfigPaths.Controls.Add(lblDocConfigPath);
-            panelConfigPaths.Controls.Add(txtC1ConfigPath);
-            panelConfigPaths.Controls.Add(lblC1ConfigPath);
             panelConfigPaths.Controls.Add(lblConfigPathsSection);
-            panelConfigPaths.Location = new System.Drawing.Point(16, 256);
+            panelConfigPaths.Controls.Add(lblC1ConfigPath);
+            panelConfigPaths.Controls.Add(txtC1ConfigPath);
+            panelConfigPaths.Controls.Add(btnBrowseC1);
+            panelConfigPaths.Controls.Add(lblDocConfigPath);
+            panelConfigPaths.Controls.Add(txtDocConfigPath);
+            panelConfigPaths.Controls.Add(btnBrowseDoc);
+            panelConfigPaths.Controls.Add(lblDevelopmentFolder);
+            panelConfigPaths.Controls.Add(txtDevelopmentFolder);
+            panelConfigPaths.Controls.Add(btnBrowseDevFolder);
+            panelConfigPaths.Location = new System.Drawing.Point(16, 107);
             panelConfigPaths.Name = "panelConfigPaths";
-            panelConfigPaths.Size = new System.Drawing.Size(768, 110);
+            panelConfigPaths.Size = new System.Drawing.Size(768, 166);
             panelConfigPaths.TabIndex = 3;
             // 
             // txtDocConfigPath
@@ -190,7 +118,7 @@ namespace PE_Tools.Views
             txtDocConfigPath.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             txtDocConfigPath.Location = new System.Drawing.Point(3, 84);
             txtDocConfigPath.Name = "txtDocConfigPath";
-            txtDocConfigPath.Size = new System.Drawing.Size(760, 23);
+            txtDocConfigPath.Size = new System.Drawing.Size(680, 23);
             txtDocConfigPath.TabIndex = 4;
             // 
             // lblDocConfigPath
@@ -202,13 +130,33 @@ namespace PE_Tools.Views
             lblDocConfigPath.TabIndex = 3;
             lblDocConfigPath.Text = "Doc Config Filename:";
             // 
+            // btnBrowseDoc
+            // 
+            btnBrowseDoc.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            btnBrowseDoc.Location = new System.Drawing.Point(689, 82);
+            btnBrowseDoc.Name = "btnBrowseDoc";
+            btnBrowseDoc.Size = new System.Drawing.Size(74, 26);
+            btnBrowseDoc.TabIndex = 5;
+            btnBrowseDoc.Text = "Browse...";
+            btnBrowseDoc.Click += btnBrowseDoc_Click;
+            // 
             // txtC1ConfigPath
             // 
             txtC1ConfigPath.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             txtC1ConfigPath.Location = new System.Drawing.Point(3, 40);
             txtC1ConfigPath.Name = "txtC1ConfigPath";
-            txtC1ConfigPath.Size = new System.Drawing.Size(760, 23);
+            txtC1ConfigPath.Size = new System.Drawing.Size(680, 23);
             txtC1ConfigPath.TabIndex = 2;
+            // 
+            // btnBrowseC1
+            // 
+            btnBrowseC1.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            btnBrowseC1.Location = new System.Drawing.Point(689, 38);
+            btnBrowseC1.Name = "btnBrowseC1";
+            btnBrowseC1.Size = new System.Drawing.Size(74, 26);
+            btnBrowseC1.TabIndex = 3;
+            btnBrowseC1.Text = "Browse...";
+            btnBrowseC1.Click += btnBrowseC1_Click;
             // 
             // lblC1ConfigPath
             // 
@@ -228,6 +176,33 @@ namespace PE_Tools.Views
             lblConfigPathsSection.TabIndex = 0;
             lblConfigPathsSection.Text = "Configuration File Paths";
             // 
+            // lblDevelopmentFolder
+            // 
+            lblDevelopmentFolder.AutoSize = true;
+            lblDevelopmentFolder.Location = new System.Drawing.Point(3, 110);
+            lblDevelopmentFolder.Name = "lblDevelopmentFolder";
+            lblDevelopmentFolder.Size = new System.Drawing.Size(117, 15);
+            lblDevelopmentFolder.TabIndex = 5;
+            lblDevelopmentFolder.Text = "Development Folder:";
+            // 
+            // txtDevelopmentFolder
+            // 
+            txtDevelopmentFolder.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            txtDevelopmentFolder.Location = new System.Drawing.Point(3, 128);
+            txtDevelopmentFolder.Name = "txtDevelopmentFolder";
+            txtDevelopmentFolder.Size = new System.Drawing.Size(680, 23);
+            txtDevelopmentFolder.TabIndex = 6;
+            // 
+            // btnBrowseDevFolder
+            // 
+            btnBrowseDevFolder.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            btnBrowseDevFolder.Location = new System.Drawing.Point(689, 126);
+            btnBrowseDevFolder.Name = "btnBrowseDevFolder";
+            btnBrowseDevFolder.Size = new System.Drawing.Size(74, 26);
+            btnBrowseDevFolder.TabIndex = 7;
+            btnBrowseDevFolder.Text = "Browse...";
+            btnBrowseDevFolder.Click += btnBrowseDevFolder_Click;
+            // 
             // panelNotifications
             // 
             panelNotifications.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
@@ -236,7 +211,7 @@ namespace PE_Tools.Views
             panelNotifications.Controls.Add(numNotificationDuration);
             panelNotifications.Controls.Add(lblNotificationDuration);
             panelNotifications.Controls.Add(lblNotificationsSection);
-            panelNotifications.Location = new System.Drawing.Point(16, 375);
+            panelNotifications.Location = new System.Drawing.Point(16, 279);
             panelNotifications.Name = "panelNotifications";
             panelNotifications.Size = new System.Drawing.Size(768, 62);
             panelNotifications.TabIndex = 4;
@@ -290,7 +265,7 @@ namespace PE_Tools.Views
             // btnSaveAll
             // 
             btnSaveAll.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            btnSaveAll.Location = new System.Drawing.Point(644, 450);
+            btnSaveAll.Location = new System.Drawing.Point(644, 480);
             btnSaveAll.Name = "btnSaveAll";
             btnSaveAll.Size = new System.Drawing.Size(140, 31);
             btnSaveAll.TabIndex = 5;
@@ -306,14 +281,11 @@ namespace PE_Tools.Views
             Controls.Add(panelNotifications);
             Controls.Add(panelConfigPaths);
             Controls.Add(panelConnection);
-            Controls.Add(panelFolders);
             Controls.Add(lblTitle);
             Name = "AppSettingsView";
             Padding = new System.Windows.Forms.Padding(10, 9, 10, 9);
-            Size = new System.Drawing.Size(800, 494);
+            Size = new System.Drawing.Size(800, 524);
             Load += AppSettingsView_Load;
-            panelFolders.ResumeLayout(false);
-            panelFolders.PerformLayout();
             panelConnection.ResumeLayout(false);
             panelConnection.PerformLayout();
             panelConfigPaths.ResumeLayout(false);
@@ -328,12 +300,6 @@ namespace PE_Tools.Views
         #endregion
 
         private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.Label lblFoldersSection;
-        private System.Windows.Forms.ListBox lstFolders;
-        private System.Windows.Forms.TextBox txtNewFolder;
-        private System.Windows.Forms.Button btnAddFolder;
-        private System.Windows.Forms.Button btnRemoveFolder;
-        private System.Windows.Forms.Button btnBrowseFolder;
         private System.Windows.Forms.Label lblConnectionSection;
         private System.Windows.Forms.TextBox txtConnectionString;
         private System.Windows.Forms.Button btnTestConnection;
@@ -342,6 +308,11 @@ namespace PE_Tools.Views
         private System.Windows.Forms.TextBox txtC1ConfigPath;
         private System.Windows.Forms.Label lblDocConfigPath;
         private System.Windows.Forms.TextBox txtDocConfigPath;
+        private System.Windows.Forms.Label lblDevelopmentFolder;
+        private System.Windows.Forms.TextBox txtDevelopmentFolder;
+        private System.Windows.Forms.Button btnBrowseDevFolder;
+        private System.Windows.Forms.Button btnBrowseC1;
+        private System.Windows.Forms.Button btnBrowseDoc;
         private System.Windows.Forms.Panel panelNotifications;
         private System.Windows.Forms.Label lblNotificationsSection;
         private System.Windows.Forms.Label lblNotificationDuration;
@@ -349,7 +320,6 @@ namespace PE_Tools.Views
         private System.Windows.Forms.Label lblNotificationSeconds;
         private System.Windows.Forms.Button btnTestNotification;
         private System.Windows.Forms.Button btnSaveAll;
-        private System.Windows.Forms.Panel panelFolders;
         private System.Windows.Forms.Panel panelConnection;
         private System.Windows.Forms.Panel panelConfigPaths;
     }

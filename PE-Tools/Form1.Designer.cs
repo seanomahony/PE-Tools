@@ -37,7 +37,6 @@
             kubectlCommandsView1 = new PE_Tools.Views.KubectlCommandsView();
             tabPageSettings = new System.Windows.Forms.TabPage();
             appSettingsView1 = new PE_Tools.Views.AppSettingsView();
-            projectSelector = new PE_Tools.Views.UserControlProjectSelector();
             tabControl1.SuspendLayout();
             tabPageDatabases.SuspendLayout();
             tabPagePowershell.SuspendLayout();
@@ -53,10 +52,10 @@
             tabControl1.Controls.Add(tabPageKubectl);
             tabControl1.Controls.Add(tabPageSettings);
             tabControl1.ItemSize = new System.Drawing.Size(100, 34);
-            tabControl1.Location = new System.Drawing.Point(12, 90);
+            tabControl1.Location = new System.Drawing.Point(12, 12);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new System.Drawing.Size(1558, 648);
+            tabControl1.Size = new System.Drawing.Size(1558, 726);
             tabControl1.TabIndex = 1;
             // 
             // tabPageDatabases
@@ -65,18 +64,19 @@
             tabPageDatabases.Location = new System.Drawing.Point(4, 38);
             tabPageDatabases.Name = "tabPageDatabases";
             tabPageDatabases.Padding = new System.Windows.Forms.Padding(8);
-            tabPageDatabases.Size = new System.Drawing.Size(1550, 606);
+            tabPageDatabases.Size = new System.Drawing.Size(1550, 684);
             tabPageDatabases.TabIndex = 0;
             tabPageDatabases.Text = "Databases";
             // 
             // databaseSettingsView1
             // 
+            databaseSettingsView1.BackColor = System.Drawing.Color.FromArgb(243, 243, 243);
             databaseSettingsView1.Dock = System.Windows.Forms.DockStyle.Fill;
             databaseSettingsView1.Location = new System.Drawing.Point(8, 8);
             databaseSettingsView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             databaseSettingsView1.Name = "databaseSettingsView1";
             databaseSettingsView1.Padding = new System.Windows.Forms.Padding(8);
-            databaseSettingsView1.Size = new System.Drawing.Size(1534, 590);
+            databaseSettingsView1.Size = new System.Drawing.Size(1534, 668);
             databaseSettingsView1.TabIndex = 0;
             // 
             // tabPagePowershell
@@ -91,6 +91,7 @@
             // 
             // powershellCommandsView1
             // 
+            powershellCommandsView1.BackColor = System.Drawing.Color.FromArgb(243, 243, 243);
             powershellCommandsView1.Dock = System.Windows.Forms.DockStyle.Fill;
             powershellCommandsView1.Location = new System.Drawing.Point(8, 8);
             powershellCommandsView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -112,6 +113,7 @@
             // 
             // kubectlCommandsView1
             // 
+            kubectlCommandsView1.BackColor = System.Drawing.Color.FromArgb(243, 243, 243);
             kubectlCommandsView1.Dock = System.Windows.Forms.DockStyle.Fill;
             kubectlCommandsView1.Location = new System.Drawing.Point(8, 8);
             kubectlCommandsView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -133,6 +135,7 @@
             // appSettingsView1
             // 
             appSettingsView1.AutoScroll = true;
+            appSettingsView1.BackColor = System.Drawing.Color.FromArgb(243, 243, 243);
             appSettingsView1.Dock = System.Windows.Forms.DockStyle.Fill;
             appSettingsView1.Location = new System.Drawing.Point(8, 8);
             appSettingsView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -141,23 +144,11 @@
             appSettingsView1.Size = new System.Drawing.Size(1534, 590);
             appSettingsView1.TabIndex = 0;
             // 
-            // projectSelector
-            // 
-            projectSelector.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            projectSelector.Location = new System.Drawing.Point(13, 12);
-            projectSelector.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            projectSelector.MinimumSize = new System.Drawing.Size(300, 57);
-            projectSelector.Name = "projectSelector";
-            projectSelector.Padding = new System.Windows.Forms.Padding(4);
-            projectSelector.Size = new System.Drawing.Size(1558, 70);
-            projectSelector.TabIndex = 0;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(1582, 750);
-            Controls.Add(projectSelector);
             Controls.Add(tabControl1);
             Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
             Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -175,7 +166,6 @@
         }
 
         #endregion
-        private Views.UserControlProjectSelector projectSelector;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPageDatabases;
         private System.Windows.Forms.TabPage tabPagePowershell;

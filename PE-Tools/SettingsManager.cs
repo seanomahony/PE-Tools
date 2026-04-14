@@ -14,29 +14,20 @@ namespace PE_Tools
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
-        /// Gets the list of configured folders from App.config.
+        /// Gets the development folder path from App.config. If not present, returns the default path.
         /// </summary>
-        public static List<string> GetFolders()
+        public static string GetDevelopmentFolder()
         {
-            var folderSettings = ConfigurationManager.AppSettings["folders"];
-            if (string.IsNullOrEmpty(folderSettings))
-            {
-                return new List<string>();
-            }
-            return folderSettings.Split(',')
-                                 .Select(f => f.Trim())
-                                 .Where(f => !string.IsNullOrEmpty(f))
-                                 .ToList();
+            return ConfigurationManager.AppSettings["developmentFolder"] ?? @"C:\Development\onprem";
         }
 
         /// <summary>
-        /// Saves the list of folders to App.config.
+        /// Saves the development folder path to App.config.
         /// </summary>
-        public static void SaveFolders(List<string> folders)
+        public static void SaveDevelopmentFolder(string path)
         {
-            var folderValue = string.Join(",", folders.Where(f => !string.IsNullOrWhiteSpace(f)));
-            UpdateAppSetting("folders", folderValue);
-            Logger.Info("Saved folders: {0}", folderValue);
+            UpdateAppSetting("developmentFolder", path ?? string.Empty);
+            Logger.Info("Saved development folder: {0}", path);
         }
 
         /// <summary>

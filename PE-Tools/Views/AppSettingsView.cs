@@ -35,90 +35,56 @@ namespace PE_Tools.Views
 
         private void LoadSettings()
         {
-            // Load folders
-            lstFolders.Items.Clear();
-            var folders = SettingsManager.GetFolders();
-            foreach (var folder in folders)
-            {
-                lstFolders.Items.Add(folder);
-            }
-
             // Load connection string
             txtConnectionString.Text = SettingsManager.GetDatabaseConnectionString();
 
             // Load config file paths
             txtC1ConfigPath.Text = SettingsManager.GetC1ConfigFilename();
             txtDocConfigPath.Text = SettingsManager.GetDocConfigFilename();
+            // Load development folder
+            txtDevelopmentFolder.Text = SettingsManager.GetDevelopmentFolder();
 
             // Load notification duration
             numNotificationDuration.Value = SettingsManager.GetNotificationDuration();
-
-            UpdateButtonStates();
         }
 
-        private void UpdateButtonStates()
-        {
-            btnRemoveFolder.Enabled = lstFolders.SelectedIndex >= 0;
-            btnAddFolder.Enabled = !string.IsNullOrWhiteSpace(txtNewFolder.Text);
-        }
-
-        private void btnAddFolder_Click(object sender, EventArgs e)
-        {
-            var folderPath = txtNewFolder.Text.Trim();
-            if (string.IsNullOrEmpty(folderPath))
-            {
-                return;
-            }
-
-            if (!Directory.Exists(folderPath))
-            {
-                var result = MessageBox.Show(
-                    $"The folder '{folderPath}' does not exist. Add it anyway?",
-                    "Folder Not Found",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Warning);
-
-                if (result != DialogResult.Yes)
-                {
-                    return;
-                }
-            }
-
-            if (lstFolders.Items.Contains(folderPath))
-            {
-                MessageBox.Show("This folder is already in the list.", "Duplicate Folder", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            lstFolders.Items.Add(folderPath);
-            txtNewFolder.Clear();
-            UpdateButtonStates();
-            Logger.Info("Added folder: {0}", folderPath);
-        }
-
-        private void btnRemoveFolder_Click(object sender, EventArgs e)
-        {
-            if (lstFolders.SelectedIndex >= 0)
-            {
-                var removedFolder = lstFolders.SelectedItem?.ToString();
-                lstFolders.Items.RemoveAt(lstFolders.SelectedIndex);
-                UpdateButtonStates();
-                Logger.Info("Removed folder: {0}", removedFolder);
-            }
-        }
-
-        private void btnBrowseFolder_Click(object sender, EventArgs e)
+        private void btnBrowseDevFolder_Click(object sender, EventArgs e)
         {
             using var dialog = new FolderBrowserDialog
             {
-                Description = "Select a project folder",
+                Description = "Select development folder",
                 ShowNewFolderButton = false
             };
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                txtNewFolder.Text = dialog.SelectedPath;
-                UpdateButtonStates();
+                txtDevelopmentFolder.Text = dialog.SelectedPath;
+            }
+        }
+
+        private void btnBrowseC1_Click(object sender, EventArgs e)
+        {
+            using var dialog = new OpenFileDialog();
+            dialog.Title = "Select C1 config file";
+            dialog.Filter = "Config Files (*.config;*.xml)|*.config;*.xml|All Files (*.*)|*.*";
+            dialog.CheckFileExists = true;
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                txtC1ConfigPath.Text = dialog.FileName;
+            }
+        }
+
+        private void btnBrowseDoc_Click(object sender, EventArgs e)
+        {
+            using var dialog = new OpenFileDialog();
+            dialog.Title = "Select Doc config file";
+            dialog.Filter = "Config Files (*.config;*.xml)|*.config;*.xml|All Files (*.*)|*.*";
+            dialog.CheckFileExists = true;
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                txtDocConfigPath.Text = dialog.FileName;
             }
         }
 
@@ -159,16 +125,14 @@ namespace PE_Tools.Views
         {
             try
             {
-                // Save folders
-                var folders = lstFolders.Items.Cast<string>().ToList();
-                SettingsManager.SaveFolders(folders);
-
                 // Save connection string
                 SettingsManager.SaveDatabaseConnectionString(txtConnectionString.Text.Trim());
 
                 // Save config file paths
                 SettingsManager.SaveC1ConfigFilename(txtC1ConfigPath.Text.Trim());
                 SettingsManager.SaveDocConfigFilename(txtDocConfigPath.Text.Trim());
+                // Save development folder
+                SettingsManager.SaveDevelopmentFolder(txtDevelopmentFolder.Text.Trim());
 
                 // Save notification duration
                 SettingsManager.SaveNotificationDuration((int)numNotificationDuration.Value);
@@ -185,25 +149,6 @@ namespace PE_Tools.Views
             {
                 MessageBox.Show($"Failed to save settings: {ex.Message}", "Save Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Logger.Error(ex, "Failed to save settings.");
-            }
-        }
-
-        private void lstFolders_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            UpdateButtonStates();
-        }
-
-        private void txtNewFolder_TextChanged(object sender, EventArgs e)
-        {
-            UpdateButtonStates();
-        }
-
-        private void txtNewFolder_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Enter && btnAddFolder.Enabled)
-            {
-                btnAddFolder_Click(sender, e);
-                e.Handled = true;
             }
         }
 
