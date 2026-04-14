@@ -41,24 +41,19 @@ namespace PE_Tools.Views
             grpOutput = new System.Windows.Forms.GroupBox();
             outputRichTextBox = new System.Windows.Forms.RichTextBox();
             titleLabelControl = new System.Windows.Forms.Label();
+            btnOpenC1config = new System.Windows.Forms.Button();
+            btnOpenDocConfig = new System.Windows.Forms.Button();
             grpDatabaseSelection.SuspendLayout();
             grpActions.SuspendLayout();
             grpOutput.SuspendLayout();
             SuspendLayout();
             // 
-            // titleLabelControl
-            // 
-            titleLabelControl.AutoSize = true;
-            titleLabelControl.Location = new System.Drawing.Point(16, 12);
-            titleLabelControl.Name = "titleLabelControl";
-            titleLabelControl.Size = new System.Drawing.Size(220, 22);
-            titleLabelControl.TabIndex = 0;
-            titleLabelControl.Text = "Set Practice Evolve Databases";
-            // 
             // grpDatabaseSelection
             // 
             grpDatabaseSelection.Controls.Add(C1LabelControl);
             grpDatabaseSelection.Controls.Add(cbC1DBs);
+            grpDatabaseSelection.Controls.Add(btnOpenDocConfig);
+            grpDatabaseSelection.Controls.Add(btnOpenC1config);
             grpDatabaseSelection.Controls.Add(btnViewC1config);
             grpDatabaseSelection.Controls.Add(DocLabelControl);
             grpDatabaseSelection.Controls.Add(cbDocDBs);
@@ -76,7 +71,7 @@ namespace PE_Tools.Views
             C1LabelControl.AutoSize = true;
             C1LabelControl.Location = new System.Drawing.Point(15, 28);
             C1LabelControl.Name = "C1LabelControl";
-            C1LabelControl.Size = new System.Drawing.Size(79, 16);
+            C1LabelControl.Size = new System.Drawing.Size(73, 15);
             C1LabelControl.TabIndex = 0;
             C1LabelControl.Text = "Select C1 DB";
             // 
@@ -91,11 +86,11 @@ namespace PE_Tools.Views
             // 
             // btnViewC1config
             // 
-            btnViewC1config.Location = new System.Drawing.Point(305, 47);
+            btnViewC1config.Location = new System.Drawing.Point(301, 11);
             btnViewC1config.Name = "btnViewC1config";
             btnViewC1config.Size = new System.Drawing.Size(75, 32);
             btnViewC1config.TabIndex = 2;
-            btnViewC1config.Text = "View";
+            btnViewC1config.Text = "View File";
             btnViewC1config.Click += btnViewC1config_Click;
             // 
             // DocLabelControl
@@ -103,7 +98,7 @@ namespace PE_Tools.Views
             DocLabelControl.AutoSize = true;
             DocLabelControl.Location = new System.Drawing.Point(390, 28);
             DocLabelControl.Name = "DocLabelControl";
-            DocLabelControl.Size = new System.Drawing.Size(86, 16);
+            DocLabelControl.Size = new System.Drawing.Size(80, 15);
             DocLabelControl.TabIndex = 3;
             DocLabelControl.Text = "Select Doc DB";
             // 
@@ -118,11 +113,11 @@ namespace PE_Tools.Views
             // 
             // btnViewDocConfig
             // 
-            btnViewDocConfig.Location = new System.Drawing.Point(680, 47);
+            btnViewDocConfig.Location = new System.Drawing.Point(685, 11);
             btnViewDocConfig.Name = "btnViewDocConfig";
             btnViewDocConfig.Size = new System.Drawing.Size(75, 32);
             btnViewDocConfig.TabIndex = 5;
-            btnViewDocConfig.Text = "View";
+            btnViewDocConfig.Text = "View File";
             btnViewDocConfig.Click += btnViewDocConfig_Click;
             // 
             // grpActions
@@ -179,11 +174,37 @@ namespace PE_Tools.Views
             outputRichTextBox.Margin = new System.Windows.Forms.Padding(0);
             outputRichTextBox.Name = "outputRichTextBox";
             outputRichTextBox.ReadOnly = true;
-            outputRichTextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Both;
             outputRichTextBox.Size = new System.Drawing.Size(1090, 192);
             outputRichTextBox.TabIndex = 0;
             outputRichTextBox.Text = "";
             outputRichTextBox.WordWrap = false;
+            // 
+            // titleLabelControl
+            // 
+            titleLabelControl.AutoSize = true;
+            titleLabelControl.Location = new System.Drawing.Point(16, 12);
+            titleLabelControl.Name = "titleLabelControl";
+            titleLabelControl.Size = new System.Drawing.Size(161, 15);
+            titleLabelControl.TabIndex = 0;
+            titleLabelControl.Text = "Set Practice Evolve Databases";
+            // 
+            // btnOpenC1config
+            // 
+            btnOpenC1config.Location = new System.Drawing.Point(301, 44);
+            btnOpenC1config.Name = "btnOpenC1config";
+            btnOpenC1config.Size = new System.Drawing.Size(75, 32);
+            btnOpenC1config.TabIndex = 2;
+            btnOpenC1config.Text = "Open File";
+            btnOpenC1config.Click += BtnOpenC1config_Click;
+            // 
+            // btnOpenDocConfig
+            // 
+            btnOpenDocConfig.Location = new System.Drawing.Point(685, 44);
+            btnOpenDocConfig.Name = "btnOpenDocConfig";
+            btnOpenDocConfig.Size = new System.Drawing.Size(75, 32);
+            btnOpenDocConfig.TabIndex = 2;
+            btnOpenDocConfig.Text = "Open File";
+            btnOpenDocConfig.Click += BtnOpenDocConfig_Click;
             // 
             // DatabaseSettingsView
             // 
@@ -220,5 +241,7 @@ namespace PE_Tools.Views
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.GroupBox grpOutput;
         private System.Windows.Forms.RichTextBox outputRichTextBox;
+        private System.Windows.Forms.Button btnOpenDocConfig;
+        private System.Windows.Forms.Button btnOpenC1config;
     }
 }

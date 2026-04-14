@@ -206,5 +206,33 @@ namespace PE_Tools
                 return false;
             }
         }
+
+        public void OpenC1File()
+        {
+            OpenFile(c1Path);
+        }
+
+        public void OpenDocFile()
+        {
+            OpenFile(docPath);
+        }
+
+        private void OpenFile(string path)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                {
+                    FileName = path,
+                    UseShellExecute = true
+                });
+                Logger.Info("Opened file: {0}", path);
+            }
+            catch (Exception e)
+            {
+                Logger.Error(e, "Failed to open file: {0}", path);
+                MessageBox.Show($"Failed to open file: {e.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

@@ -12,7 +12,7 @@ namespace PE_Tools
         {
             try
             {
-                LogManager.LoadConfiguration("NLog.config");
+                LogManager.Setup().LoadConfigurationFromFile("NLog.config");
             }
             catch (Exception ex)
             {

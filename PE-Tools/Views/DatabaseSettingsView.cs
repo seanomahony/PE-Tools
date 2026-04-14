@@ -19,36 +19,23 @@ namespace PE_Tools.Views
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-        List<string> c1Databases { get; set; }
-        List<string> docDatabases { get; set; }
+        List<string> c1Databases { get; set; } = new List<string>();
+        List<string> docDatabases { get; set; } = new List<string>();
         FileManager fileManager { get; set; }
-        string currentView = null;
+        private string developmentPath = SettingsManager.GetDevelopmentFolder();
+        string? currentView = null;
         private bool databaseSettingsLoaded;
-
-        /// <summary>
-        /// The selected folder, set externally from Form1
-        /// </summary>
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public Folder SelectedFolder { get; set; }
 
         public DatabaseSettingsView()
         {
             InitializeComponent();
-        }
-
-        /// <summary>
-        /// Called when the folder selection changes from Form1
-        /// </summary>
-        public void OnFolderChanged()
-        {
-            FolderSelectedIndexChanged();
+            fileManager = new FileManager(this.developmentPath);
         }
 
         private void activateApplyButton()
         {
             this.saveButton.Enabled = false;
-            this.applyButton.Enabled = this.SelectedFolder != null
-                && cbC1DBs.SelectedIndex > 0
+            this.applyButton.Enabled = cbC1DBs.SelectedIndex > 0
                 && cbDocDBs.SelectedIndex > 0;
         }
 
@@ -69,7 +56,7 @@ namespace PE_Tools.Views
             {
                 fileManager.UpdateC1File(c1DbName);
                 fileManager.UpdateDocFile(docsDbName, c1DbName);
-                Logger.Info("Applied database selection: c1={0}, doc={1} for folder={2}", c1DbName, docsDbName, this.SelectedFolder.FullPath);
+                Logger.Info("Applied database selection: c1={0}, doc={1} for folder={2}", c1DbName, docsDbName, this.developmentPath);
                 NotificationManager.Show($"Database settings applied: C1={c1DbName}, Doc={docsDbName}");
             }
             catch (Exception ex)
@@ -91,28 +78,6 @@ namespace PE_Tools.Views
             else if (currentView == "doc")
             {
                 btnViewDocConfig_Click(null, null);
-            }
-        }
-
-        private void docTextBox_Click(object sender, EventArgs e)
-        {
-            if (fileManager != null)
-            {
-                currentView = "doc";
-                string formattedXml = GetFormattedXml(fileManager.docConfig);
-                this.outputRichTextBox.Text = formattedXml;
-                HighlightUpdatedSection(formattedXml, "cms.database.connection");
-            }
-        }
-
-        private void c1TextBox_Click(object sender, EventArgs e)
-        {
-            if (fileManager != null)
-            {
-                currentView = "c1";
-                string formattedXml = GetFormattedXml(fileManager.c1Config);
-                this.outputRichTextBox.Text = formattedXml;
-                HighlightUpdatedSection(formattedXml, "connectionString");
             }
         }
 
@@ -161,30 +126,6 @@ namespace PE_Tools.Views
             this.cbDocDBs.ValueMember = "ID";
             this.cbDocDBs.DisplayMember = "Name";
             this.cbDocDBs.SelectedIndex = 0;
-
-            this.btnViewC1config.Enabled = this.btnViewDocConfig.Enabled = false;
-        }
-
-        private void FolderSelectedIndexChanged()
-        {
-            if (this.SelectedFolder == null)
-            {
-                this.btnViewC1config.Enabled = this.btnViewDocConfig.Enabled = false;
-                return;
-            }
-
-            try
-            {
-                fileManager = new FileManager(this.SelectedFolder.FullPath);
-                this.btnViewC1config.Enabled = this.btnViewDocConfig.Enabled = true;
-                activateApplyButton();
-            }
-            catch (Exception ex)
-            {
-                Logger.Error(ex, "Error loading configuration files for folder {0}", this.SelectedFolder?.FullPath);
-                MessageBox.Show($"Error loading configuration files: {ex.Message}", "File Load Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.btnViewC1config.Enabled = this.btnViewDocConfig.Enabled = false;
-            }
         }
 
         private string GetFormattedXml(XmlDocument doc)
@@ -235,7 +176,7 @@ namespace PE_Tools.Views
             activateApplyButton();
         }
 
-        private void btnViewC1config_Click(object sender, EventArgs e)
+        private void btnViewC1config_Click(object? sender, EventArgs? e)
         {
             currentView = "c1";
             string formattedXml = GetFormattedXml(fileManager.c1Config);
@@ -243,12 +184,22 @@ namespace PE_Tools.Views
             HighlightUpdatedSection(formattedXml, "connectionString");
         }
 
-        private void btnViewDocConfig_Click(object sender, EventArgs e)
+        private void btnViewDocConfig_Click(object? sender, EventArgs? e)
         {
             currentView = "doc";
             string formattedXml = GetFormattedXml(fileManager.docConfig);
             this.outputRichTextBox.Text = formattedXml;
             HighlightUpdatedSection(formattedXml, "cms.database.connection");
+        }
+
+        private void BtnOpenC1config_Click(object sender, System.EventArgs e)
+        {
+            fileManager.OpenC1File();
+        }
+
+        private void BtnOpenDocConfig_Click(object sender, System.EventArgs e)
+        {
+            fileManager.OpenDocFile();
         }
     }
 }

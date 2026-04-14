@@ -20,7 +20,7 @@ namespace PE_Tools.Notifications
         private double _opacity;
         private bool _isClosing;
 
-        private const int Padding = 12;
+        private const int NotificationPadding = 12;
         private const int CornerRadius = 8;
         private const int MaxWidth = 350;
         private const int MinHeight = 60;
@@ -60,16 +60,16 @@ namespace PE_Tools.Notifications
                 Font = BodyFont,
                 TextAlign = ContentAlignment.MiddleLeft,
                 BackColor = Color.Transparent,
-                Padding = new Padding(Padding),
-                MaximumSize = new Size(MaxWidth - (Padding * 2), 0)
+                Padding = new Padding(NotificationPadding),
+                MaximumSize = new Size(MaxWidth - (NotificationPadding * 2), 0)
             };
 
             // Measure text and size the form
             using (Graphics g = CreateGraphics())
             {
-                SizeF textSize = g.MeasureString(message, _messageLabel.Font, MaxWidth - (Padding * 2));
-                int width = Math.Min(MaxWidth, (int)textSize.Width + (Padding * 2));
-                int height = Math.Max(MinHeight, (int)textSize.Height + (Padding * 2));
+                SizeF textSize = g.MeasureString(message, _messageLabel.Font, MaxWidth - (NotificationPadding * 2));
+                int width = Math.Min(MaxWidth, (int)textSize.Width + (NotificationPadding * 2));
+                int height = Math.Max(MinHeight, (int)textSize.Height + (NotificationPadding * 2));
                 
                 ClientSize = new Size(width, height);
                 _messageLabel.Size = new Size(width, height);
