@@ -1,6 +1,6 @@
 # PE-Tools
 
-PE-Tools is a Windows Forms application designed to manage database configurations for PE (Process Engineering) projects. It allows users to select project folders, view and modify database connection strings in configuration files, and execute PowerShell scripts for building and running PE services.
+PE-Tools is a Windows Forms application designed to manage database configurations for PE projects. It allows users to select project folders, view and modify database connection strings in configuration files, and execute PowerShell scripts for building and running PE services.
 
 ## Features
 
