@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using PE_Tools.Theme;
 
 namespace PE_Tools.Views
 {
@@ -43,10 +43,8 @@ namespace PE_Tools.Views
             {
                 cbPodName.Text = "evolveonprem-0";
             }
-
-            ApplyTheme();
         }
-        
+
         private void LoadHistory(ComboBox comboBox, string key)
         {
             var history = SettingsManager.GetList(key);
@@ -249,13 +247,6 @@ namespace PE_Tools.Views
             var rawDest = cbDestPath.Text.Trim();
 
             txtResult.Text = GenerateCommandText(ns, pod, container, action, rawSrc, rawDest);
-        }
-        
-        public void ApplyTheme() 
-        {
-             ThemeHelper.ApplyTheme(this);
-             ThemeHelper.StyleTextBox(txtResult, isConsole: true);
-             ThemeHelper.StyleButton(btnGenerate, ButtonStyle.Success);
         }
     }
 }

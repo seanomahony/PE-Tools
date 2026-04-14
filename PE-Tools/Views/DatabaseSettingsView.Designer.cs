@@ -96,7 +96,6 @@ namespace PE_Tools.Views
             btnViewC1config.Size = new System.Drawing.Size(75, 32);
             btnViewC1config.TabIndex = 2;
             btnViewC1config.Text = "View";
-            btnViewC1config.UseVisualStyleBackColor = false;
             btnViewC1config.Click += btnViewC1config_Click;
             // 
             // DocLabelControl
@@ -124,7 +123,6 @@ namespace PE_Tools.Views
             btnViewDocConfig.Size = new System.Drawing.Size(75, 32);
             btnViewDocConfig.TabIndex = 5;
             btnViewDocConfig.Text = "View";
-            btnViewDocConfig.UseVisualStyleBackColor = false;
             btnViewDocConfig.Click += btnViewDocConfig_Click;
             // 
             // grpActions
@@ -149,7 +147,6 @@ namespace PE_Tools.Views
             applyButton.Size = new System.Drawing.Size(150, 36);
             applyButton.TabIndex = 0;
             applyButton.Text = "Apply Changes";
-            applyButton.UseVisualStyleBackColor = false;
             applyButton.Click += applyButton_Click;
             // 
             // saveButton
@@ -161,7 +158,6 @@ namespace PE_Tools.Views
             saveButton.Size = new System.Drawing.Size(150, 36);
             saveButton.TabIndex = 1;
             saveButton.Text = "Save to Files";
-            saveButton.UseVisualStyleBackColor = false;
             saveButton.Click += saveButton_Click;
             // 
             // grpOutput

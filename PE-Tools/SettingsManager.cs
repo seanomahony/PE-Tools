@@ -91,6 +91,33 @@ namespace PE_Tools
         }
 
         /// <summary>
+        /// Gets the notification duration in seconds from App.config.
+        /// </summary>
+        public static int GetNotificationDuration()
+        {
+            var value = ConfigurationManager.AppSettings["notificationDurationSeconds"];
+            if (int.TryParse(value, out int duration) && duration > 0)
+            {
+                return duration;
+            }
+            return 2; // Default to 2 seconds
+        }
+
+        /// <summary>
+        /// Saves the notification duration in seconds to App.config.
+        /// </summary>
+        public static void SaveNotificationDuration(int durationSeconds)
+        {
+            if (durationSeconds < 1)
+            {
+                throw new ArgumentException("Duration must be at least 1 second.", nameof(durationSeconds));
+            }
+
+            UpdateAppSetting("notificationDurationSeconds", durationSeconds.ToString());
+            Logger.Info("Saved notification duration: {0} seconds", durationSeconds);
+        }
+
+        /// <summary>
         /// Gets a list of strings from App.config using pipe separator.
         /// </summary>
         public static List<string> GetList(string key)

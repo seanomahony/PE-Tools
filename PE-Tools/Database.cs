@@ -61,11 +61,15 @@ namespace PE_Tools
 
                     using (SqlCommand command = new SqlCommand("select name from sys.databases", con))
                     {
-                        using (IDataReader dr = await command.ExecuteReaderAsync())
+                        using (SqlDataReader dr = await command.ExecuteReaderAsync())
                         {
                             while (dr.Read())
                             {
-                                databases.Add(dr[0].ToString());
+                                string? dbName = dr[0]?.ToString();
+                                if (!string.IsNullOrWhiteSpace(dbName))
+                                {
+                                    databases.Add(dbName);
+                                }
                             }
                         }
                     }

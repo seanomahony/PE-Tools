@@ -69,7 +69,6 @@
             btnBuildOECore.Size = new System.Drawing.Size(125, 32);
             btnBuildOECore.TabIndex = 0;
             btnBuildOECore.Text = "OE Core";
-            btnBuildOECore.UseVisualStyleBackColor = false;
             btnBuildOECore.Click += btnBuildOECore_Click;
             // 
             // btnBuildClickOne
@@ -80,7 +79,6 @@
             btnBuildClickOne.Size = new System.Drawing.Size(125, 32);
             btnBuildClickOne.TabIndex = 1;
             btnBuildClickOne.Text = "Click One Legal";
-            btnBuildClickOne.UseVisualStyleBackColor = false;
             btnBuildClickOne.Click += btnBuildClickOne_Click;
             // 
             // btnBuildIntegration
@@ -91,7 +89,6 @@
             btnBuildIntegration.Size = new System.Drawing.Size(125, 32);
             btnBuildIntegration.TabIndex = 2;
             btnBuildIntegration.Text = "Integration";
-            btnBuildIntegration.UseVisualStyleBackColor = false;
             btnBuildIntegration.Click += btnBuildIntegration_Click;
             // 
             // btnBuildWebPortal
@@ -102,7 +99,6 @@
             btnBuildWebPortal.Size = new System.Drawing.Size(125, 32);
             btnBuildWebPortal.TabIndex = 3;
             btnBuildWebPortal.Text = "Web Portal";
-            btnBuildWebPortal.UseVisualStyleBackColor = false;
             btnBuildWebPortal.Click += btnBuildWebPortal_Click;
             // 
             // btnBuild
@@ -113,7 +109,6 @@
             btnBuild.Size = new System.Drawing.Size(256, 32);
             btnBuild.TabIndex = 4;
             btnBuild.Text = "Build All Solutions";
-            btnBuild.UseVisualStyleBackColor = false;
             btnBuild.Click += btnBuild_Click;
             // 
             // grpRunCommands
@@ -138,7 +133,6 @@
             btnRunTestServices.Size = new System.Drawing.Size(170, 32);
             btnRunTestServices.TabIndex = 0;
             btnRunTestServices.Text = "Run Services";
-            btnRunTestServices.UseVisualStyleBackColor = false;
             btnRunTestServices.Click += btnRunTestServices_Click;
             // 
             // btnRunCommand
@@ -149,7 +143,6 @@
             btnRunCommand.Size = new System.Drawing.Size(170, 32);
             btnRunCommand.TabIndex = 1;
             btnRunCommand.Text = "Services && Client";
-            btnRunCommand.UseVisualStyleBackColor = false;
             btnRunCommand.Click += btnRunCommand_Click;
             // 
             // btnStop
@@ -160,7 +153,6 @@
             btnStop.Size = new System.Drawing.Size(170, 32);
             btnStop.TabIndex = 2;
             btnStop.Text = "Stop All";
-            btnStop.UseVisualStyleBackColor = false;
             btnStop.Click += btnStop_Click;
             // 
             // grpOutput

@@ -1,14 +1,5 @@
-﻿using PE_Tools.Models;
-using PE_Tools.Theme;
+﻿using PE_Tools.Notifications;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PE_Tools
@@ -57,13 +48,8 @@ namespace PE_Tools
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            ApplyTheme();
-        }
-
-        private void ApplyTheme()
-        {
-            ThemeHelper.ApplyTheme(this);
-            ThemeHelper.StyleTabControl(tabControl1);
+            // Initialize the notification manager
+            NotificationManager.Initialize(this);
         }
     }
 }

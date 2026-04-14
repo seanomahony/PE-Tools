@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.Drawing;
 using System.IO;
 using System.Reflection;
 using System.Security.Principal;
@@ -7,7 +8,6 @@ using System.Text;
 using System.Windows.Forms;
 using NLog;
 using PE_Tools.Models;
-using PE_Tools.Theme;
 
 namespace PE_Tools.Views
 {
@@ -28,25 +28,7 @@ namespace PE_Tools.Views
 
         private void PowershellCommandsView_Load(object sender, EventArgs e)
         {
-            ApplyTheme();
             checkElevatedMode();
-        }
-
-        private void ApplyTheme()
-        {
-            ThemeHelper.ApplyTheme(this);
-
-            ThemeHelper.StyleButton(btnBuildOECore, ButtonStyle.Primary);
-            ThemeHelper.StyleButton(btnBuildClickOne, ButtonStyle.Primary);
-            ThemeHelper.StyleButton(btnBuildIntegration, ButtonStyle.Primary);
-            ThemeHelper.StyleButton(btnBuildWebPortal, ButtonStyle.Primary);
-            ThemeHelper.StyleButton(btnBuild, ButtonStyle.Success);
-
-            ThemeHelper.StyleButton(btnRunTestServices, ButtonStyle.Success);
-            ThemeHelper.StyleButton(btnRunCommand, ButtonStyle.Success);
-            ThemeHelper.StyleButton(btnStop, ButtonStyle.Danger);
-
-            ThemeHelper.StyleTextBox(tbResults, isConsole: true);
         }
 
         private string RunScript(string script, bool requiresAuth = false, string changeDir = null)

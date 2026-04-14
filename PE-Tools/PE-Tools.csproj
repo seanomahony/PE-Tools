@@ -15,6 +15,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.SqlClient" Version="7.0.0" />
     <PackageReference Include="NLog" Version="6.0.6" />
+    <PackageReference Include="ReaLTaiizor" Version="3.8.1.8" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Views\DatabaseSettingsView.cs">
@@ -36,5 +37,8 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\StartServices.ps1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Theme\" />
   </ItemGroup>
 </Project>

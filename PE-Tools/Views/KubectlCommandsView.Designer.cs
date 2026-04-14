@@ -207,7 +207,6 @@ namespace PE_Tools.Views
             this.btnGenerate.Size = new System.Drawing.Size(100, 30);
             this.btnGenerate.TabIndex = 6;
             this.btnGenerate.Text = "Generate";
-            this.btnGenerate.UseVisualStyleBackColor = true;
             this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
 
             // 

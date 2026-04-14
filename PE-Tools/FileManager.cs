@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using NLog;
+using PE_Tools.Notifications;
 
 namespace PE_Tools
 {
@@ -116,7 +117,7 @@ namespace PE_Tools
                 throw new InvalidOperationException("Connection string not found in C1 configuration file.");
             }
 
-            var connStr = node.Value;
+            string connStr = node.Value ?? string.Empty;
             var parts = connStr.Split(new[] { ';' }, StringSplitOptions.None).ToList();
             for (var i = 0; i < parts.Count; i++)
             {
@@ -137,12 +138,14 @@ namespace PE_Tools
             {
                 c1Config.Save(c1Path);
                 Logger.Info("Saved C1 config to {0}", c1Path);
+                NotificationManager.Show($"C1 config saved successfully");
                 return true;
             }
             catch (Exception e)
             {
                 Logger.Error(e, "Failed to save C1 config to {0}", c1Path);
                 MessageBox.Show(e.Message, "Error");
+                NotificationManager.Show("Failed to save C1 config", 4);
                 return false;
             }
         }
@@ -177,7 +180,7 @@ namespace PE_Tools
             node = docConfig.SelectSingleNode("//appSettings/add[@key='cms.c1.database.connection']/@value");
             if (node != null)
             {
-                var connStr = node.Value;
+                string connStr = node.Value ?? string.Empty;
                 var parts = connStr.Split(new[] { ';' }, StringSplitOptions.None).ToList();
                 ReplaceDatabaseToken(parts, c1Db);
                 node.Value = string.Join(";", parts);
@@ -192,12 +195,14 @@ namespace PE_Tools
             {
                 docConfig.Save(docPath);
                 Logger.Info("Saved Doc config to {0}", docPath);
+                NotificationManager.Show($"Doc config saved successfully");
                 return true;
             }
             catch (Exception e)
             {
                 Logger.Error(e, "Failed to save Doc config to {0}", docPath);
                 MessageBox.Show(e.Message, "Error");
+                NotificationManager.Show("Failed to save Doc config", 4);
                 return false;
             }
         }

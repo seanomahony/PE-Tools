@@ -1,5 +1,4 @@
 ﻿using PE_Tools.Models;
-using PE_Tools.Theme;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -51,8 +50,6 @@ namespace PE_Tools.Views
 
         private void userControlProjectSelector_Load(object sender, EventArgs e)
         {
-            ApplyTheme();
-            
             // Skip runtime folder loading at design-time
             if (this.DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime)
             {
@@ -64,13 +61,6 @@ namespace PE_Tools.Views
             this.cbFolders.ValueMember = "ID";
             this.cbFolders.DisplayMember = "FullPath";
             this.cbFolders.SelectedIndex = 0;
-        }
-
-        private void ApplyTheme()
-        {
-            ThemeHelper.ApplyTheme(this);
-            ThemeHelper.StyleComboBox(cbFolders);
-            SourceFolderLabelControl.Font = ThemeHelper.HeaderFont;
         }
 
         private List<Folder> getFolders()

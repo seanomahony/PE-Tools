@@ -1,4 +1,4 @@
-using PE_Tools.Theme;
+using PE_Tools.Notifications;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,43 +30,7 @@ namespace PE_Tools.Views
                 return;
             }
 
-            ApplyTheme();
             LoadSettings();
-        }
-
-        private void ApplyTheme()
-        {
-            ThemeHelper.ApplyTheme(this);
-
-            // Style title
-            lblTitle.Font = ThemeHelper.TitleFont;
-            lblTitle.ForeColor = ThemeHelper.PrimaryText;
-
-            // Style section headers
-            lblFoldersSection.Font = ThemeHelper.HeaderFont;
-            lblFoldersSection.ForeColor = ThemeHelper.SecondaryText;
-            lblConnectionSection.Font = ThemeHelper.HeaderFont;
-            lblConnectionSection.ForeColor = ThemeHelper.SecondaryText;
-            lblConfigPathsSection.Font = ThemeHelper.HeaderFont;
-            lblConfigPathsSection.ForeColor = ThemeHelper.SecondaryText;
-
-            // Style buttons
-            ThemeHelper.StyleButton(btnAddFolder, ButtonStyle.Primary);
-            ThemeHelper.StyleButton(btnRemoveFolder, ButtonStyle.Danger);
-            ThemeHelper.StyleButton(btnBrowseFolder, ButtonStyle.Default);
-            ThemeHelper.StyleButton(btnTestConnection, ButtonStyle.Default);
-            ThemeHelper.StyleButton(btnSaveAll, ButtonStyle.Success);
-
-            // Style listbox
-            lstFolders.BackColor = ThemeHelper.SecondaryBackground;
-            lstFolders.ForeColor = ThemeHelper.PrimaryText;
-            lstFolders.BorderStyle = BorderStyle.FixedSingle;
-
-            // Style textboxes
-            ThemeHelper.StyleTextBox(txtNewFolder);
-            ThemeHelper.StyleTextBox(txtConnectionString);
-            ThemeHelper.StyleTextBox(txtC1ConfigPath);
-            ThemeHelper.StyleTextBox(txtDocConfigPath);
         }
 
         private void LoadSettings()
@@ -85,6 +49,9 @@ namespace PE_Tools.Views
             // Load config file paths
             txtC1ConfigPath.Text = SettingsManager.GetC1ConfigFilename();
             txtDocConfigPath.Text = SettingsManager.GetDocConfigFilename();
+
+            // Load notification duration
+            numNotificationDuration.Value = SettingsManager.GetNotificationDuration();
 
             UpdateButtonStates();
         }
@@ -171,11 +138,13 @@ namespace PE_Tools.Views
             {
                 using var connection = new SqlConnection(connectionString);
                 connection.Open();
+                NotificationManager.Show("Database connection successful!");
                 MessageBox.Show("Connection successful!", "Test Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Logger.Info("Connection test successful.");
             }
             catch (Exception ex)
             {
+                NotificationManager.Show("Database connection failed", 4);
                 MessageBox.Show($"Connection failed: {ex.Message}", "Test Result", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Logger.Error(ex, "Connection test failed.");
             }
@@ -201,9 +170,13 @@ namespace PE_Tools.Views
                 SettingsManager.SaveC1ConfigFilename(txtC1ConfigPath.Text.Trim());
                 SettingsManager.SaveDocConfigFilename(txtDocConfigPath.Text.Trim());
 
+                // Save notification duration
+                SettingsManager.SaveNotificationDuration((int)numNotificationDuration.Value);
+
                 // Notify other components that settings changed
                 SettingsManager.OnSettingsChanged();
 
+                NotificationManager.Show("Settings saved successfully!");
                 MessageBox.Show("Settings saved successfully!\n\nNote: Restart the application for all changes to take effect.",
                     "Settings Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Logger.Info("All settings saved successfully.");
@@ -232,6 +205,13 @@ namespace PE_Tools.Views
                 btnAddFolder_Click(sender, e);
                 e.Handled = true;
             }
+        }
+
+        private void btnTestNotification_Click(object sender, EventArgs e)
+        {
+            int duration = (int)numNotificationDuration.Value;
+            NotificationManager.Show($"This is a test notification (Duration: {duration} seconds)", duration);
+            Logger.Info("Test notification shown with duration: {0} seconds", duration);
         }
     }
 }
