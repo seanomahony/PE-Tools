@@ -10,7 +10,7 @@ The PE-Tools application includes a toast-style notification system that display
 - **Automatic stacking**: Up to 3 notifications can be displayed simultaneously, stacked vertically
 - **Smooth animations**: Slide-in and fade-out transitions for a polished user experience
 - **Configurable duration**: Default display time is 2 seconds, configurable via App Settings
-- **Themed appearance**: Automatically styled using the application's dark theme
+- **Themed appearance**: Automatically styled using the application's theme
 - **Thread-safe**: Can be called from any thread
 - **Logging**: All notifications are logged via NLog for troubleshooting
 
@@ -71,7 +71,7 @@ The NotificationManager must be initialized with the parent form before showing 
 private void Form1_Load(object sender, EventArgs e)
 {
     NotificationManager.Initialize(this);
-    ApplyTheme();
+    // ... rest of load logic
 }
 ```
 
@@ -94,24 +94,15 @@ private void Form1_Load(object sender, EventArgs e)
 ### FileManager.cs
 
 ```csharp
-public bool SaveC1File()
+public void SaveC1File()
 {
-    try
-    {
-        c1Config.Save(c1Path);
-        Logger.Info("Saved C1 config to {0}", c1Path);
-        NotificationManager.Show($"C1 config saved successfully");
-        return true;
-    }
-    catch (Exception e)
-    {
-        Logger.Error(e, "Failed to save C1 config to {0}", c1Path);
-        MessageBox.Show(e.Message, "Error");
-        NotificationManager.Show("Failed to save C1 config", 4);
-        return false;
-    }
+    c1Config.Save(c1Path);
+    Logger.Info("Saved C1 config to {0}", c1Path);
+    NotificationManager.Show("C1 config saved successfully");
 }
 ```
+
+Exceptions propagate to the caller (`DatabaseSettingsView`), which shows a `MessageBox` for errors requiring acknowledgment.
 
 ### DatabaseSettingsView.cs
 
@@ -136,7 +127,7 @@ catch (Exception ex)
 try
 {
     using var connection = new SqlConnection(connectionString);
-    connection.Open();
+    await connection.OpenAsync();
     NotificationManager.Show("Database connection successful!");
     MessageBox.Show("Connection successful!", "Test Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
 }

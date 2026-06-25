@@ -10,22 +10,7 @@ PE-Tools is a Windows Forms application designed to manage database configuratio
 - **PowerShell Integration**: Execute build and run scripts for PE components
 - **Multi-View Interface**: Switch between database settings and PowerShell commands
 
-## Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/seanomahony/PE-Tools.git
-   cd PE-Tools
-   ```
-
-2. Open the solution in Visual Studio:
-   ```
-   PE-Tools.sln
-   ```
-
-3. Restore NuGet packages and build the solution.
-
-4. Run the application as Administrator (required for PowerShell functionality).
+# 
 
 ## Configuration
 
@@ -34,21 +19,25 @@ PE-Tools is a Windows Forms application designed to manage database configuratio
 Edit `PE-Tools\App.config` to configure:
 
 - **folders**: Comma-separated list of project folder paths
+  
   ```xml
   <add key="folders" value="c:\dev\onprem,c:\test\repo\onprem,c:\test\december\onprem"/>
   ```
 
 - **databaseConnectionString**: SQL Server connection string for database discovery
+  
   ```xml
   <add key="databaseConnectionString" value="server=localhost;Integrated Security=True;Pooling=True;"/>
   ```
 
 - **c1ConfigFilename**: Relative path to C1 database configuration file
+  
   ```xml
   <add key="c1ConfigFilename" value="\integration\bin\Debug\Config\Database.config"/>
   ```
 
 - **docConfigFilename**: Relative path to Document database configuration file
+  
   ```xml
   <add key="docConfigFilename" value="\integration\bin\Debug\Server\bin\CMSService.exe.config"/>
   ```
