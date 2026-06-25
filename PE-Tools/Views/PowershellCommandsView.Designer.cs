@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            lblPageTitle = new System.Windows.Forms.Label();
             grpBuildCommands = new System.Windows.Forms.GroupBox();
             btnBuildOECore = new System.Windows.Forms.Button();
             btnBuildClickOne = new System.Windows.Forms.Button();
@@ -44,22 +45,36 @@
             grpRunCommands.SuspendLayout();
             grpOutput.SuspendLayout();
             SuspendLayout();
-            // 
+            //
+            // lblPageTitle
+            //
+            lblPageTitle.Dock = System.Windows.Forms.DockStyle.Top;
+            lblPageTitle.Height = 48;
+            lblPageTitle.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
+            lblPageTitle.ForeColor = PE_Tools.AppTheme.LabelHeadingFg;
+            lblPageTitle.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            lblPageTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            lblPageTitle.Name = "lblPageTitle";
+            lblPageTitle.TabIndex = 10;
+            lblPageTitle.Text = "Build & Run Commands";
+            //
             // grpBuildCommands
-            // 
+            //
             grpBuildCommands.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left;
             grpBuildCommands.Controls.Add(btnBuildOECore);
             grpBuildCommands.Controls.Add(btnBuildClickOne);
             grpBuildCommands.Controls.Add(btnBuildIntegration);
             grpBuildCommands.Controls.Add(btnBuildWebPortal);
             grpBuildCommands.Controls.Add(btnBuild);
-            grpBuildCommands.Location = new System.Drawing.Point(16, 16);
+            grpBuildCommands.BackColor = PE_Tools.AppTheme.CardBg;
+            grpBuildCommands.Location = new System.Drawing.Point(16, 64);
             grpBuildCommands.Name = "grpBuildCommands";
             grpBuildCommands.Padding = new System.Windows.Forms.Padding(12);
             grpBuildCommands.Size = new System.Drawing.Size(560, 100);
             grpBuildCommands.TabIndex = 0;
             grpBuildCommands.TabStop = false;
             grpBuildCommands.Text = "Build Commands";
+            grpBuildCommands.ForeColor = PE_Tools.AppTheme.LabelSectionFg;
             // 
             // btnBuildOECore
             // 
@@ -152,13 +167,15 @@
             grpRunCommands.Controls.Add(btnRunTestServices);
             grpRunCommands.Controls.Add(btnRunCommand);
             grpRunCommands.Controls.Add(btnStop);
-            grpRunCommands.Location = new System.Drawing.Point(590, 16);
+            grpRunCommands.BackColor = PE_Tools.AppTheme.CardBg;
+            grpRunCommands.Location = new System.Drawing.Point(590, 64);
             grpRunCommands.Name = "grpRunCommands";
             grpRunCommands.Padding = new System.Windows.Forms.Padding(12);
             grpRunCommands.Size = new System.Drawing.Size(380, 100);
             grpRunCommands.TabIndex = 1;
             grpRunCommands.TabStop = false;
             grpRunCommands.Text = "Run Commands";
+            grpRunCommands.ForeColor = PE_Tools.AppTheme.LabelSectionFg;
             // 
             // btnRunTestServices
             // 
@@ -215,13 +232,15 @@
             // 
             grpOutput.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             grpOutput.Controls.Add(tbResults);
-            grpOutput.Location = new System.Drawing.Point(16, 124);
+            grpOutput.BackColor = PE_Tools.AppTheme.CardBg;
+            grpOutput.Location = new System.Drawing.Point(16, 172);
             grpOutput.Name = "grpOutput";
             grpOutput.Padding = new System.Windows.Forms.Padding(12);
-            grpOutput.Size = new System.Drawing.Size(954, 315);
+            grpOutput.Size = new System.Drawing.Size(954, 267);
             grpOutput.TabIndex = 2;
             grpOutput.TabStop = false;
             grpOutput.Text = "Output";
+            grpOutput.ForeColor = PE_Tools.AppTheme.LabelSectionFg;
             // 
             // tbResults
             // 
@@ -246,11 +265,12 @@
             Controls.Add(grpOutput);
             Controls.Add(grpRunCommands);
             Controls.Add(grpBuildCommands);
+            Controls.Add(lblPageTitle);
             Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            MinimumSize = new System.Drawing.Size(986, 450);
+            MinimumSize = new System.Drawing.Size(986, 498);
             Name = "PowershellCommandsView";
             Padding = new System.Windows.Forms.Padding(8);
-            Size = new System.Drawing.Size(986, 455);
+            Size = new System.Drawing.Size(986, 503);
             Load += PowershellCommandsView_Load;
             grpBuildCommands.ResumeLayout(false);
             grpRunCommands.ResumeLayout(false);
@@ -261,6 +281,7 @@
 
         #endregion
 
+        private System.Windows.Forms.Label lblPageTitle;
         private System.Windows.Forms.GroupBox grpBuildCommands;
         private System.Windows.Forms.GroupBox grpRunCommands;
         private System.Windows.Forms.GroupBox grpOutput;

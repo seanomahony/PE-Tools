@@ -1,4 +1,4 @@
-﻿using PE_Tools.Models;
+using PE_Tools.Models;
 using PE_Tools.Notifications;
 using System;
 using System.Collections.Generic;
@@ -21,15 +21,35 @@ namespace PE_Tools.Views
 
         List<string> c1Databases { get; set; } = new List<string>();
         List<string> docDatabases { get; set; } = new List<string>();
-        FileManager fileManager { get; set; }
-        private string developmentPath = SettingsManager.GetDevelopmentFolder();
+        FileManager? fileManager { get; set; }
+        private string developmentPath = string.Empty;
         string? currentView = null;
         private bool databaseSettingsLoaded;
 
         public DatabaseSettingsView()
         {
             InitializeComponent();
-            fileManager = new FileManager(this.developmentPath);
+            SettingsManager.SettingsChanged += OnSettingsChanged;
+        }
+
+        private void OnSettingsChanged(object? sender, EventArgs e)
+        {
+            databaseSettingsLoaded = false;
+            fileManager = null;
+            lblConfigError.Visible = false;
+            grpDatabaseSelection.Visible = true;
+            grpActions.Visible = true;
+            grpOutput.Visible = true;
+            DatabaseSettingsView_Load(this, EventArgs.Empty);
+        }
+
+        private void ShowConfigError(string message)
+        {
+            lblConfigError.Text = message;
+            lblConfigError.Visible = true;
+            grpDatabaseSelection.Visible = false;
+            grpActions.Visible = false;
+            grpOutput.Visible = false;
         }
 
         private void activateApplyButton()
@@ -41,6 +61,12 @@ namespace PE_Tools.Views
 
         private void applyButton_Click(object sender, EventArgs e)
         {
+            if (fileManager == null)
+            {
+                ShowConfigError("File manager not initialised. Check Settings.");
+                return;
+            }
+
             var c1Item = this.cbC1DBs.SelectedItem as DatabaseListItem;
             var docItem = this.cbDocDBs.SelectedItem as DatabaseListItem;
 
@@ -83,31 +109,52 @@ namespace PE_Tools.Views
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            if (fileManager != null)
+            if (fileManager == null)
             {
-                try
-                {
-                    fileManager.SaveC1File();
-                    fileManager.SaveDocFile();
-                    // Notification is shown by FileManager
-                    this.saveButton.Enabled = false;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Failed to save configuration files: {ex.Message}", "Save Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    NotificationManager.Show("Failed to save configuration files", 4);
-                }
+                ShowConfigError("File manager not initialised. Check Settings.");
+                return;
+            }
+
+            try
+            {
+                fileManager.SaveC1File();
+                fileManager.SaveDocFile();
+                this.saveButton.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to save configuration files: {ex.Message}", "Save Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                NotificationManager.Show("Failed to save configuration files", 4);
             }
         }
 
         private async void DatabaseSettingsView_Load(object sender, EventArgs e)
         {
-            if(databaseSettingsLoaded)
+            if (databaseSettingsLoaded)
             {
                 return;
             }
 
             databaseSettingsLoaded = true;
+
+            developmentPath = SettingsManager.GetDevelopmentFolder();
+
+            if (string.IsNullOrWhiteSpace(developmentPath))
+            {
+                ShowConfigError("Development folder is not configured. Go to Settings and configure your paths first.");
+                return;
+            }
+
+            try
+            {
+                fileManager = new FileManager(developmentPath);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "FileManager initialisation failed");
+                ShowConfigError($"Could not load configuration files: {ex.Message}");
+                return;
+            }
 
             var database = new Database();
             c1Databases = await database.GetSelectedDatabasesAsync("_c1");
@@ -115,14 +162,12 @@ namespace PE_Tools.Views
 
             this.outputRichTextBox.Visible = true;
 
-            DatabaseListItem.CurrentIndex = 1;
-            this.cbC1DBs.DataSource = c1Databases.Select(d => new DatabaseListItem(d)).ToList();
+            this.cbC1DBs.DataSource = c1Databases.Select((d, i) => new DatabaseListItem(d, i + 1)).ToList();
             this.cbC1DBs.ValueMember = "ID";
             this.cbC1DBs.DisplayMember = "Name";
             this.cbC1DBs.SelectedIndex = 0;
 
-            DatabaseListItem.CurrentIndex = 1;
-            this.cbDocDBs.DataSource = docDatabases.Select(d => new DatabaseListItem(d)).ToList();
+            this.cbDocDBs.DataSource = docDatabases.Select((d, i) => new DatabaseListItem(d, i + 1)).ToList();
             this.cbDocDBs.ValueMember = "ID";
             this.cbDocDBs.DisplayMember = "Name";
             this.cbDocDBs.SelectedIndex = 0;
@@ -178,6 +223,12 @@ namespace PE_Tools.Views
 
         private void btnViewC1config_Click(object? sender, EventArgs? e)
         {
+            if (fileManager == null)
+            {
+                ShowConfigError("File manager not initialised. Check Settings.");
+                return;
+            }
+
             currentView = "c1";
             string formattedXml = GetFormattedXml(fileManager.c1Config);
             this.outputRichTextBox.Text = formattedXml;
@@ -186,6 +237,12 @@ namespace PE_Tools.Views
 
         private void btnViewDocConfig_Click(object? sender, EventArgs? e)
         {
+            if (fileManager == null)
+            {
+                ShowConfigError("File manager not initialised. Check Settings.");
+                return;
+            }
+
             currentView = "doc";
             string formattedXml = GetFormattedXml(fileManager.docConfig);
             this.outputRichTextBox.Text = formattedXml;
@@ -194,11 +251,23 @@ namespace PE_Tools.Views
 
         private void BtnOpenC1config_Click(object sender, System.EventArgs e)
         {
+            if (fileManager == null)
+            {
+                ShowConfigError("File manager not initialised. Check Settings.");
+                return;
+            }
+
             fileManager.OpenC1File();
         }
 
         private void BtnOpenDocConfig_Click(object sender, System.EventArgs e)
         {
+            if (fileManager == null)
+            {
+                ShowConfigError("File manager not initialised. Check Settings.");
+                return;
+            }
+
             fileManager.OpenDocFile();
         }
     }

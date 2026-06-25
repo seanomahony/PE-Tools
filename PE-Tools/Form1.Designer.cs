@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             mainSplitContainer = new System.Windows.Forms.SplitContainer();
             lblAppTitle = new System.Windows.Forms.Label();
             btnToggleSidebar = new System.Windows.Forms.Button();
@@ -169,8 +170,8 @@
             btnToggleSidebar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnToggleSidebar.FlatAppearance.BorderSize = 0;
             btnToggleSidebar.FlatAppearance.MouseOverBackColor = PE_Tools.AppTheme.SidebarHover;
-            btnToggleSidebar.BackColor = System.Drawing.Color.FromArgb(30, 30, 31);
-            btnToggleSidebar.ForeColor = System.Drawing.Color.FromArgb(136, 136, 136);
+            btnToggleSidebar.BackColor = System.Drawing.Color.FromArgb(222, 222, 222);
+            btnToggleSidebar.ForeColor = PE_Tools.AppTheme.LabelSectionFg;
             btnToggleSidebar.Name = "btnToggleSidebar";
             btnToggleSidebar.Size = new System.Drawing.Size(200, 32);
             btnToggleSidebar.TabIndex = 99;
@@ -182,7 +183,7 @@
             //
             lblAppTitle.Dock = System.Windows.Forms.DockStyle.Top;
             lblAppTitle.BackColor = PE_Tools.AppTheme.SidebarBg;
-            lblAppTitle.ForeColor = PE_Tools.AppTheme.SidebarFgActive;
+            lblAppTitle.ForeColor = PE_Tools.AppTheme.LabelHeadingFg;
             lblAppTitle.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
             lblAppTitle.Name = "lblAppTitle";
             lblAppTitle.Size = new System.Drawing.Size(200, 52);
@@ -204,8 +205,8 @@
             btnShowSidebar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnShowSidebar.FlatAppearance.BorderSize = 0;
             btnShowSidebar.FlatAppearance.MouseOverBackColor = PE_Tools.AppTheme.SidebarHover;
-            btnShowSidebar.BackColor = PE_Tools.AppTheme.SidebarBg;
-            btnShowSidebar.ForeColor = System.Drawing.Color.FromArgb(136, 136, 136);
+            btnShowSidebar.BackColor = PE_Tools.AppTheme.ContentBg;
+            btnShowSidebar.ForeColor = PE_Tools.AppTheme.LabelSectionFg;
             btnShowSidebar.Name = "btnShowSidebar";
             btnShowSidebar.Size = new System.Drawing.Size(20, 32);
             btnShowSidebar.TabIndex = 100;
@@ -267,6 +268,7 @@
             ClientSize = new System.Drawing.Size(1582, 750);
             Controls.Add(mainSplitContainer);
             Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             MinimumSize = new System.Drawing.Size(1200, 600);
             Name = "Form1";

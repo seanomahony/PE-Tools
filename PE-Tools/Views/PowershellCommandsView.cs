@@ -125,8 +125,8 @@ namespace PE_Tools.Views
             // Unblock the script file
             RunScript($"Unblock-File -Path \"{tempScriptPath}\"");
 
-            // Optionally get folder parameter from UI, fallback to default
-            string folderParam = @"Development\onprem";
+            // Get folder from selected folder or fall back to configured development folder
+            string folderParam = SettingsManager.GetDevelopmentFolder();
             if (SelectedFolder != null)
             {
                 folderParam = SelectedFolder.FullPath ?? folderParam;
@@ -181,7 +181,7 @@ namespace PE_Tools.Views
                 ShowMessage("echo \'Please select a target projectfolder\'");
                 return;
             }
-            var path = SelectedFolder.FullPath + @"\officeevolve\OECore.sln";
+            var path = Path.Combine(SelectedFolder.FullPath, SettingsManager.GetSolutionPathOECore());
             var command = $"./builder.bat '{path}'";
             tbResults.Text = RunScript(command, true);
         }
@@ -194,7 +194,7 @@ namespace PE_Tools.Views
                 ShowMessage("echo \'Please select a target projectfolder\'");
                 return;
             }
-            var path = SelectedFolder.FullPath + @"\clickonelegal\ClickOneLegal.sln";
+            var path = Path.Combine(SelectedFolder.FullPath, SettingsManager.GetSolutionPathClickOneLegal());
             var command = $"./builder.bat '{path}'";
             tbResults.Text = RunScript(command, true);
         }
@@ -207,7 +207,7 @@ namespace PE_Tools.Views
                 ShowMessage("echo \'Please select a target projectfolder\'");
                 return;
             }
-            var path = SelectedFolder.FullPath + @"\integration\Integration.sln";
+            var path = Path.Combine(SelectedFolder.FullPath, SettingsManager.GetSolutionPathIntegration());
             var command = $"./builder.bat '{path}'";
             tbResults.Text = RunScript(command, true);
         }

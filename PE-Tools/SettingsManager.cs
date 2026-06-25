@@ -18,7 +18,7 @@ namespace PE_Tools
         /// </summary>
         public static string GetDevelopmentFolder()
         {
-            return ConfigurationManager.AppSettings["developmentFolder"] ?? @"C:\Development\onprem";
+            return ConfigurationManager.AppSettings["developmentFolder"] ?? string.Empty;
         }
 
         /// <summary>
@@ -106,6 +106,51 @@ namespace PE_Tools
 
             UpdateAppSetting("notificationDurationSeconds", durationSeconds.ToString());
             Logger.Info("Saved notification duration: {0} seconds", durationSeconds);
+        }
+
+        /// <summary>
+        /// Gets the database connection timeout in seconds from App.config.
+        /// </summary>
+        public static int GetDatabaseConnectTimeout()
+        {
+            var value = ConfigurationManager.AppSettings["databaseConnectTimeoutSeconds"];
+            if (int.TryParse(value, out int timeout) && timeout > 0)
+            {
+                return timeout;
+            }
+            return 5;
+        }
+
+        /// <summary>
+        /// Gets the OECore solution path (relative to development folder) from App.config.
+        /// </summary>
+        public static string GetSolutionPathOECore()
+        {
+            return ConfigurationManager.AppSettings["solutionPathOECore"] ?? @"officeevolve\OECore.sln";
+        }
+
+        /// <summary>
+        /// Gets the ClickOneLegal solution path (relative to development folder) from App.config.
+        /// </summary>
+        public static string GetSolutionPathClickOneLegal()
+        {
+            return ConfigurationManager.AppSettings["solutionPathClickOneLegal"] ?? @"clickonelegal\ClickOneLegal.sln";
+        }
+
+        /// <summary>
+        /// Gets the Integration solution path (relative to development folder) from App.config.
+        /// </summary>
+        public static string GetSolutionPathIntegration()
+        {
+            return ConfigurationManager.AppSettings["solutionPathIntegration"] ?? @"integration\Integration.sln";
+        }
+
+        /// <summary>
+        /// Gets the WebPortal solution path (relative to development folder) from App.config.
+        /// </summary>
+        public static string GetSolutionPathWebPortal()
+        {
+            return ConfigurationManager.AppSettings["solutionPathWebPortal"] ?? @"webportal\WebPortal.sln";
         }
 
         /// <summary>

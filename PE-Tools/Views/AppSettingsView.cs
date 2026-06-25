@@ -88,7 +88,7 @@ namespace PE_Tools.Views
             }
         }
 
-        private void btnTestConnection_Click(object sender, EventArgs e)
+        private async void btnTestConnection_Click(object sender, EventArgs e)
         {
             var connectionString = txtConnectionString.Text.Trim();
             if (string.IsNullOrEmpty(connectionString))
@@ -103,7 +103,7 @@ namespace PE_Tools.Views
             try
             {
                 using var connection = new SqlConnection(connectionString);
-                connection.Open();
+                await connection.OpenAsync();
                 NotificationManager.Show("Database connection successful!");
                 MessageBox.Show("Connection successful!", "Test Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Logger.Info("Connection test successful.");

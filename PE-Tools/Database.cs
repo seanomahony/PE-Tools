@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Threading;
@@ -20,7 +19,7 @@ namespace PE_Tools
         {
             var databases = new List<string>();
 
-            string? connectionString = ConfigurationManager.AppSettings["databaseConnectionString"];
+            string? connectionString = SettingsManager.GetDatabaseConnectionString();
             if (string.IsNullOrWhiteSpace(connectionString))
             {
                 Logger.Warn("Database connection string not found. Returning empty database list.");
@@ -36,12 +35,7 @@ namespace PE_Tools
                     return databases;
                 }
 
-                int connectTimeoutSeconds = 5;
-                string? timeoutSetting = ConfigurationManager.AppSettings["databaseConnectTimeoutSeconds"];
-                if (int.TryParse(timeoutSetting, out int parsed) && parsed > 0)
-                {
-                    connectTimeoutSeconds = parsed;
-                }
+                int connectTimeoutSeconds = SettingsManager.GetDatabaseConnectTimeout();
                 builder.ConnectTimeout = connectTimeoutSeconds;
 
                 using (SqlConnection con = new SqlConnection(builder.ConnectionString))

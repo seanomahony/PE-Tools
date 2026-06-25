@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,13 +8,12 @@ namespace PE_Tools.Models
 {
     public class DatabaseListItem
     {
-        public static int CurrentIndex = 0;
         public int ID { get; set; }
         public string Name { get; set; }
 
-        public DatabaseListItem(string name)
+        public DatabaseListItem(string name, int index)
         {
-            ID = CurrentIndex++;
+            ID = index;
             Name = name;
         }
     }

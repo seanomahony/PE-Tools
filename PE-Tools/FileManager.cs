@@ -132,22 +132,11 @@ namespace PE_Tools
             Logger.Info("Updated C1 config database to {0}", database);
         }
 
-        public bool SaveC1File()
+        public void SaveC1File()
         {
-            try
-            {
-                c1Config.Save(c1Path);
-                Logger.Info("Saved C1 config to {0}", c1Path);
-                NotificationManager.Show($"C1 config saved successfully");
-                return true;
-            }
-            catch (Exception e)
-            {
-                Logger.Error(e, "Failed to save C1 config to {0}", c1Path);
-                MessageBox.Show(e.Message, "Error");
-                NotificationManager.Show("Failed to save C1 config", 4);
-                return false;
-            }
+            c1Config.Save(c1Path);
+            Logger.Info("Saved C1 config to {0}", c1Path);
+            NotificationManager.Show("C1 config saved successfully");
         }
 
         public void UpdateDocFile(string docsDb, string c1Db)
@@ -189,22 +178,11 @@ namespace PE_Tools
             Logger.Info("Updated Doc config databases: docs={0} c1={1}", docsDb, c1Db);
         }
 
-        public bool SaveDocFile()
+        public void SaveDocFile()
         {
-            try
-            {
-                docConfig.Save(docPath);
-                Logger.Info("Saved Doc config to {0}", docPath);
-                NotificationManager.Show($"Doc config saved successfully");
-                return true;
-            }
-            catch (Exception e)
-            {
-                Logger.Error(e, "Failed to save Doc config to {0}", docPath);
-                MessageBox.Show(e.Message, "Error");
-                NotificationManager.Show("Failed to save Doc config", 4);
-                return false;
-            }
+            docConfig.Save(docPath);
+            Logger.Info("Saved Doc config to {0}", docPath);
+            NotificationManager.Show("Doc config saved successfully");
         }
 
         public void OpenC1File()

@@ -4,13 +4,13 @@ namespace PE_Tools
 {
     internal static class AppTheme
     {
-        // Sidebar (dark)
-        internal static readonly Color SidebarBg       = Color.FromArgb(37, 37, 38);
-        internal static readonly Color SidebarHover    = Color.FromArgb(45, 45, 48);
-        internal static readonly Color SidebarActive   = Color.FromArgb(55, 55, 61);
+        // Sidebar (light — matches content area)
+        internal static readonly Color SidebarBg       = Color.FromArgb(235, 235, 235);
+        internal static readonly Color SidebarHover    = Color.FromArgb(220, 220, 220);
+        internal static readonly Color SidebarActive   = Color.FromArgb(207, 207, 218);
         internal static readonly Color SidebarAccent   = Color.FromArgb(0, 122, 204);
-        internal static readonly Color SidebarFgNormal = Color.FromArgb(204, 204, 204);
-        internal static readonly Color SidebarFgActive = Color.White;
+        internal static readonly Color SidebarFgNormal = Color.FromArgb(68, 68, 68);
+        internal static readonly Color SidebarFgActive = Color.FromArgb(30, 30, 30);
 
         // Content area (light)
         internal static readonly Color ContentBg      = Color.FromArgb(243, 243, 243);
@@ -36,5 +36,9 @@ namespace PE_Tools
         internal static readonly Color TerminalBg = Color.FromArgb(30, 30, 30);
         internal static readonly Color TerminalFg = Color.FromArgb(204, 204, 204);
         internal static readonly Font  TerminalFont = new Font("Consolas", 10F);
+
+        // Surfaces
+        internal static readonly Color CardBg       = Color.White;
+        internal static readonly Color DividerColor = Color.FromArgb(229, 229, 229);
     }
 }

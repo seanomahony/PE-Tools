@@ -45,25 +45,27 @@ namespace PE_Tools.Views
             panelNotifications.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numNotificationDuration).BeginInit();
             SuspendLayout();
-            // 
+            //
             // lblTitle
-            // 
-            lblTitle.AutoSize = true;
+            //
+            lblTitle.Dock = System.Windows.Forms.DockStyle.Top;
+            lblTitle.Height = 48;
             lblTitle.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
             lblTitle.ForeColor = PE_Tools.AppTheme.LabelHeadingFg;
-            lblTitle.Location = new System.Drawing.Point(16, 11);
+            lblTitle.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
+            lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new System.Drawing.Size(191, 25);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "Application Settings";
             // 
             // panelConnection
             // 
             panelConnection.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            panelConnection.BackColor = PE_Tools.AppTheme.CardBg;
             panelConnection.Controls.Add(btnTestConnection);
             panelConnection.Controls.Add(txtConnectionString);
             panelConnection.Controls.Add(lblConnectionSection);
-            panelConnection.Location = new System.Drawing.Point(16, 39);
+            panelConnection.Location = new System.Drawing.Point(16, 60);
             panelConnection.Name = "panelConnection";
             panelConnection.Size = new System.Drawing.Size(768, 62);
             panelConnection.TabIndex = 2;
@@ -99,7 +101,8 @@ namespace PE_Tools.Views
             // lblConnectionSection
             // 
             lblConnectionSection.AutoSize = true;
-            lblConnectionSection.ForeColor = PE_Tools.AppTheme.LabelSectionFg;
+            lblConnectionSection.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            lblConnectionSection.ForeColor = PE_Tools.AppTheme.LabelHeadingFg;
             lblConnectionSection.Location = new System.Drawing.Point(3, 4);
             lblConnectionSection.Name = "lblConnectionSection";
             lblConnectionSection.Size = new System.Drawing.Size(154, 15);
@@ -109,6 +112,7 @@ namespace PE_Tools.Views
             // panelConfigPaths
             // 
             panelConfigPaths.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            panelConfigPaths.BackColor = PE_Tools.AppTheme.CardBg;
             panelConfigPaths.Controls.Add(lblConfigPathsSection);
             panelConfigPaths.Controls.Add(lblC1ConfigPath);
             panelConfigPaths.Controls.Add(txtC1ConfigPath);
@@ -119,7 +123,7 @@ namespace PE_Tools.Views
             panelConfigPaths.Controls.Add(lblDevelopmentFolder);
             panelConfigPaths.Controls.Add(txtDevelopmentFolder);
             panelConfigPaths.Controls.Add(btnBrowseDevFolder);
-            panelConfigPaths.Location = new System.Drawing.Point(16, 107);
+            panelConfigPaths.Location = new System.Drawing.Point(16, 128);
             panelConfigPaths.Name = "panelConfigPaths";
             panelConfigPaths.Size = new System.Drawing.Size(768, 166);
             panelConfigPaths.TabIndex = 3;
@@ -201,7 +205,8 @@ namespace PE_Tools.Views
             // lblConfigPathsSection
             // 
             lblConfigPathsSection.AutoSize = true;
-            lblConfigPathsSection.ForeColor = PE_Tools.AppTheme.LabelSectionFg;
+            lblConfigPathsSection.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            lblConfigPathsSection.ForeColor = PE_Tools.AppTheme.LabelHeadingFg;
             lblConfigPathsSection.Location = new System.Drawing.Point(3, 4);
             lblConfigPathsSection.Name = "lblConfigPathsSection";
             lblConfigPathsSection.Size = new System.Drawing.Size(134, 15);
@@ -248,12 +253,13 @@ namespace PE_Tools.Views
             // panelNotifications
             // 
             panelNotifications.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            panelNotifications.BackColor = PE_Tools.AppTheme.CardBg;
             panelNotifications.Controls.Add(btnTestNotification);
             panelNotifications.Controls.Add(lblNotificationSeconds);
             panelNotifications.Controls.Add(numNotificationDuration);
             panelNotifications.Controls.Add(lblNotificationDuration);
             panelNotifications.Controls.Add(lblNotificationsSection);
-            panelNotifications.Location = new System.Drawing.Point(16, 279);
+            panelNotifications.Location = new System.Drawing.Point(16, 300);
             panelNotifications.Name = "panelNotifications";
             panelNotifications.Size = new System.Drawing.Size(768, 62);
             panelNotifications.TabIndex = 4;
@@ -309,7 +315,8 @@ namespace PE_Tools.Views
             // lblNotificationsSection
             // 
             lblNotificationsSection.AutoSize = true;
-            lblNotificationsSection.ForeColor = PE_Tools.AppTheme.LabelSectionFg;
+            lblNotificationsSection.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            lblNotificationsSection.ForeColor = PE_Tools.AppTheme.LabelHeadingFg;
             lblNotificationsSection.Location = new System.Drawing.Point(3, 0);
             lblNotificationsSection.Name = "lblNotificationsSection";
             lblNotificationsSection.Size = new System.Drawing.Size(75, 15);
@@ -326,7 +333,7 @@ namespace PE_Tools.Views
             btnSaveAll.ForeColor = PE_Tools.AppTheme.BtnPrimaryFg;
             btnSaveAll.UseVisualStyleBackColor = false;
             btnSaveAll.Cursor = System.Windows.Forms.Cursors.Hand;
-            btnSaveAll.Location = new System.Drawing.Point(644, 480);
+            btnSaveAll.Location = new System.Drawing.Point(644, 501);
             btnSaveAll.Name = "btnSaveAll";
             btnSaveAll.Size = new System.Drawing.Size(140, 31);
             btnSaveAll.TabIndex = 5;

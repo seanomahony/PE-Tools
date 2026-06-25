@@ -28,6 +28,7 @@ namespace PE_Tools.Views
         /// </summary>
         private void InitializeComponent()
         {
+            this.lblPageTitle = new System.Windows.Forms.Label();
             this.grpConfiguration = new System.Windows.Forms.GroupBox();
             this.lblNamespace = new System.Windows.Forms.Label();
             this.cbNamespace = new System.Windows.Forms.ComboBox();
@@ -49,10 +50,23 @@ namespace PE_Tools.Views
             this.grpResult.SuspendLayout();
             this.SuspendLayout();
 
-            // 
+            //
+            // lblPageTitle
+            //
+            this.lblPageTitle.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblPageTitle.Height = 48;
+            this.lblPageTitle.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
+            this.lblPageTitle.ForeColor = PE_Tools.AppTheme.LabelHeadingFg;
+            this.lblPageTitle.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            this.lblPageTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblPageTitle.Name = "lblPageTitle";
+            this.lblPageTitle.TabIndex = 10;
+            this.lblPageTitle.Text = "kubectl Generator";
+            //
             // grpConfiguration
-            // 
+            //
             this.grpConfiguration.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpConfiguration.Controls.Add(this.btnGenerate);
             this.grpConfiguration.Controls.Add(this.lblNamespace);
             this.grpConfiguration.Controls.Add(this.cbNamespace);
             this.grpConfiguration.Controls.Add(this.lblPodName);
@@ -65,12 +79,14 @@ namespace PE_Tools.Views
             this.grpConfiguration.Controls.Add(this.cbSourcePath);
             this.grpConfiguration.Controls.Add(this.lblDestPath);
             this.grpConfiguration.Controls.Add(this.cbDestPath);
-            this.grpConfiguration.Location = new System.Drawing.Point(12, 12);
+            this.grpConfiguration.BackColor = PE_Tools.AppTheme.CardBg;
+            this.grpConfiguration.Location = new System.Drawing.Point(12, 60);
             this.grpConfiguration.Name = "grpConfiguration";
-            this.grpConfiguration.Size = new System.Drawing.Size(960, 260); // Increased height for button or spacing
+            this.grpConfiguration.Size = new System.Drawing.Size(960, 288);
             this.grpConfiguration.TabIndex = 0;
             this.grpConfiguration.TabStop = false;
             this.grpConfiguration.Text = "Configuration";
+            this.grpConfiguration.ForeColor = PE_Tools.AppTheme.LabelSectionFg;
 
             int y = 30;
             int labelX = 20;
@@ -227,7 +243,7 @@ namespace PE_Tools.Views
             this.btnGenerate.ForeColor = PE_Tools.AppTheme.BtnPrimaryFg;
             this.btnGenerate.UseVisualStyleBackColor = false;
             this.btnGenerate.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnGenerate.Location = new System.Drawing.Point(12, 280);
+            this.btnGenerate.Location = new System.Drawing.Point(844, 250);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(100, 30);
             this.btnGenerate.TabIndex = 6;
@@ -239,23 +255,26 @@ namespace PE_Tools.Views
             // 
             this.grpResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.grpResult.Controls.Add(this.txtResult);
-            this.grpResult.Location = new System.Drawing.Point(12, 320);
+            this.grpResult.BackColor = PE_Tools.AppTheme.CardBg;
+            this.grpResult.Location = new System.Drawing.Point(12, 356);
             this.grpResult.Name = "grpResult";
-            this.grpResult.Size = new System.Drawing.Size(960, 150);
+            this.grpResult.Size = new System.Drawing.Size(960, 140);
             this.grpResult.TabIndex = 1;
             this.grpResult.TabStop = false;
             this.grpResult.Text = "Result";
+            this.grpResult.ForeColor = PE_Tools.AppTheme.LabelSectionFg;
 
             //
             // txtResult
             //
             this.txtResult.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtResult.BackColor = PE_Tools.AppTheme.TerminalBg;
-            this.txtResult.ForeColor = PE_Tools.AppTheme.TerminalFg;
+            this.txtResult.BackColor = PE_Tools.AppTheme.InputBg;
+            this.txtResult.ForeColor = PE_Tools.AppTheme.InputFg;
             this.txtResult.Font = PE_Tools.AppTheme.TerminalFont;
             this.txtResult.Location = new System.Drawing.Point(3, 23);
             this.txtResult.Multiline = true;
             this.txtResult.Name = "txtResult";
+            this.txtResult.PlaceholderText = "Click Generate to build the kubectl command...";
             this.txtResult.ReadOnly = true;
             this.txtResult.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtResult.Size = new System.Drawing.Size(954, 124);
@@ -268,9 +287,9 @@ namespace PE_Tools.Views
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.grpConfiguration);
             this.Controls.Add(this.grpResult);
-            this.Controls.Add(this.btnGenerate);
+            this.Controls.Add(this.lblPageTitle);
             this.Name = "KubectlCommandsView";
-            this.Size = new System.Drawing.Size(986, 397);
+            this.Size = new System.Drawing.Size(986, 508);
             
             this.grpConfiguration.ResumeLayout(false);
             this.grpConfiguration.PerformLayout();
@@ -281,6 +300,7 @@ namespace PE_Tools.Views
 
         #endregion
 
+        private System.Windows.Forms.Label lblPageTitle;
         private System.Windows.Forms.GroupBox grpConfiguration;
         private System.Windows.Forms.Label lblNamespace;
         private System.Windows.Forms.ComboBox cbNamespace;

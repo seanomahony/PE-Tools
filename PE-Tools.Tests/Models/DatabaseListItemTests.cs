@@ -9,10 +9,9 @@ namespace PE_Tools.Tests.Models
         [Test]
         public void Constructor_SetsNameAndId()
         {
-            DatabaseListItem.CurrentIndex = 0;
-            var item = new DatabaseListItem("DbName");
-            Assert.Equals("DbName", item.Name);
-            Assert.Equals(0, item.ID);
+            var item = new DatabaseListItem("DbName", 1);
+            Assert.That(item.Name, Is.EqualTo("DbName"));
+            Assert.That(item.ID, Is.EqualTo(1));
         }
     }
 }

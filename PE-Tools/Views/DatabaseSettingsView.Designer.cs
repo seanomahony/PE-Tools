@@ -76,13 +76,15 @@ namespace PE_Tools.Views
             grpDatabaseSelection.Controls.Add(DocLabelControl);
             grpDatabaseSelection.Controls.Add(cbDocDBs);
             grpDatabaseSelection.Controls.Add(btnViewDocConfig);
-            grpDatabaseSelection.Location = new System.Drawing.Point(16, 44);
+            grpDatabaseSelection.BackColor = PE_Tools.AppTheme.CardBg;
+            grpDatabaseSelection.Location = new System.Drawing.Point(16, 56);
             grpDatabaseSelection.Name = "grpDatabaseSelection";
             grpDatabaseSelection.Padding = new System.Windows.Forms.Padding(12);
             grpDatabaseSelection.Size = new System.Drawing.Size(760, 95);
             grpDatabaseSelection.TabIndex = 1;
             grpDatabaseSelection.TabStop = false;
             grpDatabaseSelection.Text = "Database Selection";
+            grpDatabaseSelection.ForeColor = PE_Tools.AppTheme.LabelSectionFg;
             //
             // C1LabelControl
             //
@@ -163,13 +165,15 @@ namespace PE_Tools.Views
             grpActions.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             grpActions.Controls.Add(applyButton);
             grpActions.Controls.Add(saveButton);
-            grpActions.Location = new System.Drawing.Point(790, 44);
+            grpActions.BackColor = PE_Tools.AppTheme.CardBg;
+            grpActions.Location = new System.Drawing.Point(790, 56);
             grpActions.Name = "grpActions";
             grpActions.Padding = new System.Windows.Forms.Padding(12);
             grpActions.Size = new System.Drawing.Size(340, 95);
             grpActions.TabIndex = 2;
             grpActions.TabStop = false;
             grpActions.Text = "Actions";
+            grpActions.ForeColor = PE_Tools.AppTheme.LabelSectionFg;
             // 
             // applyButton
             // 
@@ -211,13 +215,15 @@ namespace PE_Tools.Views
             // 
             grpOutput.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             grpOutput.Controls.Add(outputRichTextBox);
-            grpOutput.Location = new System.Drawing.Point(16, 148);
+            grpOutput.BackColor = PE_Tools.AppTheme.CardBg;
+            grpOutput.Location = new System.Drawing.Point(16, 160);
             grpOutput.Name = "grpOutput";
             grpOutput.Padding = new System.Windows.Forms.Padding(12);
-            grpOutput.Size = new System.Drawing.Size(1114, 232);
+            grpOutput.Size = new System.Drawing.Size(1114, 220);
             grpOutput.TabIndex = 3;
             grpOutput.TabStop = false;
             grpOutput.Text = "Configuration Output";
+            grpOutput.ForeColor = PE_Tools.AppTheme.LabelSectionFg;
             // 
             // outputRichTextBox
             // 
@@ -233,15 +239,16 @@ namespace PE_Tools.Views
             outputRichTextBox.TabIndex = 0;
             outputRichTextBox.Text = "";
             outputRichTextBox.WordWrap = false;
-            // 
+            //
             // titleLabelControl
-            // 
-            titleLabelControl.AutoSize = true;
+            //
+            titleLabelControl.Dock = System.Windows.Forms.DockStyle.Top;
+            titleLabelControl.Height = 48;
             titleLabelControl.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
             titleLabelControl.ForeColor = PE_Tools.AppTheme.LabelHeadingFg;
-            titleLabelControl.Location = new System.Drawing.Point(16, 12);
+            titleLabelControl.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            titleLabelControl.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             titleLabelControl.Name = "titleLabelControl";
-            titleLabelControl.Size = new System.Drawing.Size(161, 15);
             titleLabelControl.TabIndex = 0;
             titleLabelControl.Text = "Set Practice Evolve Databases";
             // 
@@ -284,8 +291,8 @@ namespace PE_Tools.Views
             Controls.Add(grpOutput);
             Controls.Add(grpActions);
             Controls.Add(grpDatabaseSelection);
-            Controls.Add(titleLabelControl);
             Controls.Add(lblConfigError);
+            Controls.Add(titleLabelControl);
             Name = "DatabaseSettingsView";
             Padding = new System.Windows.Forms.Padding(8);
             Size = new System.Drawing.Size(1152, 393);

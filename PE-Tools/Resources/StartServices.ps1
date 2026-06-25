@@ -1,4 +1,4 @@
-param([string]$folder = 'C:\Development\onprem')
+param([string]$folder)
 
 Set-Location "$folder\integration\bin\Debug\Server\bin"
 
