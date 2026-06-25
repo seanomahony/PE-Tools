@@ -1,15 +1,25 @@
 ﻿using PE_Tools.Notifications;
 using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace PE_Tools
 {
     public partial class Form1 : Form
     {
+        private static readonly Color SidebarBg      = Color.FromArgb(37, 37, 38);
+        private static readonly Color SidebarHover   = Color.FromArgb(45, 45, 48);
+        private static readonly Color SidebarActive  = Color.FromArgb(55, 55, 61);
+        private static readonly Color SidebarAccent  = Color.FromArgb(0, 122, 204);
+        private static readonly Color SidebarFgNormal = Color.FromArgb(204, 204, 204);
+        private static readonly Color SidebarFgActive = Color.White;
+
         private bool sidebarCollapsing = false;
         private bool sidebarExpanding = false;
         private int sidebarTargetWidth = 200;
-        private int sidebarCollapsedWidth = 28;
+        private int sidebarCollapsedWidth = 20;
+        private List<(Button Button, Control View)> _navEntries = new List<(Button, Control)>();
 
         public Form1()
         {
@@ -18,38 +28,77 @@ namespace PE_Tools
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Initialize the notification manager
             NotificationManager.Initialize(this);
-            // initial highlight
-            HighlightButton(btnDatabases);
+
+            // load images from resources at runtime (designer will not execute this)
+            try
+            {
+                var rm = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+                var img0 = ((System.Drawing.Image)(rm.GetObject("icon_databases")));
+                var img1 = ((System.Drawing.Image)(rm.GetObject("icon_powershell")));
+                var img2 = ((System.Drawing.Image)(rm.GetObject("icon_kubectl")));
+                var img3 = ((System.Drawing.Image)(rm.GetObject("icon_settings")));
+                if (img0 != null)
+                {
+                    imageList1.Images.Add(img0);
+                }
+                if (img1 != null)
+                {
+                    imageList1.Images.Add(img1);
+                }
+                if (img2 != null)
+                {
+                    imageList1.Images.Add(img2);
+                }
+                if (img3 != null)
+                {
+                    imageList1.Images.Add(img3);
+                }
+            }
+            catch
+            {
+                // ignore if resources missing
+            }
+
+            _navEntries = new List<(Button, Control)>
+            {
+                (btnDatabases,  databaseSettingsView1),
+                (btnPowerShell, powershellCommandsView1),
+                (btnKubectl,    kubectlCommandsView1),
+                (btnSettings,   appSettingsView1),
+            };
+
+            foreach (var entry in _navEntries)
+            {
+                entry.Button.Paint += NavButton_Paint;
+            }
+
+            if (IsFirstRun())
+            {
+                ShowView(appSettingsView1);
+                HighlightButton(btnSettings);
+            }
+            else
+            {
+                ShowView(databaseSettingsView1);
+                HighlightButton(btnDatabases);
+            }
+        }
+
+        private static bool IsFirstRun()
+        {
+            return string.IsNullOrWhiteSpace(SettingsManager.GetDevelopmentFolder())
+                || string.IsNullOrWhiteSpace(SettingsManager.GetDatabaseConnectionString());
         }
 
         private void ShowView(Control view)
         {
-            // hide all views first
-            if (databaseSettingsView1 != null)
+            foreach (var entry in _navEntries)
             {
-                databaseSettingsView1.Visible = false;
-            }
-
-            if (powershellCommandsView1 != null)
-            {
-                powershellCommandsView1.Visible = false;
-            }
-
-            if (kubectlCommandsView1 != null)
-            {
-                kubectlCommandsView1.Visible = false;
-            }
-
-            if (appSettingsView1 != null)
-            {
-                appSettingsView1.Visible = false;
-            }
-
-            if (view != null)
-            {
-                view.Visible = true;
+                if (entry.View != null)
+                {
+                    entry.View.Visible = (entry.View == view);
+                }
             }
         }
 
@@ -79,32 +128,33 @@ namespace PE_Tools
 
         private void HighlightButton(Button selected)
         {
-            // simple highlight: reset all and set BackColor for selected
-            if (btnDatabases != null)
+            foreach (var entry in _navEntries)
             {
-                btnDatabases.BackColor = System.Drawing.SystemColors.Control;
-            }
+                if (entry.Button == null)
+                {
+                    continue;
+                }
 
-            if (btnPowerShell != null)
-            {
-                btnPowerShell.BackColor = System.Drawing.SystemColors.Control;
+                if (entry.Button == selected)
+                {
+                    entry.Button.BackColor = SidebarActive;
+                    entry.Button.ForeColor = SidebarFgActive;
+                }
+                else
+                {
+                    entry.Button.BackColor = SidebarBg;
+                    entry.Button.ForeColor = SidebarFgNormal;
+                }
+                entry.Button.Invalidate();
             }
+        }
 
-            if (btnKubectl != null)
+        private void NavButton_Paint(object? sender, PaintEventArgs e)
+        {
+            if (sender is Button btn && btn.BackColor == SidebarActive)
             {
-                btnKubectl.BackColor = System.Drawing.SystemColors.Control;
-            }
-
-            if (btnSettings != null)
-            {
-                btnSettings.BackColor = System.Drawing.SystemColors.Control;
-            }
-
-            if (selected != null)
-            {
-                selected.BackColor = System.Drawing.SystemColors.ActiveCaption;
-                selected.FlatAppearance.BorderSize = 1;
-                selected.FlatAppearance.BorderColor = System.Drawing.Color.DarkBlue;
+                using var brush = new SolidBrush(SidebarAccent);
+                e.Graphics.FillRectangle(brush, 0, 0, 3, btn.Height);
             }
         }
 
@@ -129,7 +179,7 @@ namespace PE_Tools
                     }
                     if (btnToggleSidebar != null)
                     {
-                        btnToggleSidebar.Text = "<<";
+                        btnToggleSidebar.Text = "‹ collapse";
                     }
                 }
                 else
@@ -143,7 +193,7 @@ namespace PE_Tools
                     }
                     if (btnToggleSidebar != null)
                     {
-                        btnToggleSidebar.Text = ">>";
+                        btnToggleSidebar.Text = "› expand";
                     }
                 }
             }
@@ -200,47 +250,39 @@ namespace PE_Tools
         private void btnSidebarButton_MouseEnter(object? sender, EventArgs e)
         {
             var b = sender as Button;
-            if (b != null)
+            if (b != null && b.BackColor != SidebarActive)
             {
-                b.BackColor = System.Drawing.SystemColors.ControlLight;
+                b.BackColor = SidebarHover;
+                b.ForeColor = SidebarFgActive;
             }
         }
 
         private void btnSidebarButton_MouseLeave(object? sender, EventArgs e)
         {
             var b = sender as Button;
-            if (b != null)
+            if (b != null && b.BackColor != SidebarActive)
             {
-                // if this is the selected button, keep ActiveCaption
-                if (b.BackColor != System.Drawing.SystemColors.ActiveCaption)
-                {
-                    b.BackColor = System.Drawing.SystemColors.Control;
-                }
+                b.BackColor = SidebarBg;
+                b.ForeColor = SidebarFgNormal;
             }
         }
 
         private void btnSidebarButton_MouseDown(object? sender, MouseEventArgs e)
         {
-            var button = sender as Button;
-            if (button != null)
+            var b = sender as Button;
+            if (b != null)
             {
-                button.FlatAppearance.BorderSize = 1;
-                button.FlatAppearance.BorderColor = System.Drawing.Color.DarkBlue;
-                button.BackColor = System.Drawing.SystemColors.Highlight;
+                b.BackColor = SidebarAccent;
+                b.ForeColor = SidebarFgActive;
             }
         }
 
         private void btnSidebarButton_MouseUp(object? sender, MouseEventArgs e)
         {
             var b = sender as Button;
-            if (b != null)
+            if (b != null && b.BackColor == SidebarAccent)
             {
-                // restore highlight for selected button
-                if (b.BackColor == System.Drawing.SystemColors.Highlight)
-                {
-                    b.BackColor = System.Drawing.SystemColors.ActiveCaption;
-                }
-                b.FlatAppearance.BorderSize = 0;
+                b.BackColor = SidebarHover;
             }
         }
 
@@ -263,7 +305,7 @@ namespace PE_Tools
                 }
                 if (btnToggleSidebar != null)
                 {
-                    btnToggleSidebar.Text = "<<";
+                    btnToggleSidebar.Text = "‹ collapse";
                 }
             }
         }

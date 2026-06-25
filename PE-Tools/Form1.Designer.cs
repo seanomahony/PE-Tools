@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             mainSplitContainer = new System.Windows.Forms.SplitContainer();
+            lblAppTitle = new System.Windows.Forms.Label();
             btnToggleSidebar = new System.Windows.Forms.Button();
             btnDatabases = new System.Windows.Forms.Button();
             btnPowerShell = new System.Windows.Forms.Button();
@@ -48,7 +49,7 @@
             mainSplitContainer.Location = new System.Drawing.Point(0, 0);
             mainSplitContainer.Name = "mainSplitContainer";
             // Panel1 = sidebar, Panel2 = content
-            mainSplitContainer.Panel1.Padding = new System.Windows.Forms.Padding(8);
+            mainSplitContainer.Panel1.BackColor = System.Drawing.Color.FromArgb(37, 37, 38);
             mainSplitContainer.Panel2.Padding = new System.Windows.Forms.Padding(8);
             mainSplitContainer.Size = new System.Drawing.Size(1582, 750);
             mainSplitContainer.SplitterDistance = 200;
@@ -65,16 +66,20 @@
             btnDatabases.Dock = System.Windows.Forms.DockStyle.Top;
             btnDatabases.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnDatabases.FlatAppearance.BorderSize = 0;
+            btnDatabases.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Empty;
+            btnDatabases.BackColor = System.Drawing.Color.FromArgb(37, 37, 38);
+            btnDatabases.ForeColor = System.Drawing.Color.FromArgb(204, 204, 204);
             btnDatabases.ImageIndex = 0;
             btnDatabases.ImageList = imageList1;
             btnDatabases.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             btnDatabases.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            btnDatabases.Location = new System.Drawing.Point(8, 40);
+            btnDatabases.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            btnDatabases.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
             btnDatabases.Name = "btnDatabases";
-            btnDatabases.Size = new System.Drawing.Size(184, 48);
+            btnDatabases.Size = new System.Drawing.Size(200, 48);
             btnDatabases.TabIndex = 0;
             btnDatabases.Text = "&Databases";
-            btnDatabases.UseVisualStyleBackColor = true;
+            btnDatabases.UseVisualStyleBackColor = false;
             btnDatabases.Click += btnDatabases_Click;
             btnDatabases.MouseEnter += btnSidebarButton_MouseEnter;
             btnDatabases.MouseLeave += btnSidebarButton_MouseLeave;
@@ -86,16 +91,20 @@
             btnPowerShell.Dock = System.Windows.Forms.DockStyle.Top;
             btnPowerShell.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnPowerShell.FlatAppearance.BorderSize = 0;
+            btnPowerShell.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Empty;
+            btnPowerShell.BackColor = System.Drawing.Color.FromArgb(37, 37, 38);
+            btnPowerShell.ForeColor = System.Drawing.Color.FromArgb(204, 204, 204);
             btnPowerShell.ImageIndex = 1;
             btnPowerShell.ImageList = imageList1;
             btnPowerShell.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             btnPowerShell.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            btnPowerShell.Location = new System.Drawing.Point(8, 88);
+            btnPowerShell.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            btnPowerShell.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
             btnPowerShell.Name = "btnPowerShell";
-            btnPowerShell.Size = new System.Drawing.Size(184, 48);
+            btnPowerShell.Size = new System.Drawing.Size(200, 48);
             btnPowerShell.TabIndex = 1;
             btnPowerShell.Text = "&PowerShell";
-            btnPowerShell.UseVisualStyleBackColor = true;
+            btnPowerShell.UseVisualStyleBackColor = false;
             btnPowerShell.Click += btnPowerShell_Click;
             btnPowerShell.MouseEnter += btnSidebarButton_MouseEnter;
             btnPowerShell.MouseLeave += btnSidebarButton_MouseLeave;
@@ -107,16 +116,20 @@
             btnKubectl.Dock = System.Windows.Forms.DockStyle.Top;
             btnKubectl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnKubectl.FlatAppearance.BorderSize = 0;
+            btnKubectl.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Empty;
+            btnKubectl.BackColor = System.Drawing.Color.FromArgb(37, 37, 38);
+            btnKubectl.ForeColor = System.Drawing.Color.FromArgb(204, 204, 204);
             btnKubectl.ImageIndex = 2;
             btnKubectl.ImageList = imageList1;
             btnKubectl.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             btnKubectl.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            btnKubectl.Location = new System.Drawing.Point(8, 136);
+            btnKubectl.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            btnKubectl.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
             btnKubectl.Name = "btnKubectl";
-            btnKubectl.Size = new System.Drawing.Size(184, 48);
+            btnKubectl.Size = new System.Drawing.Size(200, 48);
             btnKubectl.TabIndex = 2;
             btnKubectl.Text = "&Kubectl";
-            btnKubectl.UseVisualStyleBackColor = true;
+            btnKubectl.UseVisualStyleBackColor = false;
             btnKubectl.Click += btnKubectl_Click;
             btnKubectl.MouseEnter += btnSidebarButton_MouseEnter;
             btnKubectl.MouseLeave += btnSidebarButton_MouseLeave;
@@ -128,16 +141,20 @@
             btnSettings.Dock = System.Windows.Forms.DockStyle.Top;
             btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnSettings.FlatAppearance.BorderSize = 0;
+            btnSettings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Empty;
+            btnSettings.BackColor = System.Drawing.Color.FromArgb(37, 37, 38);
+            btnSettings.ForeColor = System.Drawing.Color.FromArgb(204, 204, 204);
             btnSettings.ImageIndex = 3;
             btnSettings.ImageList = imageList1;
             btnSettings.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             btnSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            btnSettings.Location = new System.Drawing.Point(8, 184);
+            btnSettings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            btnSettings.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
             btnSettings.Name = "btnSettings";
-            btnSettings.Size = new System.Drawing.Size(184, 48);
+            btnSettings.Size = new System.Drawing.Size(200, 48);
             btnSettings.TabIndex = 3;
             btnSettings.Text = "&Settings";
-            btnSettings.UseVisualStyleBackColor = true;
+            btnSettings.UseVisualStyleBackColor = false;
             btnSettings.Click += btnSettings_Click;
             btnSettings.MouseEnter += btnSidebarButton_MouseEnter;
             btnSettings.MouseLeave += btnSidebarButton_MouseLeave;
@@ -145,66 +162,53 @@
             btnSettings.MouseUp += btnSidebarButton_MouseUp;
 
             // btnToggleSidebar
-            // 
-            btnToggleSidebar.Dock = System.Windows.Forms.DockStyle.Top;
-            btnToggleSidebar.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            btnToggleSidebar.Location = new System.Drawing.Point(8, 8);
+            //
+            btnToggleSidebar.Dock = System.Windows.Forms.DockStyle.Bottom;
+            btnToggleSidebar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnToggleSidebar.FlatAppearance.BorderSize = 0;
+            btnToggleSidebar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(45, 45, 48);
+            btnToggleSidebar.BackColor = System.Drawing.Color.FromArgb(30, 30, 31);
+            btnToggleSidebar.ForeColor = System.Drawing.Color.FromArgb(136, 136, 136);
             btnToggleSidebar.Name = "btnToggleSidebar";
-            btnToggleSidebar.Size = new System.Drawing.Size(184, 32);
+            btnToggleSidebar.Size = new System.Drawing.Size(200, 32);
             btnToggleSidebar.TabIndex = 99;
-            btnToggleSidebar.Text = "<<";
-            btnToggleSidebar.UseVisualStyleBackColor = true;
+            btnToggleSidebar.Text = "‹ collapse";
+            btnToggleSidebar.UseVisualStyleBackColor = false;
             btnToggleSidebar.Click += btnToggleSidebar_Click;
-            btnToggleSidebar.MouseEnter += btnSidebarButton_MouseEnter;
-            btnToggleSidebar.MouseLeave += btnSidebarButton_MouseLeave;
 
+            // lblAppTitle
+            //
+            lblAppTitle.Dock = System.Windows.Forms.DockStyle.Top;
+            lblAppTitle.BackColor = System.Drawing.Color.FromArgb(37, 37, 38);
+            lblAppTitle.ForeColor = System.Drawing.Color.White;
+            lblAppTitle.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
+            lblAppTitle.Name = "lblAppTitle";
+            lblAppTitle.Size = new System.Drawing.Size(200, 52);
+            lblAppTitle.TabIndex = 98;
+            lblAppTitle.Text = "PE Tools";
+            lblAppTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // imageList1
-            // 
+            //
             imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
-            imageList1.ImageSize = new System.Drawing.Size(16, 16);
+            imageList1.ImageSize = new System.Drawing.Size(20, 20);
             imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            // load custom images from resources (replace these names with actual resources)
-            try
-            {
-                var rm = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-                var img0 = ((System.Drawing.Image)(rm.GetObject("icon_databases")));
-                var img1 = ((System.Drawing.Image)(rm.GetObject("icon_powershell")));
-                var img2 = ((System.Drawing.Image)(rm.GetObject("icon_kubectl")));
-                var img3 = ((System.Drawing.Image)(rm.GetObject("icon_settings")));
-                if (img0 != null)
-                {
-                    imageList1.Images.Add(img0);
-                }
-                if (img1 != null)
-                {
-                    imageList1.Images.Add(img1);
-                }
-                if (img2 != null)
-                {
-                    imageList1.Images.Add(img2);
-                }
-                if (img3 != null)
-                {
-                    imageList1.Images.Add(img3);
-                }
-            }
-            catch
-            {
-                // ignore and leave ImageList empty if resources missing
-            }
+            // images are loaded at runtime in Form1_Load; leave empty for designer
             // 
             // (Panel2 of mainSplitContainer will hold content controls)
             // 
             // btnShowSidebar
             // 
             btnShowSidebar.Dock = System.Windows.Forms.DockStyle.Left;
-            btnShowSidebar.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            btnShowSidebar.Location = new System.Drawing.Point(8, 8);
+            btnShowSidebar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnShowSidebar.FlatAppearance.BorderSize = 0;
+            btnShowSidebar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(45, 45, 48);
+            btnShowSidebar.BackColor = System.Drawing.Color.FromArgb(37, 37, 38);
+            btnShowSidebar.ForeColor = System.Drawing.Color.FromArgb(136, 136, 136);
             btnShowSidebar.Name = "btnShowSidebar";
-            btnShowSidebar.Size = new System.Drawing.Size(28, 32);
+            btnShowSidebar.Size = new System.Drawing.Size(20, 32);
             btnShowSidebar.TabIndex = 100;
-            btnShowSidebar.Text = ">>";
-            btnShowSidebar.UseVisualStyleBackColor = true;
+            btnShowSidebar.Text = "›";
+            btnShowSidebar.UseVisualStyleBackColor = false;
             btnShowSidebar.Visible = false;
             btnShowSidebar.Click += btnShowSidebar_Click;
 
@@ -269,11 +273,14 @@
             Load += Form1_Load;
 
             // Compose hierarchy
+            // DockStyle.Bottom is independent of the DockStyle.Top stack; add it first
+            mainSplitContainer.Panel1.Controls.Add(btnToggleSidebar);
+            // DockStyle.Top stack: last-added = topmost; btnSettings is lowest, lblAppTitle is at top
             mainSplitContainer.Panel1.Controls.Add(btnSettings);
             mainSplitContainer.Panel1.Controls.Add(btnKubectl);
             mainSplitContainer.Panel1.Controls.Add(btnPowerShell);
             mainSplitContainer.Panel1.Controls.Add(btnDatabases);
-            mainSplitContainer.Panel1.Controls.Add(btnToggleSidebar);
+            mainSplitContainer.Panel1.Controls.Add(lblAppTitle);
 
             mainSplitContainer.Panel2.Controls.Add(appSettingsView1);
             mainSplitContainer.Panel2.Controls.Add(kubectlCommandsView1);
@@ -292,6 +299,7 @@
 
         #endregion
         private System.Windows.Forms.SplitContainer mainSplitContainer;
+        private System.Windows.Forms.Label lblAppTitle;
         private System.Windows.Forms.Button btnToggleSidebar;
         private System.Windows.Forms.Button btnDatabases;
         private System.Windows.Forms.Button btnPowerShell;
