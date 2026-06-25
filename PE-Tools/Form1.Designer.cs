@@ -48,8 +48,10 @@
             mainSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             mainSplitContainer.Location = new System.Drawing.Point(0, 0);
             mainSplitContainer.Name = "mainSplitContainer";
-            // Panel1 = sidebar, Panel2 = content
-            mainSplitContainer.Panel1.BackColor = System.Drawing.Color.FromArgb(37, 37, 38);
+            // BackColor = splitter strip colour; Panel1/2 set their own backgrounds independently
+            mainSplitContainer.BackColor = PE_Tools.AppTheme.SidebarBg;
+            mainSplitContainer.Panel1.BackColor = PE_Tools.AppTheme.SidebarBg;
+            mainSplitContainer.Panel2.BackColor = PE_Tools.AppTheme.ContentBg;
             mainSplitContainer.Panel2.Padding = new System.Windows.Forms.Padding(8);
             mainSplitContainer.Size = new System.Drawing.Size(1582, 750);
             mainSplitContainer.SplitterDistance = 200;
@@ -67,8 +69,8 @@
             btnDatabases.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnDatabases.FlatAppearance.BorderSize = 0;
             btnDatabases.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Empty;
-            btnDatabases.BackColor = System.Drawing.Color.FromArgb(37, 37, 38);
-            btnDatabases.ForeColor = System.Drawing.Color.FromArgb(204, 204, 204);
+            btnDatabases.BackColor = PE_Tools.AppTheme.SidebarBg;
+            btnDatabases.ForeColor = PE_Tools.AppTheme.SidebarFgNormal;
             btnDatabases.ImageIndex = 0;
             btnDatabases.ImageList = imageList1;
             btnDatabases.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -92,8 +94,8 @@
             btnPowerShell.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnPowerShell.FlatAppearance.BorderSize = 0;
             btnPowerShell.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Empty;
-            btnPowerShell.BackColor = System.Drawing.Color.FromArgb(37, 37, 38);
-            btnPowerShell.ForeColor = System.Drawing.Color.FromArgb(204, 204, 204);
+            btnPowerShell.BackColor = PE_Tools.AppTheme.SidebarBg;
+            btnPowerShell.ForeColor = PE_Tools.AppTheme.SidebarFgNormal;
             btnPowerShell.ImageIndex = 1;
             btnPowerShell.ImageList = imageList1;
             btnPowerShell.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -117,8 +119,8 @@
             btnKubectl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnKubectl.FlatAppearance.BorderSize = 0;
             btnKubectl.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Empty;
-            btnKubectl.BackColor = System.Drawing.Color.FromArgb(37, 37, 38);
-            btnKubectl.ForeColor = System.Drawing.Color.FromArgb(204, 204, 204);
+            btnKubectl.BackColor = PE_Tools.AppTheme.SidebarBg;
+            btnKubectl.ForeColor = PE_Tools.AppTheme.SidebarFgNormal;
             btnKubectl.ImageIndex = 2;
             btnKubectl.ImageList = imageList1;
             btnKubectl.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -142,8 +144,8 @@
             btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnSettings.FlatAppearance.BorderSize = 0;
             btnSettings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Empty;
-            btnSettings.BackColor = System.Drawing.Color.FromArgb(37, 37, 38);
-            btnSettings.ForeColor = System.Drawing.Color.FromArgb(204, 204, 204);
+            btnSettings.BackColor = PE_Tools.AppTheme.SidebarBg;
+            btnSettings.ForeColor = PE_Tools.AppTheme.SidebarFgNormal;
             btnSettings.ImageIndex = 3;
             btnSettings.ImageList = imageList1;
             btnSettings.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -166,7 +168,7 @@
             btnToggleSidebar.Dock = System.Windows.Forms.DockStyle.Bottom;
             btnToggleSidebar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnToggleSidebar.FlatAppearance.BorderSize = 0;
-            btnToggleSidebar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(45, 45, 48);
+            btnToggleSidebar.FlatAppearance.MouseOverBackColor = PE_Tools.AppTheme.SidebarHover;
             btnToggleSidebar.BackColor = System.Drawing.Color.FromArgb(30, 30, 31);
             btnToggleSidebar.ForeColor = System.Drawing.Color.FromArgb(136, 136, 136);
             btnToggleSidebar.Name = "btnToggleSidebar";
@@ -179,8 +181,8 @@
             // lblAppTitle
             //
             lblAppTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            lblAppTitle.BackColor = System.Drawing.Color.FromArgb(37, 37, 38);
-            lblAppTitle.ForeColor = System.Drawing.Color.White;
+            lblAppTitle.BackColor = PE_Tools.AppTheme.SidebarBg;
+            lblAppTitle.ForeColor = PE_Tools.AppTheme.SidebarFgActive;
             lblAppTitle.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
             lblAppTitle.Name = "lblAppTitle";
             lblAppTitle.Size = new System.Drawing.Size(200, 52);
@@ -201,8 +203,8 @@
             btnShowSidebar.Dock = System.Windows.Forms.DockStyle.Left;
             btnShowSidebar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnShowSidebar.FlatAppearance.BorderSize = 0;
-            btnShowSidebar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(45, 45, 48);
-            btnShowSidebar.BackColor = System.Drawing.Color.FromArgb(37, 37, 38);
+            btnShowSidebar.FlatAppearance.MouseOverBackColor = PE_Tools.AppTheme.SidebarHover;
+            btnShowSidebar.BackColor = PE_Tools.AppTheme.SidebarBg;
             btnShowSidebar.ForeColor = System.Drawing.Color.FromArgb(136, 136, 136);
             btnShowSidebar.Name = "btnShowSidebar";
             btnShowSidebar.Size = new System.Drawing.Size(20, 32);
@@ -214,7 +216,7 @@
 
             // databaseSettingsView1
             // 
-            databaseSettingsView1.BackColor = System.Drawing.Color.FromArgb(243, 243, 243);
+            databaseSettingsView1.BackColor = PE_Tools.AppTheme.ContentBg;
             databaseSettingsView1.Dock = System.Windows.Forms.DockStyle.Fill;
             databaseSettingsView1.Location = new System.Drawing.Point(8, 8);
             databaseSettingsView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -225,7 +227,7 @@
             // 
             // powershellCommandsView1
             // 
-            powershellCommandsView1.BackColor = System.Drawing.Color.FromArgb(243, 243, 243);
+            powershellCommandsView1.BackColor = PE_Tools.AppTheme.ContentBg;
             powershellCommandsView1.Dock = System.Windows.Forms.DockStyle.Fill;
             powershellCommandsView1.Location = new System.Drawing.Point(8, 8);
             powershellCommandsView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -237,7 +239,7 @@
             // 
             // kubectlCommandsView1
             // 
-            kubectlCommandsView1.BackColor = System.Drawing.Color.FromArgb(243, 243, 243);
+            kubectlCommandsView1.BackColor = PE_Tools.AppTheme.ContentBg;
             kubectlCommandsView1.Dock = System.Windows.Forms.DockStyle.Fill;
             kubectlCommandsView1.Location = new System.Drawing.Point(8, 8);
             kubectlCommandsView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -249,7 +251,7 @@
             // appSettingsView1
             // 
             appSettingsView1.AutoScroll = true;
-            appSettingsView1.BackColor = System.Drawing.Color.FromArgb(243, 243, 243);
+            appSettingsView1.BackColor = PE_Tools.AppTheme.ContentBg;
             appSettingsView1.Dock = System.Windows.Forms.DockStyle.Fill;
             appSettingsView1.Location = new System.Drawing.Point(8, 8);
             appSettingsView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);

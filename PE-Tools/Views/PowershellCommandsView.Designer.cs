@@ -63,6 +63,13 @@
             // 
             // btnBuildOECore
             // 
+            btnBuildOECore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnBuildOECore.FlatAppearance.BorderSize = 0;
+            btnBuildOECore.FlatAppearance.MouseOverBackColor = PE_Tools.AppTheme.BtnSecondaryHover;
+            btnBuildOECore.BackColor = PE_Tools.AppTheme.BtnSecondaryBg;
+            btnBuildOECore.ForeColor = PE_Tools.AppTheme.BtnSecondaryFg;
+            btnBuildOECore.UseVisualStyleBackColor = false;
+            btnBuildOECore.Cursor = System.Windows.Forms.Cursors.Hand;
             btnBuildOECore.Location = new System.Drawing.Point(15, 26);
             btnBuildOECore.Margin = new System.Windows.Forms.Padding(6);
             btnBuildOECore.Name = "btnBuildOECore";
@@ -73,6 +80,13 @@
             // 
             // btnBuildClickOne
             // 
+            btnBuildClickOne.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnBuildClickOne.FlatAppearance.BorderSize = 0;
+            btnBuildClickOne.FlatAppearance.MouseOverBackColor = PE_Tools.AppTheme.BtnSecondaryHover;
+            btnBuildClickOne.BackColor = PE_Tools.AppTheme.BtnSecondaryBg;
+            btnBuildClickOne.ForeColor = PE_Tools.AppTheme.BtnSecondaryFg;
+            btnBuildClickOne.UseVisualStyleBackColor = false;
+            btnBuildClickOne.Cursor = System.Windows.Forms.Cursors.Hand;
             btnBuildClickOne.Location = new System.Drawing.Point(146, 26);
             btnBuildClickOne.Margin = new System.Windows.Forms.Padding(6);
             btnBuildClickOne.Name = "btnBuildClickOne";
@@ -83,6 +97,13 @@
             // 
             // btnBuildIntegration
             // 
+            btnBuildIntegration.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnBuildIntegration.FlatAppearance.BorderSize = 0;
+            btnBuildIntegration.FlatAppearance.MouseOverBackColor = PE_Tools.AppTheme.BtnSecondaryHover;
+            btnBuildIntegration.BackColor = PE_Tools.AppTheme.BtnSecondaryBg;
+            btnBuildIntegration.ForeColor = PE_Tools.AppTheme.BtnSecondaryFg;
+            btnBuildIntegration.UseVisualStyleBackColor = false;
+            btnBuildIntegration.Cursor = System.Windows.Forms.Cursors.Hand;
             btnBuildIntegration.Location = new System.Drawing.Point(277, 26);
             btnBuildIntegration.Margin = new System.Windows.Forms.Padding(6);
             btnBuildIntegration.Name = "btnBuildIntegration";
@@ -93,6 +114,13 @@
             // 
             // btnBuildWebPortal
             // 
+            btnBuildWebPortal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnBuildWebPortal.FlatAppearance.BorderSize = 0;
+            btnBuildWebPortal.FlatAppearance.MouseOverBackColor = PE_Tools.AppTheme.BtnSecondaryHover;
+            btnBuildWebPortal.BackColor = PE_Tools.AppTheme.BtnSecondaryBg;
+            btnBuildWebPortal.ForeColor = PE_Tools.AppTheme.BtnSecondaryFg;
+            btnBuildWebPortal.UseVisualStyleBackColor = false;
+            btnBuildWebPortal.Cursor = System.Windows.Forms.Cursors.Hand;
             btnBuildWebPortal.Location = new System.Drawing.Point(408, 26);
             btnBuildWebPortal.Margin = new System.Windows.Forms.Padding(6);
             btnBuildWebPortal.Name = "btnBuildWebPortal";
@@ -103,6 +131,13 @@
             // 
             // btnBuild
             // 
+            btnBuild.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnBuild.FlatAppearance.BorderSize = 0;
+            btnBuild.FlatAppearance.MouseOverBackColor = PE_Tools.AppTheme.BtnPrimaryHover;
+            btnBuild.BackColor = PE_Tools.AppTheme.BtnPrimaryBg;
+            btnBuild.ForeColor = PE_Tools.AppTheme.BtnPrimaryFg;
+            btnBuild.UseVisualStyleBackColor = false;
+            btnBuild.Cursor = System.Windows.Forms.Cursors.Hand;
             btnBuild.Location = new System.Drawing.Point(15, 64);
             btnBuild.Margin = new System.Windows.Forms.Padding(6);
             btnBuild.Name = "btnBuild";
@@ -127,6 +162,13 @@
             // 
             // btnRunTestServices
             // 
+            btnRunTestServices.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnRunTestServices.FlatAppearance.BorderSize = 0;
+            btnRunTestServices.FlatAppearance.MouseOverBackColor = PE_Tools.AppTheme.BtnPrimaryHover;
+            btnRunTestServices.BackColor = PE_Tools.AppTheme.BtnPrimaryBg;
+            btnRunTestServices.ForeColor = PE_Tools.AppTheme.BtnPrimaryFg;
+            btnRunTestServices.UseVisualStyleBackColor = false;
+            btnRunTestServices.Cursor = System.Windows.Forms.Cursors.Hand;
             btnRunTestServices.Location = new System.Drawing.Point(15, 26);
             btnRunTestServices.Margin = new System.Windows.Forms.Padding(6);
             btnRunTestServices.Name = "btnRunTestServices";
@@ -137,6 +179,13 @@
             // 
             // btnRunCommand
             // 
+            btnRunCommand.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnRunCommand.FlatAppearance.BorderSize = 0;
+            btnRunCommand.FlatAppearance.MouseOverBackColor = PE_Tools.AppTheme.BtnPrimaryHover;
+            btnRunCommand.BackColor = PE_Tools.AppTheme.BtnPrimaryBg;
+            btnRunCommand.ForeColor = PE_Tools.AppTheme.BtnPrimaryFg;
+            btnRunCommand.UseVisualStyleBackColor = false;
+            btnRunCommand.Cursor = System.Windows.Forms.Cursors.Hand;
             btnRunCommand.Location = new System.Drawing.Point(191, 26);
             btnRunCommand.Margin = new System.Windows.Forms.Padding(6);
             btnRunCommand.Name = "btnRunCommand";
@@ -147,6 +196,13 @@
             // 
             // btnStop
             // 
+            btnStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnStop.FlatAppearance.BorderSize = 0;
+            btnStop.FlatAppearance.MouseOverBackColor = PE_Tools.AppTheme.BtnDangerHover;
+            btnStop.BackColor = PE_Tools.AppTheme.BtnDangerBg;
+            btnStop.ForeColor = PE_Tools.AppTheme.BtnDangerFg;
+            btnStop.UseVisualStyleBackColor = false;
+            btnStop.Cursor = System.Windows.Forms.Cursors.Hand;
             btnStop.Location = new System.Drawing.Point(15, 64);
             btnStop.Margin = new System.Windows.Forms.Padding(6);
             btnStop.Name = "btnStop";
@@ -170,6 +226,9 @@
             // tbResults
             // 
             tbResults.Dock = System.Windows.Forms.DockStyle.Fill;
+            tbResults.BackColor = PE_Tools.AppTheme.TerminalBg;
+            tbResults.ForeColor = PE_Tools.AppTheme.TerminalFg;
+            tbResults.Font = PE_Tools.AppTheme.TerminalFont;
             tbResults.Location = new System.Drawing.Point(12, 28);
             tbResults.Margin = new System.Windows.Forms.Padding(0);
             tbResults.Multiline = true;

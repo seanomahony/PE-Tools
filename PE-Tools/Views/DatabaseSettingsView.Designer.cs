@@ -13,9 +13,13 @@ namespace PE_Tools.Views
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
+            if (disposing)
             {
-                components.Dispose();
+                SettingsManager.SettingsChanged -= OnSettingsChanged;
+                if (components != null)
+                {
+                    components.Dispose();
+                }
             }
             base.Dispose(disposing);
         }
@@ -28,6 +32,7 @@ namespace PE_Tools.Views
         /// </summary>
         private void InitializeComponent()
         {
+            lblConfigError = new System.Windows.Forms.Label();
             grpDatabaseSelection = new System.Windows.Forms.GroupBox();
             C1LabelControl = new System.Windows.Forms.Label();
             cbC1DBs = new System.Windows.Forms.ComboBox();
@@ -47,6 +52,19 @@ namespace PE_Tools.Views
             grpActions.SuspendLayout();
             grpOutput.SuspendLayout();
             SuspendLayout();
+            //
+            // lblConfigError
+            //
+            lblConfigError.AutoSize = false;
+            lblConfigError.Dock = System.Windows.Forms.DockStyle.Top;
+            lblConfigError.ForeColor = System.Drawing.Color.DarkRed;
+            lblConfigError.Font = new System.Drawing.Font("Segoe UI", 10F);
+            lblConfigError.Name = "lblConfigError";
+            lblConfigError.Padding = new System.Windows.Forms.Padding(8);
+            lblConfigError.Size = new System.Drawing.Size(1152, 40);
+            lblConfigError.TabIndex = 10;
+            lblConfigError.Text = "";
+            lblConfigError.Visible = false;
             // 
             // grpDatabaseSelection
             // 
@@ -65,10 +83,11 @@ namespace PE_Tools.Views
             grpDatabaseSelection.TabIndex = 1;
             grpDatabaseSelection.TabStop = false;
             grpDatabaseSelection.Text = "Database Selection";
-            // 
+            //
             // C1LabelControl
-            // 
+            //
             C1LabelControl.AutoSize = true;
+            C1LabelControl.ForeColor = PE_Tools.AppTheme.LabelSectionFg;
             C1LabelControl.Location = new System.Drawing.Point(15, 28);
             C1LabelControl.Name = "C1LabelControl";
             C1LabelControl.Size = new System.Drawing.Size(73, 15);
@@ -78,6 +97,8 @@ namespace PE_Tools.Views
             // cbC1DBs
             // 
             cbC1DBs.FormattingEnabled = true;
+            cbC1DBs.BackColor = PE_Tools.AppTheme.InputBg;
+            cbC1DBs.ForeColor = PE_Tools.AppTheme.InputFg;
             cbC1DBs.Location = new System.Drawing.Point(15, 50);
             cbC1DBs.Name = "cbC1DBs";
             cbC1DBs.Size = new System.Drawing.Size(280, 23);
@@ -86,6 +107,13 @@ namespace PE_Tools.Views
             // 
             // btnViewC1config
             // 
+            btnViewC1config.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnViewC1config.FlatAppearance.BorderSize = 0;
+            btnViewC1config.FlatAppearance.MouseOverBackColor = PE_Tools.AppTheme.BtnSecondaryHover;
+            btnViewC1config.BackColor = PE_Tools.AppTheme.BtnSecondaryBg;
+            btnViewC1config.ForeColor = PE_Tools.AppTheme.BtnSecondaryFg;
+            btnViewC1config.UseVisualStyleBackColor = false;
+            btnViewC1config.Cursor = System.Windows.Forms.Cursors.Hand;
             btnViewC1config.Location = new System.Drawing.Point(301, 11);
             btnViewC1config.Name = "btnViewC1config";
             btnViewC1config.Size = new System.Drawing.Size(75, 32);
@@ -96,6 +124,7 @@ namespace PE_Tools.Views
             // DocLabelControl
             // 
             DocLabelControl.AutoSize = true;
+            DocLabelControl.ForeColor = PE_Tools.AppTheme.LabelSectionFg;
             DocLabelControl.Location = new System.Drawing.Point(390, 28);
             DocLabelControl.Name = "DocLabelControl";
             DocLabelControl.Size = new System.Drawing.Size(80, 15);
@@ -105,6 +134,8 @@ namespace PE_Tools.Views
             // cbDocDBs
             // 
             cbDocDBs.FormattingEnabled = true;
+            cbDocDBs.BackColor = PE_Tools.AppTheme.InputBg;
+            cbDocDBs.ForeColor = PE_Tools.AppTheme.InputFg;
             cbDocDBs.Location = new System.Drawing.Point(390, 50);
             cbDocDBs.Name = "cbDocDBs";
             cbDocDBs.Size = new System.Drawing.Size(280, 23);
@@ -113,6 +144,13 @@ namespace PE_Tools.Views
             // 
             // btnViewDocConfig
             // 
+            btnViewDocConfig.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnViewDocConfig.FlatAppearance.BorderSize = 0;
+            btnViewDocConfig.FlatAppearance.MouseOverBackColor = PE_Tools.AppTheme.BtnSecondaryHover;
+            btnViewDocConfig.BackColor = PE_Tools.AppTheme.BtnSecondaryBg;
+            btnViewDocConfig.ForeColor = PE_Tools.AppTheme.BtnSecondaryFg;
+            btnViewDocConfig.UseVisualStyleBackColor = false;
+            btnViewDocConfig.Cursor = System.Windows.Forms.Cursors.Hand;
             btnViewDocConfig.Location = new System.Drawing.Point(685, 11);
             btnViewDocConfig.Name = "btnViewDocConfig";
             btnViewDocConfig.Size = new System.Drawing.Size(75, 32);
@@ -135,6 +173,13 @@ namespace PE_Tools.Views
             // 
             // applyButton
             // 
+            applyButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            applyButton.FlatAppearance.BorderSize = 0;
+            applyButton.FlatAppearance.MouseOverBackColor = PE_Tools.AppTheme.BtnPrimaryHover;
+            applyButton.BackColor = PE_Tools.AppTheme.BtnPrimaryBg;
+            applyButton.ForeColor = PE_Tools.AppTheme.BtnPrimaryFg;
+            applyButton.UseVisualStyleBackColor = false;
+            applyButton.Cursor = System.Windows.Forms.Cursors.Hand;
             applyButton.Enabled = false;
             applyButton.Location = new System.Drawing.Point(15, 40);
             applyButton.Margin = new System.Windows.Forms.Padding(6);
@@ -146,6 +191,13 @@ namespace PE_Tools.Views
             // 
             // saveButton
             // 
+            saveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            saveButton.FlatAppearance.BorderSize = 0;
+            saveButton.FlatAppearance.MouseOverBackColor = PE_Tools.AppTheme.BtnPrimaryHover;
+            saveButton.BackColor = PE_Tools.AppTheme.BtnPrimaryBg;
+            saveButton.ForeColor = PE_Tools.AppTheme.BtnPrimaryFg;
+            saveButton.UseVisualStyleBackColor = false;
+            saveButton.Cursor = System.Windows.Forms.Cursors.Hand;
             saveButton.Enabled = false;
             saveButton.Location = new System.Drawing.Point(177, 40);
             saveButton.Margin = new System.Windows.Forms.Padding(6);
@@ -170,6 +222,9 @@ namespace PE_Tools.Views
             // outputRichTextBox
             // 
             outputRichTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            outputRichTextBox.BackColor = PE_Tools.AppTheme.TerminalBg;
+            outputRichTextBox.ForeColor = PE_Tools.AppTheme.TerminalFg;
+            outputRichTextBox.Font = PE_Tools.AppTheme.TerminalFont;
             outputRichTextBox.Location = new System.Drawing.Point(12, 28);
             outputRichTextBox.Margin = new System.Windows.Forms.Padding(0);
             outputRichTextBox.Name = "outputRichTextBox";
@@ -182,6 +237,8 @@ namespace PE_Tools.Views
             // titleLabelControl
             // 
             titleLabelControl.AutoSize = true;
+            titleLabelControl.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
+            titleLabelControl.ForeColor = PE_Tools.AppTheme.LabelHeadingFg;
             titleLabelControl.Location = new System.Drawing.Point(16, 12);
             titleLabelControl.Name = "titleLabelControl";
             titleLabelControl.Size = new System.Drawing.Size(161, 15);
@@ -190,6 +247,13 @@ namespace PE_Tools.Views
             // 
             // btnOpenC1config
             // 
+            btnOpenC1config.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnOpenC1config.FlatAppearance.BorderSize = 0;
+            btnOpenC1config.FlatAppearance.MouseOverBackColor = PE_Tools.AppTheme.BtnSecondaryHover;
+            btnOpenC1config.BackColor = PE_Tools.AppTheme.BtnSecondaryBg;
+            btnOpenC1config.ForeColor = PE_Tools.AppTheme.BtnSecondaryFg;
+            btnOpenC1config.UseVisualStyleBackColor = false;
+            btnOpenC1config.Cursor = System.Windows.Forms.Cursors.Hand;
             btnOpenC1config.Location = new System.Drawing.Point(301, 44);
             btnOpenC1config.Name = "btnOpenC1config";
             btnOpenC1config.Size = new System.Drawing.Size(75, 32);
@@ -199,6 +263,13 @@ namespace PE_Tools.Views
             // 
             // btnOpenDocConfig
             // 
+            btnOpenDocConfig.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnOpenDocConfig.FlatAppearance.BorderSize = 0;
+            btnOpenDocConfig.FlatAppearance.MouseOverBackColor = PE_Tools.AppTheme.BtnSecondaryHover;
+            btnOpenDocConfig.BackColor = PE_Tools.AppTheme.BtnSecondaryBg;
+            btnOpenDocConfig.ForeColor = PE_Tools.AppTheme.BtnSecondaryFg;
+            btnOpenDocConfig.UseVisualStyleBackColor = false;
+            btnOpenDocConfig.Cursor = System.Windows.Forms.Cursors.Hand;
             btnOpenDocConfig.Location = new System.Drawing.Point(685, 44);
             btnOpenDocConfig.Name = "btnOpenDocConfig";
             btnOpenDocConfig.Size = new System.Drawing.Size(75, 32);
@@ -214,6 +285,7 @@ namespace PE_Tools.Views
             Controls.Add(grpActions);
             Controls.Add(grpDatabaseSelection);
             Controls.Add(titleLabelControl);
+            Controls.Add(lblConfigError);
             Name = "DatabaseSettingsView";
             Padding = new System.Windows.Forms.Padding(8);
             Size = new System.Drawing.Size(1152, 393);
@@ -243,5 +315,6 @@ namespace PE_Tools.Views
         private System.Windows.Forms.RichTextBox outputRichTextBox;
         private System.Windows.Forms.Button btnOpenDocConfig;
         private System.Windows.Forms.Button btnOpenC1config;
+        private System.Windows.Forms.Label lblConfigError;
     }
 }

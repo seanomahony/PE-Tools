@@ -78,10 +78,11 @@ namespace PE_Tools.Views
             int inputWidth = 300;
             int gap = 35;
 
-            // 
+            //
             // lblNamespace
-            // 
+            //
             this.lblNamespace.AutoSize = true;
+            this.lblNamespace.ForeColor = PE_Tools.AppTheme.LabelSectionFg;
             this.lblNamespace.Location = new System.Drawing.Point(labelX, y + 3);
             this.lblNamespace.Name = "lblNamespace";
             this.lblNamespace.Size = new System.Drawing.Size(100, 20);
@@ -91,6 +92,8 @@ namespace PE_Tools.Views
             // cbNamespace
             // 
             this.cbNamespace.FormattingEnabled = true;
+            this.cbNamespace.BackColor = PE_Tools.AppTheme.InputBg;
+            this.cbNamespace.ForeColor = PE_Tools.AppTheme.InputFg;
             this.cbNamespace.Location = new System.Drawing.Point(inputX, y);
             this.cbNamespace.Name = "cbNamespace";
             this.cbNamespace.Size = new System.Drawing.Size(inputWidth, 30);
@@ -98,10 +101,11 @@ namespace PE_Tools.Views
 
             y += gap;
 
-            // 
+            //
             // lblPodName
-            // 
+            //
             this.lblPodName.AutoSize = true;
+            this.lblPodName.ForeColor = PE_Tools.AppTheme.LabelSectionFg;
             this.lblPodName.Location = new System.Drawing.Point(labelX, y + 3);
             this.lblPodName.Name = "lblPodName";
             this.lblPodName.Size = new System.Drawing.Size(100, 20);
@@ -111,6 +115,8 @@ namespace PE_Tools.Views
             // cbPodName
             // 
             this.cbPodName.FormattingEnabled = true;
+            this.cbPodName.BackColor = PE_Tools.AppTheme.InputBg;
+            this.cbPodName.ForeColor = PE_Tools.AppTheme.InputFg;
             this.cbPodName.Location = new System.Drawing.Point(inputX, y);
             this.cbPodName.Name = "cbPodName";
             this.cbPodName.Size = new System.Drawing.Size(inputWidth, 30);
@@ -118,10 +124,11 @@ namespace PE_Tools.Views
 
             y += gap;
 
-            // 
+            //
             // lblContainer
-            // 
+            //
             this.lblContainer.AutoSize = true;
+            this.lblContainer.ForeColor = PE_Tools.AppTheme.LabelSectionFg;
             this.lblContainer.Location = new System.Drawing.Point(labelX, y + 3);
             this.lblContainer.Name = "lblContainer";
             this.lblContainer.Size = new System.Drawing.Size(100, 20);
@@ -132,6 +139,8 @@ namespace PE_Tools.Views
             // 
             this.cbContainer.DropDownWidth = inputWidth;
             this.cbContainer.FormattingEnabled = true;
+            this.cbContainer.BackColor = PE_Tools.AppTheme.InputBg;
+            this.cbContainer.ForeColor = PE_Tools.AppTheme.InputFg;
             this.cbContainer.Location = new System.Drawing.Point(inputX, y);
             this.cbContainer.Name = "cbContainer";
             this.cbContainer.Size = new System.Drawing.Size(inputWidth, 30);
@@ -139,10 +148,11 @@ namespace PE_Tools.Views
 
             y += gap;
 
-            // 
+            //
             // lblAction
-            // 
+            //
             this.lblAction.AutoSize = true;
+            this.lblAction.ForeColor = PE_Tools.AppTheme.LabelSectionFg;
             this.lblAction.Location = new System.Drawing.Point(labelX, y + 3);
             this.lblAction.Name = "lblAction";
             this.lblAction.Size = new System.Drawing.Size(100, 20);
@@ -153,6 +163,8 @@ namespace PE_Tools.Views
             // 
             this.cbAction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbAction.FormattingEnabled = true;
+            this.cbAction.BackColor = PE_Tools.AppTheme.InputBg;
+            this.cbAction.ForeColor = PE_Tools.AppTheme.InputFg;
             this.cbAction.Items.AddRange(new object[] { "Copy To", "Copy From" });
             this.cbAction.Location = new System.Drawing.Point(inputX, y);
             this.cbAction.Name = "cbAction";
@@ -161,19 +173,22 @@ namespace PE_Tools.Views
 
             y += gap;
 
-            // 
+            //
             // lblSourcePath
-            // 
+            //
             this.lblSourcePath.AutoSize = true;
+            this.lblSourcePath.ForeColor = PE_Tools.AppTheme.LabelSectionFg;
             this.lblSourcePath.Location = new System.Drawing.Point(labelX, y + 3);
             this.lblSourcePath.Name = "lblSourcePath";
             this.lblSourcePath.Size = new System.Drawing.Size(100, 20);
             this.lblSourcePath.Text = "Source Path:";
 
-            // 
+            //
             // cbSourcePath
-            // 
+            //
             this.cbSourcePath.FormattingEnabled = true;
+            this.cbSourcePath.BackColor = PE_Tools.AppTheme.InputBg;
+            this.cbSourcePath.ForeColor = PE_Tools.AppTheme.InputFg;
             this.cbSourcePath.Location = new System.Drawing.Point(inputX, y);
             this.cbSourcePath.Name = "cbSourcePath";
             this.cbSourcePath.Size = new System.Drawing.Size(600, 30);
@@ -181,28 +196,38 @@ namespace PE_Tools.Views
 
             y += gap;
 
-            // 
+            //
             // lblDestPath
-            // 
+            //
             this.lblDestPath.AutoSize = true;
+            this.lblDestPath.ForeColor = PE_Tools.AppTheme.LabelSectionFg;
             this.lblDestPath.Location = new System.Drawing.Point(labelX, y + 3);
             this.lblDestPath.Name = "lblDestPath";
             this.lblDestPath.Size = new System.Drawing.Size(100, 20);
             this.lblDestPath.Text = "Dest Path:";
 
-            // 
+            //
             // cbDestPath
-            // 
+            //
             this.cbDestPath.FormattingEnabled = true;
+            this.cbDestPath.BackColor = PE_Tools.AppTheme.InputBg;
+            this.cbDestPath.ForeColor = PE_Tools.AppTheme.InputFg;
             this.cbDestPath.Location = new System.Drawing.Point(inputX, y);
             this.cbDestPath.Name = "cbDestPath";
             this.cbDestPath.Size = new System.Drawing.Size(600, 30);
             this.cbDestPath.TabIndex = 5;
 
-            // 
+            //
             // btnGenerate
-            // 
-            this.btnGenerate.Location = new System.Drawing.Point(12, 280); 
+            //
+            this.btnGenerate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGenerate.FlatAppearance.BorderSize = 0;
+            this.btnGenerate.FlatAppearance.MouseOverBackColor = PE_Tools.AppTheme.BtnPrimaryHover;
+            this.btnGenerate.BackColor = PE_Tools.AppTheme.BtnPrimaryBg;
+            this.btnGenerate.ForeColor = PE_Tools.AppTheme.BtnPrimaryFg;
+            this.btnGenerate.UseVisualStyleBackColor = false;
+            this.btnGenerate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGenerate.Location = new System.Drawing.Point(12, 280);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(100, 30);
             this.btnGenerate.TabIndex = 6;
@@ -221,11 +246,14 @@ namespace PE_Tools.Views
             this.grpResult.TabStop = false;
             this.grpResult.Text = "Result";
 
-            // 
+            //
             // txtResult
-            // 
+            //
             this.txtResult.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtResult.Location = new System.Drawing.Point(3, 23); 
+            this.txtResult.BackColor = PE_Tools.AppTheme.TerminalBg;
+            this.txtResult.ForeColor = PE_Tools.AppTheme.TerminalFg;
+            this.txtResult.Font = PE_Tools.AppTheme.TerminalFont;
+            this.txtResult.Location = new System.Drawing.Point(3, 23);
             this.txtResult.Multiline = true;
             this.txtResult.Name = "txtResult";
             this.txtResult.ReadOnly = true;

@@ -8,12 +8,12 @@ namespace PE_Tools
 {
     public partial class Form1 : Form
     {
-        private static readonly Color SidebarBg      = Color.FromArgb(37, 37, 38);
-        private static readonly Color SidebarHover   = Color.FromArgb(45, 45, 48);
-        private static readonly Color SidebarActive  = Color.FromArgb(55, 55, 61);
-        private static readonly Color SidebarAccent  = Color.FromArgb(0, 122, 204);
-        private static readonly Color SidebarFgNormal = Color.FromArgb(204, 204, 204);
-        private static readonly Color SidebarFgActive = Color.White;
+        private static Color SidebarBg       => AppTheme.SidebarBg;
+        private static Color SidebarHover    => AppTheme.SidebarHover;
+        private static Color SidebarActive   => AppTheme.SidebarActive;
+        private static Color SidebarAccent   => AppTheme.SidebarAccent;
+        private static Color SidebarFgNormal => AppTheme.SidebarFgNormal;
+        private static Color SidebarFgActive => AppTheme.SidebarFgActive;
 
         private bool sidebarCollapsing = false;
         private bool sidebarExpanding = false;

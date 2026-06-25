@@ -50,6 +50,7 @@ namespace PE_Tools.Views
             // 
             lblTitle.AutoSize = true;
             lblTitle.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
+            lblTitle.ForeColor = PE_Tools.AppTheme.LabelHeadingFg;
             lblTitle.Location = new System.Drawing.Point(16, 11);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new System.Drawing.Size(191, 25);
@@ -70,6 +71,13 @@ namespace PE_Tools.Views
             // btnTestConnection
             // 
             btnTestConnection.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            btnTestConnection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnTestConnection.FlatAppearance.BorderSize = 0;
+            btnTestConnection.FlatAppearance.MouseOverBackColor = PE_Tools.AppTheme.BtnSecondaryHover;
+            btnTestConnection.BackColor = PE_Tools.AppTheme.BtnSecondaryBg;
+            btnTestConnection.ForeColor = PE_Tools.AppTheme.BtnSecondaryFg;
+            btnTestConnection.UseVisualStyleBackColor = false;
+            btnTestConnection.Cursor = System.Windows.Forms.Cursors.Hand;
             btnTestConnection.Location = new System.Drawing.Point(648, 19);
             btnTestConnection.Name = "btnTestConnection";
             btnTestConnection.Size = new System.Drawing.Size(115, 26);
@@ -80,6 +88,8 @@ namespace PE_Tools.Views
             // txtConnectionString
             // 
             txtConnectionString.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            txtConnectionString.BackColor = PE_Tools.AppTheme.InputBg;
+            txtConnectionString.ForeColor = PE_Tools.AppTheme.InputFg;
             txtConnectionString.Location = new System.Drawing.Point(3, 21);
             txtConnectionString.Name = "txtConnectionString";
             txtConnectionString.PlaceholderText = "server=localhost;Integrated Security=True;Pooling=True;";
@@ -89,6 +99,7 @@ namespace PE_Tools.Views
             // lblConnectionSection
             // 
             lblConnectionSection.AutoSize = true;
+            lblConnectionSection.ForeColor = PE_Tools.AppTheme.LabelSectionFg;
             lblConnectionSection.Location = new System.Drawing.Point(3, 4);
             lblConnectionSection.Name = "lblConnectionSection";
             lblConnectionSection.Size = new System.Drawing.Size(154, 15);
@@ -116,6 +127,8 @@ namespace PE_Tools.Views
             // txtDocConfigPath
             // 
             txtDocConfigPath.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            txtDocConfigPath.BackColor = PE_Tools.AppTheme.InputBg;
+            txtDocConfigPath.ForeColor = PE_Tools.AppTheme.InputFg;
             txtDocConfigPath.Location = new System.Drawing.Point(3, 84);
             txtDocConfigPath.Name = "txtDocConfigPath";
             txtDocConfigPath.Size = new System.Drawing.Size(680, 23);
@@ -124,6 +137,7 @@ namespace PE_Tools.Views
             // lblDocConfigPath
             // 
             lblDocConfigPath.AutoSize = true;
+            lblDocConfigPath.ForeColor = PE_Tools.AppTheme.LabelSectionFg;
             lblDocConfigPath.Location = new System.Drawing.Point(3, 66);
             lblDocConfigPath.Name = "lblDocConfigPath";
             lblDocConfigPath.Size = new System.Drawing.Size(121, 15);
@@ -133,6 +147,13 @@ namespace PE_Tools.Views
             // btnBrowseDoc
             // 
             btnBrowseDoc.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            btnBrowseDoc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnBrowseDoc.FlatAppearance.BorderSize = 0;
+            btnBrowseDoc.FlatAppearance.MouseOverBackColor = PE_Tools.AppTheme.BtnSecondaryHover;
+            btnBrowseDoc.BackColor = PE_Tools.AppTheme.BtnSecondaryBg;
+            btnBrowseDoc.ForeColor = PE_Tools.AppTheme.BtnSecondaryFg;
+            btnBrowseDoc.UseVisualStyleBackColor = false;
+            btnBrowseDoc.Cursor = System.Windows.Forms.Cursors.Hand;
             btnBrowseDoc.Location = new System.Drawing.Point(689, 82);
             btnBrowseDoc.Name = "btnBrowseDoc";
             btnBrowseDoc.Size = new System.Drawing.Size(74, 26);
@@ -143,6 +164,8 @@ namespace PE_Tools.Views
             // txtC1ConfigPath
             // 
             txtC1ConfigPath.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            txtC1ConfigPath.BackColor = PE_Tools.AppTheme.InputBg;
+            txtC1ConfigPath.ForeColor = PE_Tools.AppTheme.InputFg;
             txtC1ConfigPath.Location = new System.Drawing.Point(3, 40);
             txtC1ConfigPath.Name = "txtC1ConfigPath";
             txtC1ConfigPath.Size = new System.Drawing.Size(680, 23);
@@ -151,6 +174,13 @@ namespace PE_Tools.Views
             // btnBrowseC1
             // 
             btnBrowseC1.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            btnBrowseC1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnBrowseC1.FlatAppearance.BorderSize = 0;
+            btnBrowseC1.FlatAppearance.MouseOverBackColor = PE_Tools.AppTheme.BtnSecondaryHover;
+            btnBrowseC1.BackColor = PE_Tools.AppTheme.BtnSecondaryBg;
+            btnBrowseC1.ForeColor = PE_Tools.AppTheme.BtnSecondaryFg;
+            btnBrowseC1.UseVisualStyleBackColor = false;
+            btnBrowseC1.Cursor = System.Windows.Forms.Cursors.Hand;
             btnBrowseC1.Location = new System.Drawing.Point(689, 38);
             btnBrowseC1.Name = "btnBrowseC1";
             btnBrowseC1.Size = new System.Drawing.Size(74, 26);
@@ -161,6 +191,7 @@ namespace PE_Tools.Views
             // lblC1ConfigPath
             // 
             lblC1ConfigPath.AutoSize = true;
+            lblC1ConfigPath.ForeColor = PE_Tools.AppTheme.LabelSectionFg;
             lblC1ConfigPath.Location = new System.Drawing.Point(3, 22);
             lblC1ConfigPath.Name = "lblC1ConfigPath";
             lblC1ConfigPath.Size = new System.Drawing.Size(114, 15);
@@ -170,6 +201,7 @@ namespace PE_Tools.Views
             // lblConfigPathsSection
             // 
             lblConfigPathsSection.AutoSize = true;
+            lblConfigPathsSection.ForeColor = PE_Tools.AppTheme.LabelSectionFg;
             lblConfigPathsSection.Location = new System.Drawing.Point(3, 4);
             lblConfigPathsSection.Name = "lblConfigPathsSection";
             lblConfigPathsSection.Size = new System.Drawing.Size(134, 15);
@@ -179,6 +211,7 @@ namespace PE_Tools.Views
             // lblDevelopmentFolder
             // 
             lblDevelopmentFolder.AutoSize = true;
+            lblDevelopmentFolder.ForeColor = PE_Tools.AppTheme.LabelSectionFg;
             lblDevelopmentFolder.Location = new System.Drawing.Point(3, 110);
             lblDevelopmentFolder.Name = "lblDevelopmentFolder";
             lblDevelopmentFolder.Size = new System.Drawing.Size(117, 15);
@@ -188,6 +221,8 @@ namespace PE_Tools.Views
             // txtDevelopmentFolder
             // 
             txtDevelopmentFolder.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            txtDevelopmentFolder.BackColor = PE_Tools.AppTheme.InputBg;
+            txtDevelopmentFolder.ForeColor = PE_Tools.AppTheme.InputFg;
             txtDevelopmentFolder.Location = new System.Drawing.Point(3, 128);
             txtDevelopmentFolder.Name = "txtDevelopmentFolder";
             txtDevelopmentFolder.Size = new System.Drawing.Size(680, 23);
@@ -196,6 +231,13 @@ namespace PE_Tools.Views
             // btnBrowseDevFolder
             // 
             btnBrowseDevFolder.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            btnBrowseDevFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnBrowseDevFolder.FlatAppearance.BorderSize = 0;
+            btnBrowseDevFolder.FlatAppearance.MouseOverBackColor = PE_Tools.AppTheme.BtnSecondaryHover;
+            btnBrowseDevFolder.BackColor = PE_Tools.AppTheme.BtnSecondaryBg;
+            btnBrowseDevFolder.ForeColor = PE_Tools.AppTheme.BtnSecondaryFg;
+            btnBrowseDevFolder.UseVisualStyleBackColor = false;
+            btnBrowseDevFolder.Cursor = System.Windows.Forms.Cursors.Hand;
             btnBrowseDevFolder.Location = new System.Drawing.Point(689, 126);
             btnBrowseDevFolder.Name = "btnBrowseDevFolder";
             btnBrowseDevFolder.Size = new System.Drawing.Size(74, 26);
@@ -218,6 +260,13 @@ namespace PE_Tools.Views
             // 
             // btnTestNotification
             // 
+            btnTestNotification.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnTestNotification.FlatAppearance.BorderSize = 0;
+            btnTestNotification.FlatAppearance.MouseOverBackColor = PE_Tools.AppTheme.BtnSecondaryHover;
+            btnTestNotification.BackColor = PE_Tools.AppTheme.BtnSecondaryBg;
+            btnTestNotification.ForeColor = PE_Tools.AppTheme.BtnSecondaryFg;
+            btnTestNotification.UseVisualStyleBackColor = false;
+            btnTestNotification.Cursor = System.Windows.Forms.Cursors.Hand;
             btnTestNotification.Location = new System.Drawing.Point(690, 30);
             btnTestNotification.Name = "btnTestNotification";
             btnTestNotification.Size = new System.Drawing.Size(75, 25);
@@ -228,6 +277,7 @@ namespace PE_Tools.Views
             // lblNotificationSeconds
             // 
             lblNotificationSeconds.AutoSize = true;
+            lblNotificationSeconds.ForeColor = PE_Tools.AppTheme.LabelSectionFg;
             lblNotificationSeconds.Location = new System.Drawing.Point(88, 35);
             lblNotificationSeconds.Name = "lblNotificationSeconds";
             lblNotificationSeconds.Size = new System.Drawing.Size(50, 15);
@@ -236,6 +286,8 @@ namespace PE_Tools.Views
             // 
             // numNotificationDuration
             // 
+            numNotificationDuration.BackColor = PE_Tools.AppTheme.InputBg;
+            numNotificationDuration.ForeColor = PE_Tools.AppTheme.InputFg;
             numNotificationDuration.Location = new System.Drawing.Point(3, 34);
             numNotificationDuration.Maximum = new decimal(new int[] { 60, 0, 0, 0 });
             numNotificationDuration.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
@@ -247,6 +299,7 @@ namespace PE_Tools.Views
             // lblNotificationDuration
             // 
             lblNotificationDuration.AutoSize = true;
+            lblNotificationDuration.ForeColor = PE_Tools.AppTheme.LabelSectionFg;
             lblNotificationDuration.Location = new System.Drawing.Point(3, 16);
             lblNotificationDuration.Name = "lblNotificationDuration";
             lblNotificationDuration.Size = new System.Drawing.Size(138, 15);
@@ -256,6 +309,7 @@ namespace PE_Tools.Views
             // lblNotificationsSection
             // 
             lblNotificationsSection.AutoSize = true;
+            lblNotificationsSection.ForeColor = PE_Tools.AppTheme.LabelSectionFg;
             lblNotificationsSection.Location = new System.Drawing.Point(3, 0);
             lblNotificationsSection.Name = "lblNotificationsSection";
             lblNotificationsSection.Size = new System.Drawing.Size(75, 15);
@@ -265,6 +319,13 @@ namespace PE_Tools.Views
             // btnSaveAll
             // 
             btnSaveAll.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            btnSaveAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnSaveAll.FlatAppearance.BorderSize = 0;
+            btnSaveAll.FlatAppearance.MouseOverBackColor = PE_Tools.AppTheme.BtnPrimaryHover;
+            btnSaveAll.BackColor = PE_Tools.AppTheme.BtnPrimaryBg;
+            btnSaveAll.ForeColor = PE_Tools.AppTheme.BtnPrimaryFg;
+            btnSaveAll.UseVisualStyleBackColor = false;
+            btnSaveAll.Cursor = System.Windows.Forms.Cursors.Hand;
             btnSaveAll.Location = new System.Drawing.Point(644, 480);
             btnSaveAll.Name = "btnSaveAll";
             btnSaveAll.Size = new System.Drawing.Size(140, 31);
